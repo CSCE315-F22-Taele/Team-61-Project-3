@@ -1,17 +1,28 @@
-const express = require('express'); 
-const app = express(); 
-const cors = reuire('cors'); 
-const dotenv = require('dotenv'); 
-dotenv.config();
+const { Client } = require('pg');
 
-app.arguments(cors()); 
-app.arguments(express.json());
-app.arguments(express.urlencoded({extended : false})); 
-
-
+const client = new Client({
+    host: "csce-315-db.engr.tamu.edu",
+    port: 5432,
+    user: "csce331_905_justin",
+    password: "justin",
+    database: "csce331_905_61",
+    ssl: {
+        require: true,
+        rejectUnauthorized: false
+    }
+})
+client.connect();
 
 //query database function
-
+client.query('select * from cabo_grill', (err, result) => {
+    if (!err) {
+        console.log(result.rows);
+    }
+    else {
+        console.log(err.message);
+    }
+    client.end();
+}) 
 
 //update database function
 
