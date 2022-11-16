@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    fetch('http://localhost:8080/getAll')
+    fetch('https://csce315-f22-taele.github.io/Team-61-Project_3/client/home/index.html:8080/getAll')
     .then(response => response.json())
     .then(data => loadHTMLTable(data['data']));
 }); 
