@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    fetch('http://172.30.0.1:5000/getAll')
+    fetch('http://localhost:8080/getAll')
     .then(response => response.json())
     .then(data => loadHTMLTable(data['data']));
 }); 
