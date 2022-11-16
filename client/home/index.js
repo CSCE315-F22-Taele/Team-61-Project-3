@@ -1,25 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
-    loadServer();
-    fetch('http://localhost:5000/getAll')
+    fetch('http://localhost:443/getAll')
     .then(response => response.json())
     .then(data => loadHTMLTable(data['data']));
 }); 
-
-const { exec } = require("child_process");
-
-function loadServer() {
-    exec("npm start", (error, stdout, stderr) => {
-        if (error) {
-            //console.log(`error: ${error.message}`);
-            return;
-        }
-        if (stderr) {
-            //console.log(`stderr: ${stderr}`);
-            return;
-        }
-        //console.log(`stdout: ${stdout}`);
-    });
-}
 
 function loadHTMLTable(data) {
     const table = document.querySelector('table tbody'); 
