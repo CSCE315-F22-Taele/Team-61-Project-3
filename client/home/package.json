@@ -1,11 +1,11 @@
 {
-  "name": "client",
+  "name": "home",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cd ../server && npx nodemon app"
+    "start": "cd ../../server && npx nodemon app"
   },
   "author": "",
   "license": "ISC"
