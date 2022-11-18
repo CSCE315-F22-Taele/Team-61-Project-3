@@ -13,14 +13,31 @@
             <img src="../home/logo.png" class = "logo">
             <ul>
                 <li><a href="../home/index.html">Home</a></li>
-                <li><a href="../manager/managerHome.html">Manager</a></li>
+                <div class = "navbar_dropdown">
+                    <button class = "nav_dropbtn">Manager
+                        <i class = "fa fa-caret-down"></i>
+                    </button>
+                    <div class = "nav_dropdown_content">
+                        <a href="../manager/inventory.html">Inventory Information</a>
+                        <a href="../manager/sales.html">Sales Information</a>
+                        <a href="../manager/new_item.html">New Item</a>
+                    </div>
+                </div>
                 <li><a href="../customer/customerHome.html">Customer</a></li>
                 <li><a href="../clerk/clerkHome.html">Clerk</a></li>
             </ul>
         </div>
     </div>
 
-    <div class="content">
+    <div class = "dropdown">
+        <button class = "dropbtn">Inventory Criteria</button>
+        <div class = "dropdown_content">
+            <a href="#">All</a>
+            <a href="#">protein</a>
+        </div>
+    </div>
+
+    <div class="table">
         <label>Name:</label>
         <input type = "text" id = "test_input"> 
         <button id = "search all"> show all records</button>

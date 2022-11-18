@@ -11,6 +11,7 @@
     background-image: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)), url(../home/burrito_background.jpg);
     background-size: cover;
     background-position: center;
+    z-index: 1; 
 }
 
 .navbar{
@@ -20,10 +21,11 @@
     display: flex; 
     align-items: center;
     justify-content: space-between; 
+    z-index: 1; 
 }
 
 .logo{
-    width: 120px;
+    width: 160px;
     cursor: pointer;
 }
 
@@ -38,6 +40,7 @@
     text-decoration: none;
     color: #fff;
     text-transform: uppercase; 
+    font-size: 16px; 
 }
 
 .navbar ul li::after{
@@ -51,14 +54,59 @@
     transition: 0.5s; 
 }
 
+
 .navbar ul li:hover::after{
     width: 100%;
 }
 
-.content {
+.navbar_dropdown{
+    float: left; 
+    overflow: hidden; 
+}
+
+.nav_dropbtn{
+    font-size: 16px;
+    margin: 0 20px; 
+    border: none;
+    outline: none;
+    color: #fff;
+    background-color: inherit;
+    font-family: sans-serif;
+    text-transform: uppercase;
+}
+
+.nav_dropdown_content{
+    display: none; 
+    position: absolute;
+    background-color: #17869C;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1; 
+    margin-top: 10px; 
+}
+
+.nav_dropdown_content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block; 
+    text-align: left;
+}
+
+
+.navbar_dropdown:hover .nav_dropdown_content{
+    display: block;
+    position: relative; 
+    margin: 0 20px; 
+}
+
+
+.table {
     width: 100%;
     position: absolute; 
     top: 30%;
+    left: 20%; 
     transform: translateY(-50%);
     text-align: center;
     color: #fff; 
@@ -77,4 +125,51 @@ table, th, td {
 
 th, td {
     padding: 5px; 
+}
+
+.dropbtn{
+    text-align: center;
+    color: #fff; 
+    background-color: #1995AA;
+    color: #fff;
+    padding: 16px; 
+    font-size: 16px; 
+    border-radius: 15px; 
+}
+
+.dropdown {
+    top: -600px; 
+    left: 20px; 
+    position: relative; 
+    display: inline-block;
+}
+
+
+
+.dropdown_content{
+    display: none; 
+    position: absolute;
+    background-color: #F9B618;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2); 
+}
+
+.dropdown_content a{
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block; 
+}
+
+.dropdown_content a:hover {
+    background-color: #17869C;
+    opacity: .3; 
+}
+
+.dropdown:hover .dropdown_content {
+    display: block; 
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #17869C;
 }
