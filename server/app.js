@@ -5,11 +5,12 @@ const dotenv = require('dotenv');
 const { request, response } = require('express');
 dotenv.config();
 
-const dbService = require('./dbService');
+const dbService = require('../dbService');
 
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended : false}));
+
 
 //read data
 app.get('/getAll', (request, response) => {    

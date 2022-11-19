@@ -4,13 +4,12 @@
     font-family: sans-serif;
 }
 
-
 .banner{
     width: 100%;
-    height: 100vh;
     background-image: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)), url(../home/burrito_background.jpg);
     background-size: cover;
     background-position: center;
+    background-attachment: fixed;
 }
 
 .navbar{
@@ -56,18 +55,14 @@
 }
 
 .content {
-    width: 100%;
-    position: absolute; 
-    top: 30%;
-    transform: translateY(-50%);
+    width: 50%;
+    margin: 15px auto; 
     text-align: center;
     color: #fff; 
-
 }
+
 table {
     margin: 20px auto; 
-    position: relative; 
-    z-index: -1; 
 }
 
 table, th, td {
@@ -77,4 +72,8 @@ table, th, td {
 
 th, td {
     padding: 5px; 
+}
+
+.pageButtons {
+    padding: 20px;   
 }

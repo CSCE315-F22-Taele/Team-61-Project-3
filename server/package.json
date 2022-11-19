@@ -1,20 +1,23 @@
 {
-  "name": "server",
+  "name": "team-61-project_3",
   "version": "1.0.0",
-  "description": "",
+  "description": "try to use these colors for the html front end, i pulled them from the logo photo so they should make the page look cleaner and more put together.",
   "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git"
+  },
+  "author": "",
+  "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "mysql": "^2.18.1",
-    "pg": "^8.8.0"
+    "pg-promise": "^10.15.0"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
     "nodemon": "^2.0.20"
   }
