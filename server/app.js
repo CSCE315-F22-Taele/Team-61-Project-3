@@ -11,7 +11,6 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended : false}));
 
-
 //read data
 app.get('/getAll', (request, response) => {    
     const db = dbService.getDbServiceInstance();
@@ -23,5 +22,4 @@ app.get('/getAll', (request, response) => {
     .catch(err => console.log(err));
 });
 
-app.listen(process.env.PORT, () => console.log('app is running'));
-
+app.listen(process.env.PORT || 5000, () => console.log('app is running'));
