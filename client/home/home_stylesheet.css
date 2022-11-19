@@ -54,3 +54,24 @@
 .navbar ul li:hover::after{
     width: 100%;
 }
+
+.content{
+    width: 100%;
+    position: absolute; 
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+    color: #fff; 
+}
+
+.content h1{
+    font-size: 90px;
+    margin-top: 80px;
+}
+
+.content p{
+    margin: 20px auto; 
+    font-weight: 100;
+    line-height: 25px; 
+    font-size: 20px;
+}

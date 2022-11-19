@@ -4,37 +4,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="stylesheet.css"> 
+    <link rel="stylesheet" href="home_stylesheet.css"> 
     <title>Project 3</title>
 </head>
 <body>
-    <main>
-        <div class="pageButtons">
-            <button id = "customerBtn"><a href="../customer/customerHome.html">Customer</a> </button>
-            <button id = "clerkBtn"><a href="../clerk/clerkHome.html">Clerk</a></button>
-            <button id = "managerBtn"><a href="../manager/managerHome.html">Manager</a> </button>
-        </div>
+   <div class = "banner">
+       <div class = "navbar">
+           <img src="logo.png" class = "logo">
+           <ul>
+               <li><a href="../home/index.html">Home</a></li>
+               <li><a href="../manager/managerHome.html">Manager</a></li>
+               <li><a href="../customer/customerHome.html">Customer</a></li>
+               <li><a href="../clerk/clerkHome.html">Clerk</a></li>
+           </ul>
+       </div>
 
-        <label>Name:</label>
-        <input type = "text" id = "test_input"> 
-        <button id = "search all"> show all records</button>
+       <div class="content">
+           <h1>Welcome to Cabo Grill</h1>
+           <p>Please use the Navigation bar at the top to get to your according page.<br>Keep in mind the Manager and Clerk pages are not publically accesible</p>
+       </div>
 
-        <table>
-            <thead>
-                <th>Sale ID</th>
-                <th>Date</th>
-                <th>Entree Type</th>
-                <th>Protein</th>
-                <th>Chips and Salsa</th>
-                <th>Chips and Queso</th>
-                <th>Chips and Guac</th>
-                <th>Drink </th>
-                <th>Cost</th>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
-    </main>
-    <script src="index.js"></script>
+
+   </div>
 </body>
 </html>
