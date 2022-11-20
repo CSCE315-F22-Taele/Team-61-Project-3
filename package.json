@@ -1,11 +1,10 @@
 {
   "name": "team-61-project_3",
   "version": "1.0.0",
-  "description": "try to use these colors for the html front end, i pulled them from the logo photo so they should make the page look cleaner and more put together.",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "start": "cd server && node app.js"
   },
   "repository": {
     "type": "git"
