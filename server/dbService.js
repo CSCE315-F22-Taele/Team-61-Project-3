@@ -28,15 +28,72 @@ class DbService {
     static getDbServiceInstance() {
         return instance ? instance : new DbService();
     }
+    async getEntreeOptions() {
+        try {
+            const response = await new Promise((resolve, reject) => {
+                const query = "SELECT item_name FROM cabo_grill WHERE type = 'entree';";
+                connection.query(query, (err, results) => {
+                    if (err)
+                        reject(new Error(err.message));
+                    else
+                        resolve(results);
+                });
+            });
+            return response;
+        } 
+        catch (error) {
+            console.log(error);
+        }
+    }
+
+    async getProteinOptions() {
+        try {
+            const response = await new Promise((resolve, reject) => {
+                const query = "SELECT item_name FROM cabo_grill WHERE type = 'protein';";
+                connection.query(query, (err, results) => {
+                    if (err)
+                        reject(new Error(err.message));
+                    else
+                        resolve(results);
+                });
+            });
+            return response;
+        } 
+        catch (error) {
+            console.log(error);
+        }
+    }
+
+    async getSideOptions() {
+        try {
+            const response = await new Promise((resolve, reject) => {
+                const query = "SELECT item_name FROM cabo_grill WHERE type = 'side';";
+                connection.query(query, (err, results) => {
+                    if (err)
+                        reject(new Error(err.message));
+                    else
+                        resolve(results);
+                });
+            });
+            return response;
+        } 
+        catch (error) {
+            console.log(error);
+        }
+    }
 
     async getAllData() {
         try {
             const response = await new Promise((resolve, reject) => {
-                const query = "SELECT * FROM cabo_grill_sales;";
+                const query = "SELECT * FROM cabo_grill_sales ORDER BY sale_id DESC;";
 
                 connection.query(query, (err, results) => {
-                    if (err) reject(new Error(err.message));
-                    resolve(results);
+                    if (err) {
+                        reject(new Error(err.message));
+                    }
+                    else {
+                        resolve(results);
+                    }
                 });
             });
             return response;

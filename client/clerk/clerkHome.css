@@ -51,6 +51,32 @@
     transition: 0.5s; 
 }
 
-.navbar ul li:hover::after{
+.navbar ul li:hover::after {
     width: 100%;
+}
+
+.content {
+    background-color: #1995AA;
+    width: 50%;
+    justify-self: center;
+}
+
+.entree {
+    display: flex;
+    justify-content: center;
+}
+
+.protein {
+    display: flex;
+    justify-content: center;
+}
+
+.sides {
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    padding: 10px;
+    margin: 5px;
 }
