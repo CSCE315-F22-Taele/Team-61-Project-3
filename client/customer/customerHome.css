@@ -54,3 +54,22 @@
 .navbar ul li:hover::after{
     width: 100%;
 }
+
+.menuitems{
+    margin: auto;
+}
+
+.menuitems li{
+    display: inline;
+}
+
+.menuitems ul li a{
+    text-decoration: none;
+    color: #fff;
+    text-transform: uppercase; 
+}
+
+.itemimage {
+    width: 200px;
+    height: auto;
+}
