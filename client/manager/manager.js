@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+    //fetch('https://project3-7bzcyqo3va-uc.a.run.app/getAll')   //fetch from server on gcloud
     //fetch('http://localhost:5555/getAll') 
     fetch('https://project3-7bzcyqo3va-uc.a.run.app/getAll')   //fetch from server on gcloud
     .then(response => response.json())
