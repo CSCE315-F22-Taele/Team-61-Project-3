@@ -82,6 +82,29 @@ class DbService {
         }
     }
 
+    // query to retrieve all items from inventory
+    async getAllInventory() {
+        try {
+            // handle the query
+            const response = await new Promise((resolve, reject) => {
+                const query = "SELECT * FROM cabo_grill ORDER BY id ASC;";
+
+                connection.query(query, (err, results) => {
+                    if (err) {
+                        reject(new Error(err.message));
+                    }
+                    else {
+                        resolve(results);
+                    }
+                });
+            });
+            return response;
+        } 
+        catch (error) {
+            console.log(error);
+        }
+    }
+
     async getAllData() {
         try {
             // handle the query

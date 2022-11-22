@@ -36,6 +36,14 @@ app.get('/getSideOptions', (request, response) => {
     .catch(err => console.log(err));
 });
 
+app.get('/getAllInventory', (request, response) => {    
+    const db = dbService.getDbServiceInstance();
+    const result = db.getAllInventory();
+    result
+    .then(data => response.json({data : data}))
+    .catch(err => console.log(err));
+});
+
 //read data
 app.get('/getAll', (request, response) => {    
     const db = dbService.getDbServiceInstance();
