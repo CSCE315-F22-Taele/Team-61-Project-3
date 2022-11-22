@@ -64,25 +64,6 @@ class DbService {
         }
     }
 
-    // query function that displays all items in inventory that are protein
-    async getAllProteinInventory() {
-        try {
-            const response = await new Promise((resolve, reject) => {
-                const query = "SELECT * FROM cabo_grill WHERE type = 'protein';";
-                connection.query(query, (err, results) => {
-                    if (err)
-                        reject(new Error(err.message));
-                    else
-                        resolve(results);
-                });
-            });
-            return response;
-        } 
-        catch (error) {
-            console.log(error);
-        }
-    }
-
     async getSideOptions() {
         try {
             const response = await new Promise((resolve, reject) => {
@@ -101,10 +82,29 @@ class DbService {
         }
     }
 
+    // query function that displays all items in inventory that are protein
+    async getAllProteinInventory() {
+        try {
+            const response = await new Promise((resolve, reject) => {
+                const query = "SELECT * FROM cabo_grill WHERE type = 'protein' ORDER BY quantity ASC;";
+                connection.query(query, (err, results) => {
+                    if (err)
+                        reject(new Error(err.message));
+                    else
+                        resolve(results);
+                });
+            });
+            return response;
+        } 
+        catch (error) {
+            console.log(error);
+        }
+    }
+
     async getAllSideInventory() {
         try {
             const response = await new Promise((resolve, reject) => {
-                const query = "SELECT * FROM cabo_grill WHERE type = 'side';";
+                const query = "SELECT * FROM cabo_grill WHERE type = 'side' ORDER BY quantity ASC;";
                 connection.query(query, (err, results) => {
                     if (err)
                         reject(new Error(err.message));
@@ -124,7 +124,7 @@ class DbService {
         try {
             // handle the query
             const response = await new Promise((resolve, reject) => {
-                const query = "SELECT * FROM cabo_grill ORDER BY id ASC;";
+                const query = "SELECT * FROM cabo_grill ORDER BY quantity ASC;";
 
                 connection.query(query, (err, results) => {
                     if (err) {
@@ -145,7 +145,7 @@ class DbService {
     async getAllToppingInventory() {
         try {
             const response = await new Promise((resolve, reject) => {
-                const query = "SELECT * FROM cabo_grill WHERE type = 'topping';";
+                const query = "SELECT * FROM cabo_grill WHERE type = 'topping' ORDER BY quantity ASC;";
                 connection.query(query, (err, results) => {
                     if (err)
                         reject(new Error(err.message));
@@ -163,7 +163,7 @@ class DbService {
     async getAllTortillaInventory() {
         try {
             const response = await new Promise((resolve, reject) => {
-                const query = "SELECT * FROM cabo_grill WHERE type = 'tortilla';";
+                const query = "SELECT * FROM cabo_grill WHERE type = 'tortilla' ORDER BY quantity ASC;";
                 connection.query(query, (err, results) => {
                     if (err)
                         reject(new Error(err.message));
@@ -181,7 +181,7 @@ class DbService {
     async getAllMiscInventory() {
         try {
             const response = await new Promise((resolve, reject) => {
-                const query = "SELECT * FROM cabo_grill WHERE type = 'misc';";
+                const query = "SELECT * FROM cabo_grill WHERE type = 'misc' ORDER BY quantity ASC;";
                 connection.query(query, (err, results) => {
                     if (err)
                         reject(new Error(err.message));
