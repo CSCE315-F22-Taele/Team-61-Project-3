@@ -84,6 +84,7 @@ class DbService {
 
     async getAllData() {
         try {
+            // handle the query
             const response = await new Promise((resolve, reject) => {
                 const query = "SELECT * FROM cabo_grill_sales ORDER BY sale_id DESC;";
 
