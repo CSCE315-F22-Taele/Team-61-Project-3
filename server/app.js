@@ -60,6 +60,14 @@ app.get('/getAllInventory', (request, response) => {
     .catch(err => console.log(err));
 });
 
+app.get('/getAllToppingOptions', (request, response) => {    
+    const db = dbService.getDbServiceInstance();
+    const result = db.getAllToppingOptions();
+    result
+    .then(data => response.json({data : data}))
+    .catch(err => console.log(err));
+});
+
 //read data
 app.get('/getAll', (request, response) => {    
     const db = dbService.getDbServiceInstance();

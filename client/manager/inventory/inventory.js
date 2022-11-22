@@ -23,7 +23,7 @@ function fetchAllProtein() {
 var proteinButton = document.getElementById('proteinBtn');
 proteinButton.addEventListener('click', fetchAllProtein);
 
-// fetch the GET request for the query that selects all the protein options in inventory table
+// fetch the GET request for the query that selects all the side options in inventory table
 function fetchAllSides() {
     fetch('http://localhost:5555/getAllSideOptions') 
     .then(response => response.json())
@@ -31,6 +31,16 @@ function fetchAllSides() {
 }
 var sideButton = document.getElementById('sideBtn');
 sideButton.addEventListener('click', fetchAllSides);
+
+// fetch the GET request for the query that selects all the topping options in inventory table
+function fetchAllToppings() {
+    fetch('http://localhost:5555/getAllToppingOptions') 
+    .then(response => response.json())
+    .then(data => loadHTMLTable(data['data']));
+}
+var toppingButton = document.getElementById('toppingBtn');
+toppingButton.addEventListener('click', fetchAllToppings);
+
 
 function loadHTMLTable(data) {
     const table = document.querySelector('table tbody'); 
