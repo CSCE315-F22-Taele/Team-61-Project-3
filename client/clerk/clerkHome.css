@@ -56,27 +56,26 @@
 }
 
 .content {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
     background-color: #1995AA;
-    width: 50%;
-    justify-self: center;
-}
-
-.entree {
-    display: flex;
-    justify-content: center;
-}
-
-.protein {
-    display: flex;
-    justify-content: center;
-}
-
-.sides {
-    display: flex;
-    justify-content: center;
+    width: 80%;
+    height: auto;
 }
 
 button {
     padding: 10px;
-    margin: 5px;
+    margin: 10px;
+}
+
+.order {
+    float: right;
+    width: 45%;
+    background-color: #ffffff;
+}
+
+.total {
+    background-color: plum;
+    width: 20%;
 }
