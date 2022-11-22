@@ -102,12 +102,14 @@
 
 .table {
     width: 100%;
-    position: absolute; 
-    top: 30%;
-    left: 20%; 
-    transform: translateY(-50%);
+    position: relative; 
+    top: -200px;
+    left: 15%; 
+    /*transform: translateY(-50%);*/
     text-align: center;
     color: #fff; 
+    overflow-y: scroll; 
+    height: 400px; 
 }
 
 table {
