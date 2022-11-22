@@ -5,7 +5,7 @@
 //     .then(data => loadHTMLTable(data['data']));
 // }); 
 
-// fetch the GET request from the database and load into data variable
+// fetch the GET request for the query that selects all items in the inventory table
 function fetchAllInventory() {
     fetch('http://localhost:5555/getAllInventory') 
     .then(response => response.json())
@@ -14,6 +14,7 @@ function fetchAllInventory() {
 var allButton = document.getElementById('allBtn');
 allButton.addEventListener('click', fetchAllInventory);
 
+// fetch the GET request for the query that selects all the protein options in inventory table
 function fetchAllProtein() {
     fetch('http://localhost:5555/getAllProteinOptions') 
     .then(response => response.json())
@@ -21,6 +22,15 @@ function fetchAllProtein() {
 }
 var proteinButton = document.getElementById('proteinBtn');
 proteinButton.addEventListener('click', fetchAllProtein);
+
+// fetch the GET request for the query that selects all the protein options in inventory table
+function fetchAllSides() {
+    fetch('http://localhost:5555/getAllSideOptions') 
+    .then(response => response.json())
+    .then(data => loadHTMLTable(data['data']));
+}
+var sideButton = document.getElementById('sideBtn');
+sideButton.addEventListener('click', fetchAllSides);
 
 function loadHTMLTable(data) {
     const table = document.querySelector('table tbody'); 
