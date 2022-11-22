@@ -54,3 +54,43 @@
 .navbar ul li:hover::after{
     width: 100%;
 }
+
+.menuitems{
+    margin: auto;
+}
+
+.menuitems li{
+    display: inline;
+}
+
+.menuitems ul li a{
+    text-decoration: none;
+    color: #fff;
+    text-transform: uppercase; 
+}
+
+.itemimage {
+    width: 200px;
+    height: auto;
+}
+
+.checkout{
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+}
+
+.checkout:hover {
+    background-color: white; /* Green */
+    color: #4CAF50;
+}
+
+.total{
+    color:white;
+}

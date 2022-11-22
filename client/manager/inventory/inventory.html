@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="inventory.css"> 
+    <title>Project 3</title>
+</head>
+<body>
+    <div class = "banner">
+        <div class = "navbar">
+            <img src="../../home/logo.png" class = "logo">
+            <ul>
+                <li><a href="../../home/index.html">Home</a></li>
+                <div class = "navbar_dropdown">
+                    <button class = "nav_dropbtn">Manager
+                        <i class = "fa fa-caret-down"></i>
+                    </button>
+                    <div class = "nav_dropdown_content">
+                        <a href="../manager/inventory.html">Inventory Information</a>
+                        <a href="../managerHome.html">Sales Information</a>
+                        <a href="../manager/new_item.html">New Item</a>
+                    </div>
+                </div>
+                <li><a href="../customer/customerHome.html">Customer</a></li>
+                <li><a href="../clerk/clerkHome.html">Clerk</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class = "dropdown">
+        <button class = "dropbtn">Inventory Criteria</button>
+        <div class = "dropdown_content">
+            <button class = "dropdown_btn">All</button>
+            <button class = "dropdown_btn">protein</button>
+            <button class = "dropdown_btn">side</button>
+            <button class = "dropdown_btn">topping</button>
+            <button class = "dropdown_btn">tortilla</button>
+            <button class = "dropdown_btn">misc</button>
+        </div>
+    </div>
+
+    <div class="table">
+        <label>Name:</label>
+        <input type = "text" id = "test_input"> 
+        <button id = "search all"> show all records</button>
+        <table>
+            <thead>
+                <th>ID</th>
+                <th>Item Name</th>
+                <th>Type</th>
+                <th>Quantity</th>
+                <th>Sufficient Supply</th>
+                <th>Sale Cost</th>
+                <th>Minimum Supply</th>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+    <script src="inventory.js"></script>
+</body>
+</html>
