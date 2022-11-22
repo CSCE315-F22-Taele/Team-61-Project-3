@@ -5,7 +5,6 @@
 //     .then(data => loadHTMLTable(data['data']));
 // }); 
 
-// fetch the GET request from the database and load into data variable
 function fetchAllInventory() {
     fetch('http://localhost:5555/getAllInventory') 
     .then(response => response.json())
@@ -14,6 +13,7 @@ function fetchAllInventory() {
 var allButton = document.getElementById('allBtn');
 allButton.addEventListener('click', fetchAllInventory);
 
+
 function fetchAllProtein() {
     fetch('http://localhost:5555/getAllProteinOptions') 
     .then(response => response.json())
@@ -21,6 +21,43 @@ function fetchAllProtein() {
 }
 var proteinButton = document.getElementById('proteinBtn');
 proteinButton.addEventListener('click', fetchAllProtein);
+
+
+function fetchAllSides() {
+    fetch('http://localhost:5555/getAllSideOptions') 
+    .then(response => response.json())
+    .then(data => loadHTMLTable(data['data']));
+}
+var sideButton = document.getElementById('sideBtn');
+sideButton.addEventListener('click', fetchAllSides);
+
+
+function fetchAllToppings() {
+    fetch('http://localhost:5555/getAllToppingOptions') 
+    .then(response => response.json())
+    .then(data => loadHTMLTable(data['data']));
+}
+var toppingButton = document.getElementById('toppingBtn');
+toppingButton.addEventListener('click', fetchAllToppings);
+
+
+function fetchAllTortillas() {
+    fetch('http://localhost:5555/getAllTortillaInventory') 
+    .then(response => response.json())
+    .then(data => loadHTMLTable(data['data']));
+}
+var tortillaButton = document.getElementById('tortillaBtn');
+tortillaButton.addEventListener('click', fetchAllTortillas);
+
+
+function fetchAllMiscInventory() {
+    fetch('http://localhost:5555/getAllMiscInventory') 
+    .then(response => response.json())
+    .then(data => loadHTMLTable(data['data']));
+}
+var miscButton = document.getElementById('miscBtn');
+miscButton.addEventListener('click', fetchAllMiscInventory);
+
 
 function loadHTMLTable(data) {
     const table = document.querySelector('table tbody'); 
@@ -43,6 +80,7 @@ function loadHTMLTable(data) {
 
     table.innerHTML = tableHTML;
 }
+
 
 var btns = document.getElementsByClassName('dropdown_btn'); 
 var button; 
