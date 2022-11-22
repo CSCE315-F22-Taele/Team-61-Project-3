@@ -28,9 +28,9 @@ app.get('/getProteinOptions', (request, response) => {
     .catch(err => console.log(err));
 });
 
-app.get('/getAllProteinOptions', (request, response) => {    
+app.get('/getAllProteinInventory', (request, response) => {    
     const db = dbService.getDbServiceInstance();
-    const result = db.getAllProteinOptions();
+    const result = db.getAllProteinInventory();
     result
     .then(data => response.json({data : data}))
     .catch(err => console.log(err));
@@ -44,9 +44,9 @@ app.get('/getSideOptions', (request, response) => {
     .catch(err => console.log(err));
 });
 
-app.get('/getAllSideOptions', (request, response) => {    
+app.get('/getAllSideInventory', (request, response) => {    
     const db = dbService.getDbServiceInstance();
-    const result = db.getAllSideOptions();
+    const result = db.getAllSideInventory();
     result
     .then(data => response.json({data : data}))
     .catch(err => console.log(err));
@@ -60,9 +60,9 @@ app.get('/getAllInventory', (request, response) => {
     .catch(err => console.log(err));
 });
 
-app.get('/getAllToppingOptions', (request, response) => {    
+app.get('/getAllToppingInventory', (request, response) => {    
     const db = dbService.getDbServiceInstance();
-    const result = db.getAllToppingOptions();
+    const result = db.getAllToppingInventory();
     result
     .then(data => response.json({data : data}))
     .catch(err => console.log(err));

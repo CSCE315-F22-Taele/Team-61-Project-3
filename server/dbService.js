@@ -65,7 +65,7 @@ class DbService {
     }
 
     // query function that displays all items in inventory that are protein
-    async getAllProteinOptions() {
+    async getAllProteinInventory() {
         try {
             const response = await new Promise((resolve, reject) => {
                 const query = "SELECT * FROM cabo_grill WHERE type = 'protein';";
@@ -101,7 +101,7 @@ class DbService {
         }
     }
 
-    async getAllSideOptions() {
+    async getAllSideInventory() {
         try {
             const response = await new Promise((resolve, reject) => {
                 const query = "SELECT * FROM cabo_grill WHERE type = 'side';";
@@ -142,7 +142,7 @@ class DbService {
         }
     }
 
-    async getAllToppingOptions() {
+    async getAllToppingInventory() {
         try {
             const response = await new Promise((resolve, reject) => {
                 const query = "SELECT * FROM cabo_grill WHERE type = 'topping';";

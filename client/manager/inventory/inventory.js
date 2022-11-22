@@ -15,7 +15,7 @@ allButton.addEventListener('click', fetchAllInventory);
 
 
 function fetchAllProtein() {
-    fetch('http://localhost:5555/getAllProteinOptions') 
+    fetch('http://localhost:5555/getAllProteinInventory') 
     .then(response => response.json())
     .then(data => loadHTMLTable(data['data']));
 }
@@ -24,7 +24,7 @@ proteinButton.addEventListener('click', fetchAllProtein);
 
 
 function fetchAllSides() {
-    fetch('http://localhost:5555/getAllSideOptions') 
+    fetch('http://localhost:5555/getAllSideInventory') 
     .then(response => response.json())
     .then(data => loadHTMLTable(data['data']));
 }
@@ -33,7 +33,7 @@ sideButton.addEventListener('click', fetchAllSides);
 
 
 function fetchAllToppings() {
-    fetch('http://localhost:5555/getAllToppingOptions') 
+    fetch('http://localhost:5555/getAllToppingInventory') 
     .then(response => response.json())
     .then(data => loadHTMLTable(data['data']));
 }
