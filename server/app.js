@@ -28,6 +28,14 @@ app.get('/getProteinOptions', (request, response) => {
     .catch(err => console.log(err));
 });
 
+app.get('/getAllProteinOptions', (request, response) => {    
+    const db = dbService.getDbServiceInstance();
+    const result = db.getAllProteinOptions();
+    result
+    .then(data => response.json({data : data}))
+    .catch(err => console.log(err));
+});
+
 app.get('/getSideOptions', (request, response) => {    
     const db = dbService.getDbServiceInstance();
     const result = db.getSideOptions();

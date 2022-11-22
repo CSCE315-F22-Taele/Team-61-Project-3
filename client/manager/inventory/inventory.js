@@ -14,6 +14,14 @@ function fetchAllInventory() {
 var allButton = document.getElementById('allBtn');
 allButton.addEventListener('click', fetchAllInventory);
 
+function fetchAllProtein() {
+    fetch('http://localhost:5555/getAllProteinOptions') 
+    .then(response => response.json())
+    .then(data => loadHTMLTable(data['data']));
+}
+var proteinButton = document.getElementById('proteinBtn');
+proteinButton.addEventListener('click', fetchAllProtein);
+
 function loadHTMLTable(data) {
     const table = document.querySelector('table tbody'); 
     
