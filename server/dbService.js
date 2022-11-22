@@ -160,6 +160,24 @@ class DbService {
         }
     }
 
+    async getAllTortillaInventory() {
+        try {
+            const response = await new Promise((resolve, reject) => {
+                const query = "SELECT * FROM cabo_grill WHERE type = 'tortilla';";
+                connection.query(query, (err, results) => {
+                    if (err)
+                        reject(new Error(err.message));
+                    else
+                        resolve(results);
+                });
+            });
+            return response;
+        } 
+        catch (error) {
+            console.log(error);
+        }
+    }
+
     async getAllData() {
         try {
             // handle the query
