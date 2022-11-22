@@ -1,14 +1,14 @@
 document.addEventListener('DOMContentLoaded', function() {
     //fetch('https://project3-7bzcyqo3va-uc.a.run.app/getAll')   //fetch from server on gcloud
-    fetch('http://localhost:5000/getEntreeOptions')
+    fetch('http://localhost:5555/getEntreeOptions')
     .then(response => response.json())
     .then(data => loadEntreeOptions(data['data']));
 
-    fetch('http://localhost:5000/getProteinOptions')
+    fetch('http://localhost:5555/getProteinOptions')
     .then(response => response.json())
     .then(data => loadProteinOptions(data['data']));
 
-    fetch('http://localhost:5000/getSideOptions')
+    fetch('http://localhost:5555/getSideOptions')
     .then(response => response.json())
     .then(data => loadSideOptions(data['data']));
 }); 
