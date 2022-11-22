@@ -1,7 +1,7 @@
 steps:
 # Build the container image
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/project3-369120/project3:$COMMIT_SHA', '.']
+  args: ['build', '-t', 'gcr.io/project3-369120/project3:$COMMIT_SHA', './server']
 # Push the container image to Container Registry
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'gcr.io/project3-369120/project3:$COMMIT_SHA']
