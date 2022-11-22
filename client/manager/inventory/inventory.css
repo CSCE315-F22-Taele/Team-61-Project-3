@@ -103,19 +103,21 @@
 
 
 .table {
-    width: 100%;
-    position: absolute; 
-    top: 30%;
-    left: 20%; 
-    transform: translateY(-50%);
+    width: 44.8%;
+    left: 45%;
+    top: -600px; 
+    position: relative; 
     text-align: center;
     color: #fff; 
 
 }
 table {
-    margin: 20px auto; 
     position: relative; 
-    z-index: -1; 
+    text-align: center;
+    color: #fff; 
+    overflow-y: scroll; 
+    height: 320px; 
+    display: block; 
 }
 
 table, th, td {
@@ -138,7 +140,7 @@ th, td {
 }
 
 .dropdown {
-    top: -600px; 
+    top: -550px; 
     left: 20px; 
     position: relative; 
     display: inline-block;
