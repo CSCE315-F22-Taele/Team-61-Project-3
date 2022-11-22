@@ -76,6 +76,14 @@ app.get('/getAllTortillaInventory', (request, response) => {
     .catch(err => console.log(err));
 });
 
+app.get('/getAllMiscInventory', (request, response) => {    
+    const db = dbService.getDbServiceInstance();
+    const result = db.getAllMiscInventory();
+    result
+    .then(data => response.json({data : data}))
+    .catch(err => console.log(err));
+});
+
 //read data
 app.get('/getAll', (request, response) => {    
     const db = dbService.getDbServiceInstance();
