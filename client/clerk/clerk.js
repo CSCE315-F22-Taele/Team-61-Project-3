@@ -13,6 +13,11 @@ document.addEventListener('DOMContentLoaded', function() {
     fetch('https://project3-7bzcyqo3va-uc.a.run.app/getSideOptions')   
     .then(response => response.json())
     .then(data => loadSideOptions(data['data']));
+
+    //fetch('http://localhost:5555/getNextSaleID')
+    fetch('https://project3-7bzcyqo3va-uc.a.run.app/getNextSaleID')   
+    .then(response => response.json())
+    .then(data => loadSaleID(data['data']));
 }); 
 
 function createHtmlString(data) {
@@ -34,6 +39,7 @@ function loadEntreeOptions(entrees) {
 function loadProteinOptions(protein) {    
     const proteinList = document.querySelector('.protein'); 
     proteinList.innerHTML = createHtmlString(protein);
+    //proteinList.innerHTML += "<button>Double Protein</button>"
 }
 
 function loadSideOptions(sides) {    
@@ -172,7 +178,7 @@ function changeBtnColor(id) {
 
 function completeOrder() {
     //fetch('http://localhost:5555/getNextSaleID')
-    fetch('https://project3-7bzcyqo3va-uc.a.run.app/getNextSaleID')   
+    fetch('https://project3-7bzcyqo3va-uc.a.run.app/getSideOptions')   
     .then(response => response.json())
     .then(data => loadSaleID(data['data']));
 
