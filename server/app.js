@@ -117,4 +117,20 @@ app.get('/getNoneOrders', (request, response) => {
     .catch(err => console.log(err));
 });
 
+app.get('/getBurritoOrders', (request, response) => {    
+    const db = dbService.getDbServiceInstance();
+    const result = db.getBurritoOrders();
+    result
+    .then(data => response.json({data : data}))
+    .catch(err => console.log(err));
+});
+
+app.get('/getTacoOrders', (request, response) => {    
+    const db = dbService.getDbServiceInstance();
+    const result = db.getTacoOrders();
+    result
+    .then(data => response.json({data : data}))
+    .catch(err => console.log(err));
+});
+
 app.listen(process.env.PORT || 5555, () => console.log('app is running'));

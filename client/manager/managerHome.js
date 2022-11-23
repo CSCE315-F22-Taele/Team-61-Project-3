@@ -35,6 +35,26 @@ var noneButton = document.getElementById('noneBtn');
 noneButton.addEventListener('click', fetchNoneOrders);
 
 
+function fetchBurritoOrders() {
+    // fetch('https://project3-7bzcyqo3va-uc.a.run.app/getAllOrders')
+    fetch('http://localhost:5555/getBurritoOrders')  
+    .then(response => response.json())
+    .then(data => loadHTMLTable(data['data']));
+}
+var burritoButton = document.getElementById('burritoBtn');
+burritoButton.addEventListener('click', fetchBurritoOrders);
+
+
+function fetchTacoOrders() {
+    // fetch('https://project3-7bzcyqo3va-uc.a.run.app/getAllOrders')
+    fetch('http://localhost:5555/getTacoOrders')  
+    .then(response => response.json())
+    .then(data => loadHTMLTable(data['data']));
+}
+var tacoButton = document.getElementById('tacoBtn');
+tacoButton.addEventListener('click', fetchTacoOrders);
+
+
 function loadHTMLTable(data) {
     const table = document.querySelector('table tbody'); 
     
