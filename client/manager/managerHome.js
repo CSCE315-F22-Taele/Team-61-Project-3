@@ -25,6 +25,16 @@ var bowlButton = document.getElementById('bowlBtn');
 bowlButton.addEventListener('click', fetchBowlOrders);
 
 
+function fetchNoneOrders() {
+    // fetch('https://project3-7bzcyqo3va-uc.a.run.app/getAllOrders')
+    fetch('http://localhost:5555/getNoneOrders')  
+    .then(response => response.json())
+    .then(data => loadHTMLTable(data['data']));
+}
+var noneButton = document.getElementById('noneBtn');
+noneButton.addEventListener('click', fetchNoneOrders);
+
+
 function loadHTMLTable(data) {
     const table = document.querySelector('table tbody'); 
     

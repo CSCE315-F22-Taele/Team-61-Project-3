@@ -109,4 +109,12 @@ app.get('/getBowlOrders', (request, response) => {
     .catch(err => console.log(err));
 });
 
+app.get('/getNoneOrders', (request, response) => {    
+    const db = dbService.getDbServiceInstance();
+    const result = db.getNoneOrders();
+    result
+    .then(data => response.json({data : data}))
+    .catch(err => console.log(err));
+});
+
 app.listen(process.env.PORT || 5555, () => console.log('app is running'));
