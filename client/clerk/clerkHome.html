@@ -18,14 +18,16 @@
             </ul>
         </div>
         <div class = "content">
+            <div class = "order">
+                <button class ="completeOrderBtn" onclick ="completeOrder()">Complete Order</button>
+                <div id="items"> Order:</div>
+                <br>
+                <div id="total"> Total:</div>
+            </div>
             <div class = "entree"></div>
             <div class = "protein"></div>
             <div class = "sides"></div>
-            <button class = "addOrderBtn">Add To Order</button>
-            <div class = "order">
-                <div class = "total">Total: $0.00</div>
-                <div class = "items">items</div>
-            </div>
+            <button class = "addOrderBtn" onclick ="updateOrder()">Add To Order</button>
         </div>
     </div>
     <script src="clerk.js"></script>
