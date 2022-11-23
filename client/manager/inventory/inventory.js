@@ -1,12 +1,5 @@
-// document.addEventListener('DOMContentLoaded', function() {
-//     // fetch('https://project3-7bzcyqo3va-uc.a.run.app/getAll')   //fetch from server on gcloud
-//     fetch('http://localhost:5555/getAllInventory') // fetches the getAll function locally
-//     .then(response => response.json())
-//     .then(data => loadHTMLTable(data['data']));
-// }); 
-
 function fetchAllInventory() {
-    fetch('http://localhost:5555/getAllInventory') 
+    fetch('https://project3-7bzcyqo3va-uc.a.run.app/getAllInventory') 
     .then(response => response.json())
     .then(data => loadHTMLTable(data['data']));
 }
@@ -15,7 +8,7 @@ allButton.addEventListener('click', fetchAllInventory);
 
 
 function fetchAllProtein() {
-    fetch('http://localhost:5555/getAllProteinInventory') 
+    fetch('https://project3-7bzcyqo3va-uc.a.run.app/getAllProteinInventory') 
     .then(response => response.json())
     .then(data => loadHTMLTable(data['data']));
 }
@@ -24,7 +17,7 @@ proteinButton.addEventListener('click', fetchAllProtein);
 
 
 function fetchAllSides() {
-    fetch('http://localhost:5555/getAllSideInventory') 
+    fetch('https://project3-7bzcyqo3va-uc.a.run.app/getAllSideInventory') 
     .then(response => response.json())
     .then(data => loadHTMLTable(data['data']));
 }
@@ -33,7 +26,7 @@ sideButton.addEventListener('click', fetchAllSides);
 
 
 function fetchAllToppings() {
-    fetch('http://localhost:5555/getAllToppingInventory') 
+    fetch('https://project3-7bzcyqo3va-uc.a.run.app/getAllToppingInventory') 
     .then(response => response.json())
     .then(data => loadHTMLTable(data['data']));
 }
@@ -42,7 +35,7 @@ toppingButton.addEventListener('click', fetchAllToppings);
 
 
 function fetchAllTortillas() {
-    fetch('http://localhost:5555/getAllTortillaInventory') 
+    fetch('https://project3-7bzcyqo3va-uc.a.run.app/getAllTortillaInventory') 
     .then(response => response.json())
     .then(data => loadHTMLTable(data['data']));
 }
@@ -51,7 +44,7 @@ tortillaButton.addEventListener('click', fetchAllTortillas);
 
 
 function fetchAllMiscInventory() {
-    fetch('http://localhost:5555/getAllMiscInventory') 
+    fetch('https://project3-7bzcyqo3va-uc.a.run.app/getAllMiscInventory') 
     .then(response => response.json())
     .then(data => loadHTMLTable(data['data']));
 }
