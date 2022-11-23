@@ -1,9 +1,29 @@
-document.addEventListener('DOMContentLoaded', function() {
-    //fetch('http://localhost:5555/getAll') 
-    fetch('https://project3-7bzcyqo3va-uc.a.run.app/getAll')   //fetch from server on gcloud
+// document.addEventListener('DOMContentLoaded', function() {
+//     //fetch('http://localhost:5555/getAll') 
+//     fetch('https://project3-7bzcyqo3va-uc.a.run.app/getAll')   //fetch from server on gcloud
+//     .then(response => response.json())
+//     .then(data => loadHTMLTable(data['data']));
+// }); 
+
+function fetchAllOrders() {
+    // fetch('https://project3-7bzcyqo3va-uc.a.run.app/getAllOrders')
+    fetch('http://localhost:5555/getAllOrders')  
     .then(response => response.json())
     .then(data => loadHTMLTable(data['data']));
-}); 
+}
+var allButton = document.getElementById('allBtn');
+allButton.addEventListener('click', fetchAllOrders);
+
+
+function fetchBowlOrders() {
+    // fetch('https://project3-7bzcyqo3va-uc.a.run.app/getAllOrders')
+    fetch('http://localhost:5555/getBowlOrders')  
+    .then(response => response.json())
+    .then(data => loadHTMLTable(data['data']));
+}
+var bowlButton = document.getElementById('bowlBtn');
+bowlButton.addEventListener('click', fetchBowlOrders);
+
 
 function loadHTMLTable(data) {
     const table = document.querySelector('table tbody'); 

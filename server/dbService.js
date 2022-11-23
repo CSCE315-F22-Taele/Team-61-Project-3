@@ -214,6 +214,24 @@ class DbService {
         }
     }
 
+    async getBowlOrders() {
+        try {
+            const response = await new Promise((resolve, reject) => {
+                const query = "SELECT * FROM cabo_grill_sales WHERE (entree_type = 'bowl' AND sale_id > 0) ORDER BY sale_id ASC;";
+                connection.query(query, (err, results) => {
+                    if (err)
+                        reject(new Error(err.message));
+                    else
+                        resolve(results);
+                });
+            });
+            return response;
+        } 
+        catch (error) {
+            console.log(error);
+        }
+    }
+
     async getAllData() {
         try {
             // handle the query

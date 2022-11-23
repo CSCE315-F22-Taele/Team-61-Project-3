@@ -93,4 +93,20 @@ app.get('/getAll', (request, response) => {
     .catch(err => console.log(err));
 });
 
+app.get('/getAllOrders', (request, response) => {    
+    const db = dbService.getDbServiceInstance();
+    const result = db.getAllOrders();
+    result
+    .then(data => response.json({data : data}))
+    .catch(err => console.log(err));
+});
+
+app.get('/getBowlOrders', (request, response) => {    
+    const db = dbService.getDbServiceInstance();
+    const result = db.getBowlOrders();
+    result
+    .then(data => response.json({data : data}))
+    .catch(err => console.log(err));
+});
+
 app.listen(process.env.PORT || 5555, () => console.log('app is running'));
