@@ -328,8 +328,6 @@ class DbService {
         }
     }
 
-
-
     async insertNewOrder(sale_id, date, entree_type, protein, chips_and_salsa, chips_and_queso, chips_and_guac, drink, cost) {
         try {
             const response = await new Promise((resolve, reject) => {
