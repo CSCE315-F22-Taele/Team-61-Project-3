@@ -28,17 +28,17 @@ app.get('/getProteinOptions', (request, response) => {
     .catch(err => console.log(err));
 });
 
-app.get('/getAllProteinInventory', (request, response) => {    
+app.get('/getSideOptions', (request, response) => {    
     const db = dbService.getDbServiceInstance();
-    const result = db.getAllProteinInventory();
+    const result = db.getSideOptions();
     result
     .then(data => response.json({data : data}))
     .catch(err => console.log(err));
 });
 
-app.get('/getSideOptions', (request, response) => {    
+app.get('/getAllProteinInventory', (request, response) => {    
     const db = dbService.getDbServiceInstance();
-    const result = db.getSideOptions();
+    const result = db.getAllProteinInventory();
     result
     .then(data => response.json({data : data}))
     .catch(err => console.log(err));
