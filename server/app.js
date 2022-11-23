@@ -45,4 +45,32 @@ app.get('/getAll', (request, response) => {
     .catch(err => console.log(err));
 });
 
+app.get('/getNextSaleID', (request, response) => {    
+    const db = dbService.getDbServiceInstance();
+    const result = db.getNextSaleID();
+    result
+    .then(data => response.json({data : data}))
+    .catch(err => console.log(err));
+});
+
+
+app.post('/insert', (request, response) => {
+    const { sale_id } = request.body;
+    const { date } = request.body;
+    const { entree_type } = request.body;
+    const { protein } = request.body;
+    const { chips_and_salsa } = request.body;
+    const { chips_and_queso } = request.body;
+    const { chips_and_guac } = request.body;
+    const { drink } = request.body;
+    const { cost } = request.body;
+
+
+    const db = dbService.getDbServiceInstance();
+    const result = db.insertNewOrder(sale_id, date, entree_type, protein, chips_and_salsa, chips_and_queso, chips_and_guac, drink, cost);
+
+    result
+    .then(data => response.json({ data : data }));
+}) 
+
 app.listen(process.env.PORT || 5555, () => console.log('app is running'));
