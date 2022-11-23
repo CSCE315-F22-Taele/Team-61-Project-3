@@ -172,7 +172,7 @@ function changeBtnColor(id) {
 
 function completeOrder() {
     //fetch('http://localhost:5555/getNextSaleID')
-    fetch('https://project3-7bzcyqo3va-uc.a.run.app/getSideOptions')   
+    fetch('https://project3-7bzcyqo3va-uc.a.run.app/getNextSaleID')   
     .then(response => response.json())
     .then(data => loadSaleID(data['data']));
 
