@@ -1,23 +1,18 @@
 document.addEventListener('DOMContentLoaded', function() {
-    fetch('http://localhost:5555/getEntreeOptions')
-    //fetch('https://project3-7bzcyqo3va-uc.a.run.app/getEntreeOptions')  
+    //fetch('http://localhost:5555/getEntreeOptions')
+    fetch('https://project3-7bzcyqo3va-uc.a.run.app/getEntreeOptions')  
     .then(response => response.json())
     .then(data => loadEntreeOptions(data['data']));
 
-    fetch('http://localhost:5555/getProteinOptions')
-    //fetch('https://project3-7bzcyqo3va-uc.a.run.app/getProteinOptions')  
+    //fetch('http://localhost:5555/getProteinOptions')
+    fetch('https://project3-7bzcyqo3va-uc.a.run.app/getProteinOptions')  
     .then(response => response.json())
     .then(data => loadProteinOptions(data['data']));
 
-    fetch('http://localhost:5555/getSideOptions')
-    //fetch('https://project3-7bzcyqo3va-uc.a.run.app/getSideOptions')   
+    //fetch('http://localhost:5555/getSideOptions')
+    fetch('https://project3-7bzcyqo3va-uc.a.run.app/getSideOptions')   
     .then(response => response.json())
     .then(data => loadSideOptions(data['data']));
-
-    fetch('http://localhost:5555/getNextSaleID')
-    //fetch('https://project3-7bzcyqo3va-uc.a.run.app/getSideOptions')   
-    .then(response => response.json())
-    .then(data => loadSaleID(data['data']));
 }); 
 
 function createHtmlString(data) {
@@ -39,7 +34,6 @@ function loadEntreeOptions(entrees) {
 function loadProteinOptions(protein) {    
     const proteinList = document.querySelector('.protein'); 
     proteinList.innerHTML = createHtmlString(protein);
-    //proteinList.innerHTML += "<button>Double Protein</button>"
 }
 
 function loadSideOptions(sides) {    
@@ -177,8 +171,8 @@ function changeBtnColor(id) {
 }
 
 function completeOrder() {
-    fetch('http://localhost:5555/getNextSaleID')
-    //fetch('https://project3-7bzcyqo3va-uc.a.run.app/getSideOptions')   
+    //fetch('http://localhost:5555/getNextSaleID')
+    fetch('https://project3-7bzcyqo3va-uc.a.run.app/getSideOptions')   
     .then(response => response.json())
     .then(data => loadSaleID(data['data']));
 
@@ -188,7 +182,7 @@ function completeOrder() {
         meal.sale_id = saleID + i;
         i++;
 
-        fetch('http://localhost:5555/insert', {
+        fetch('https://project3-7bzcyqo3va-uc.a.run.app/insert', {
             headers: {
                 'Content-type' : 'application/json'
             },
