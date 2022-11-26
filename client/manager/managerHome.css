@@ -77,12 +77,16 @@
 
 .nav_dropdown_content{
     display: none; 
-    position: absolute;
     background-color: #17869C;
-    min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    /*
+    position: relative;
+    
+    min-width: 160px;
+    
     z-index: 1; 
     margin-top: 10px; 
+    */
 }
 
 .nav_dropdown_content a {
@@ -97,15 +101,18 @@
 
 .navbar_dropdown:hover .nav_dropdown_content{
     display: block;
+    margin: 5 20px; 
     position: relative; 
-    margin: 0 20px; 
 }
 
 
+
+
+
 .table {
-    width: 65%;
+    width: 948px; 
     left: 34%;
-    top: -600px; 
+    top: -700px; 
     position: relative; 
     text-align: center;
     color: #fff; 
@@ -128,6 +135,42 @@ table, th, td {
 th, td {
     padding: 5px; 
 }
+
+#sale {
+    width: 55px;
+}
+#date {
+    width: 75px;
+}
+
+#entree {
+    width: 95px; 
+}
+
+#protein {
+    width: 70px; 
+}
+
+#salsa {
+    width: 135px; 
+}
+
+#queso {
+    width: 135px; 
+}
+
+#guac {
+    width: 135px; 
+}
+
+#drink {
+    width: 50px;
+}
+#cost {
+    width: 75px;
+}
+
+
 
 .dropbtn{
     text-align: center;
@@ -162,7 +205,26 @@ th, td {
     z-index: 10;
 }
 
+.start_date {
+    top: -300px; 
+    position: relative;
+    left: 10px; 
+}
+.end_date {
+    top: -355px;
+    position: relative; 
+    left: 200px; 
+}
 
+
+
+.date_inputs {
+    font-size: 16px; 
+    background-color: #17869C;
+    color: white; 
+    border-radius: 15px;
+    padding: 15px; 
+}
 
 .dropdown_content{
     display: none; 
