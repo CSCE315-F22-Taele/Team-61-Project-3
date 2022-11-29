@@ -5,10 +5,11 @@
 }
 
 body {
-    background-image: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)), url(../home/burrito_background.jpg);
+    background: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)), url(../home/rice-and-chorizo-burrito.jpg.webp) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
     background-size: cover;
-    background-position: center;
-    height: 100%; 
     font-family: sans-serif;
 }
 
@@ -56,6 +57,7 @@ body {
     background: #1995AA;
     margin-top: 15px;
     margin-left: -15px; 
+    z-index: 10; 
 }
 
 .menu_bar ul li:hover .sub-menu-1 ul{
@@ -85,9 +87,10 @@ body {
 
 
 .table {
-    width: 948px; 
-    left: 34%;
-    top: 200px; 
+    max-width: 55%; 
+    left: 40%;
+    top: 20%; 
+    height: 70%; 
     position: absolute; 
     text-align: center;
     color: #fff; 
@@ -98,8 +101,9 @@ table {
     text-align: center;
     color: #fff; 
     overflow-y: scroll; 
-    height: 320px; 
     display: block; 
+    height: 100%;
+    width: 100%; 
 }
 
 table, th, td {
@@ -159,36 +163,36 @@ th, td {
 }
 
 .dropdown1 {
-    top: -550px; 
-    left: 10px; 
-    position: relative; 
+    top: 20%; 
+    left: 3%; 
+    position: absolute; 
     display: inline-block;
 }
 
 .dropdown2 {
-    top: -550px;
-    left: 60px; 
-    position: relative;
+    top: 20%;
+    left: 17%; 
+    position: absolute;
     display: inline-block; 
 }
 
 .dropdown3 {
-    top: -550px;
-    left: 110px; 
-    position: relative;
+    top: 20%;
+    left: 31%; 
+    position: absolute;
     display: inline-block; 
     z-index: 10;
 }
 
 .start_date {
-    top: -300px; 
-    position: relative;
-    left: 10px; 
+    top: 70%;
+    position: absolute;
+    left: 3%; 
 }
 .end_date {
-    top: -355px;
-    position: relative; 
-    left: 200px; 
+    top: 70%;
+    position: absolute; 
+    left: 17%; 
 }
 
 
