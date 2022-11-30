@@ -217,7 +217,7 @@ class DbService {
     async getAllOrders() {
         try {
             const response = await new Promise((resolve, reject) => {
-                const query = "select * from cabo_grill_sales WHERE sale_id > 1 ORDER BY sale_id ASC;";
+                const query = "select * from cabo_grill_sales WHERE sale_id > 1 ORDER BY sale_id DESC;";
                 connection.query(query, (err, results) => {
                     if (err)
                         reject(new Error(err.message));
@@ -235,7 +235,7 @@ class DbService {
     async getBowlOrders() {
         try {
             const response = await new Promise((resolve, reject) => {
-                const query = "SELECT * FROM cabo_grill_sales WHERE (entree_type = 'bowl' AND sale_id > 1) ORDER BY sale_id ASC;";
+                const query = "SELECT * FROM cabo_grill_sales WHERE (entree_type = 'bowl' AND sale_id > 1) ORDER BY sale_id DESC;";
                 connection.query(query, (err, results) => {
                     if (err)
                         reject(new Error(err.message));
@@ -253,7 +253,7 @@ class DbService {
     async getNoneOrders() {
         try {
             const response = await new Promise((resolve, reject) => {
-                const query = "SELECT * FROM cabo_grill_sales WHERE (entree_type IS NULL AND sale_id > 1) ORDER BY sale_id ASC;";
+                const query = "SELECT * FROM cabo_grill_sales WHERE (entree_type IS NULL AND sale_id > 1) ORDER BY sale_id DESC;";
                 connection.query(query, (err, results) => {
                     if (err)
                         reject(new Error(err.message));
@@ -271,7 +271,7 @@ class DbService {
     async getBurritoOrders() {
         try {
             const response = await new Promise((resolve, reject) => {
-                const query = "SELECT * FROM cabo_grill_sales WHERE (entree_type = 'burrito' AND sale_id > 1) ORDER BY sale_id ASC;";
+                const query = "SELECT * FROM cabo_grill_sales WHERE (entree_type = 'burrito' AND sale_id > 1) ORDER BY sale_id DESC;";
                 connection.query(query, (err, results) => {
                     if (err)
                         reject(new Error(err.message));
@@ -289,7 +289,7 @@ class DbService {
     async getTacoOrders() {
         try {
             const response = await new Promise((resolve, reject) => {
-                const query = "SELECT * FROM cabo_grill_sales WHERE (entree_type = 'tacos' AND sale_id > 1) ORDER BY sale_id ASC;";
+                const query = "SELECT * FROM cabo_grill_sales WHERE (entree_type = 'tacos' AND sale_id > 1) ORDER BY sale_id DESC;";
                 connection.query(query, (err, results) => {
                     if (err)
                         reject(new Error(err.message));
