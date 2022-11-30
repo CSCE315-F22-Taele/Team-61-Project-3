@@ -133,17 +133,33 @@ body {
     display: inline;
 }
 
-.extraitems ul li a{
-    text-decoration: none;
-    color: #fff;
-    text-transform: uppercase; 
-    text-align: justify;
-    width: 50px;
+.caption {
+    display: block;
 }
 
-.extraitems ul li a:focus{
-    text-decoration: none;
-    color: green;
-    text-transform: uppercase; 
-    
+html {
+    font-family: sans-serif;
 }
+  
+  form {
+    width: 600px;
+    margin: 0 auto;
+  }
+  
+  .checks {
+    margin-bottom: 10px;
+    margin-left: 15px;
+    margin-top: 10px;
+    color: white;
+  }
+  
+  fieldset {
+    background: maroon;
+    border: 5px solid grey;
+  }
+  
+  legend {
+    padding: 10px;
+    background: grey;
+    color: maroon;
+  }
