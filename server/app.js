@@ -44,8 +44,6 @@ app.get('/getToppingOptions', (request, response) => {
     .catch(err => console.log(err));
 });
 
-
-
 app.get('/getAllProteinInventory', (request, response) => {    
     const db = dbService.getDbServiceInstance();
     const result = db.getAllProteinInventory();
