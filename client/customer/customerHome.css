@@ -133,17 +133,68 @@ body {
     display: inline;
 }
 
-.extraitems ul li a{
-    text-decoration: none;
-    color: #fff;
-    text-transform: uppercase; 
-    text-align: justify;
-    width: 50px;
+.caption {
+    display: block;
 }
 
-.extraitems ul li a:focus{
+html {
+    font-family: sans-serif;
+}
+  
+  form {
+    width: 600px;
+    margin: 0 auto;
+  }
+  
+  .checks {
+    margin-bottom: 10px;
+    margin-left: 15px;
+    margin-top: 10px;
+    color: white;
+  }
+  
+  fieldset {
+    background: maroon;
+    border: 5px solid grey;
+  }
+  
+  legend {
+    padding: 10px;
+    background: grey;
+    color: maroon;
+  }
+
+.addmore{
+    margin: auto;
+}
+
+#items {
+    padding: 5px;
+    background-color: white;
+    width: 20%;
+    margin: 5px;
+}
+
+#total {
+    padding: 5px;
+    background-color: white;
+    width: 20%;
+    margin: 5px;
+}
+
+.completeOrderBtn {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
     text-decoration: none;
-    color: green;
-    text-transform: uppercase; 
-    
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+}
+
+.completeOrderBtn:hover {
+    background-color: white; /* Green */
+    color: #4CAF50;
 }

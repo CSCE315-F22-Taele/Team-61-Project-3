@@ -15,13 +15,29 @@
             <li ><a href="../manager/managerHome.html"><i class="fa-solid fa-user-tie"></i>Manager</a></li>
             <li><a href="../clerk/clerkHome.html"><i class="fa-solid fa-user-lock"></i>Clerk</a></li>
             <li><a href="../customer/customerHome.html"><i class="fa-solid fa-users"></i>Customer</a></li>
+            <li>
+                <div id="google_translate_element"></div>
+                <script type="text/javascript">
+                    function googleTranslateElementInit() {
+                        new google.translate.TranslateElement({pageLanguage: 'en'},'google_translate_element');
+                    }
+                </script>
+                <script type="text/javascript"
+                    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+                </script>
+            </li>
         </ul>
     </div>
+            
+        
+        <div id="items"> Order:</div>
 
-        <div>
-            <button onclick="window.location.href='../customer/customerHome.html'" type="button" class="checkout" >Add More Items</button>
-            <p class="total">Total: </p>
-        </div>
+        <div id="total"> Total:</div>
 
+        <button onclick="window.location.href='../customer/customerHome.html'" type="button" class="checkout" >Add More Items</button>
+
+        <button class = "completeOrderBtn" onclick ="updateOrder()">Finalize Order</button>
+
+        
 </body>
 </html>

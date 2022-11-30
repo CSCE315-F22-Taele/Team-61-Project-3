@@ -1,5 +1,5 @@
-//const link = 'http://localhost:5555';
-const link = 'https://project3-7bzcyqo3va-uc.a.run.app'
+const link = 'http://localhost:5555';
+//const link = 'https://project3-7bzcyqo3va-uc.a.run.app'
 
 document.addEventListener('DOMContentLoaded', function() {
     fetch(link + '/getEntreeOptions')
@@ -123,7 +123,7 @@ function updateOrder() {
         var btn = entreeButtons[i];
         if (btn.value == 1) {
             meal.entree_type = btn.id;
-            htmlString += btn.id + " ";
+            htmlString += btn.id + ", ";
         }
     }
     const proteinButtons = document.querySelectorAll('.protein .itemBtns');
@@ -131,7 +131,7 @@ function updateOrder() {
         var btn = proteinButtons[i];
         if (btn.value == 1) {
             meal.protein = btn.id;
-            htmlString += btn.id + " ";
+            htmlString += btn.id + ", ";
             totalPrice += proteinPrices.get(btn.id);
         }
     }
@@ -151,7 +151,7 @@ function updateOrder() {
             if (btn.id == "drink") {
                 meal.drink = 1;
             }
-            htmlString += btn.id + " ";
+            htmlString += btn.id + ", ";
             totalPrice += sidePrices.get(btn.id);
         }
     }
@@ -205,6 +205,10 @@ function completeOrder() {
         .then(response => response.json())
     }
     clearTextBoxes();
+    grandTotal = 0.00;
+    fetch(link + '/getNextSaleID') 
+    .then(response => response.json())
+    .then(data => loadSaleID(data['data']));
 }
 
 function clearTextBoxes() {

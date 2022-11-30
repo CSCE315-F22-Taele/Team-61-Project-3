@@ -1,5 +1,43 @@
+const link = 'https://project3-7bzcyqo3va-uc.a.run.app'
+document.addEventListener('DOMContentLoaded', function() {
+    fetch(link + '/getEntreeOptions')
+    .then(response => response.json())
+    .then(data => loadEntreeOptions(data['data']));
+
+    fetch(link + '/getProteinOptions')
+    .then(response => response.json())
+    .then(data => loadProteinOptions(data['data']));
+
+    fetch(link + '/getSideOptions')  
+    .then(response => response.json())
+    .then(data => loadSideOptions(data['data']));
+
+}); 
+
+function createHtmlString(data) {
+    var htmlString = "";
+    for (var key in data.rows) {
+        for (var keyName in data.rows[key]) {
+            var item = (data.rows[key])[keyName];
+            htmlString += `<button class="dropdown_btn" id="${item}btn">${item}</button>`;
+        }
+    }
+    return htmlString;
+}
+
+function loadEntreeOptions(entrees) {    
+    const entreeList = document.querySelector('entree_dropdown'); 
+    entreeList.innerHTML = createHtmlString(entrees);
+}
+
+
+
+
+
+
 function fetchAllOrders() {
-    fetch('https://project3-7bzcyqo3va-uc.a.run.app/getAllOrders')
+    fetch('http://localhost:5555/getAll')
+    //fetch('https://project3-7bzcyqo3va-uc.a.run.app/getAllOrders')
     .then(response => response.json())
     .then(data => loadHTMLTable(data['data']));
 }
@@ -8,7 +46,8 @@ allButton.addEventListener('click', fetchAllOrders);
 
 
 function fetchBowlOrders() {
-    fetch('https://project3-7bzcyqo3va-uc.a.run.app/getBowlOrders')
+    fetch('http://localhost:5555/getAll')
+    //fetch('https://project3-7bzcyqo3va-uc.a.run.app/getBowlOrders')
     .then(response => response.json())
     .then(data => loadHTMLTable(data['data']));
 }
@@ -17,7 +56,8 @@ bowlButton.addEventListener('click', fetchBowlOrders);
 
 
 function fetchNoneOrders() {
-    fetch('https://project3-7bzcyqo3va-uc.a.run.app/getNoneOrders')
+    fetch('http://localhost:5555/getAll')
+    //fetch('https://project3-7bzcyqo3va-uc.a.run.app/getNoneOrders')
     .then(response => response.json())
     .then(data => loadHTMLTable(data['data']));
 }
@@ -26,7 +66,8 @@ noneButton.addEventListener('click', fetchNoneOrders);
 
 
 function fetchBurritoOrders() {
-    fetch('https://project3-7bzcyqo3va-uc.a.run.app/getBurritoOrders')  
+    fetch('http://localhost:5555/getAll')
+    //fetch('https://project3-7bzcyqo3va-uc.a.run.app/getBurritoOrders')  
     .then(response => response.json())
     .then(data => loadHTMLTable(data['data']));
 }
@@ -35,7 +76,8 @@ burritoButton.addEventListener('click', fetchBurritoOrders);
 
 
 function fetchTacoOrders() {
-    fetch('https://project3-7bzcyqo3va-uc.a.run.app/getTacoOrders')
+    fetch('http://localhost:5555/getAll')
+    //fetch('https://project3-7bzcyqo3va-uc.a.run.app/getTacoOrders')
     .then(response => response.json())
     .then(data => loadHTMLTable(data['data']));
 }
