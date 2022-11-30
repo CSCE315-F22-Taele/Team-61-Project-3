@@ -4,27 +4,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="managerHome.css"> 
+    <link rel="stylesheet" href="../home/fontawesome-free-6.2.1-web/css/all.css">
 </head>
 <body>
-    <div class = "banner">
-        <div class = "navbar">
-            <img src="../home/logo.png" class = "logo">
-            <ul>
-                <li><a href="../home/index.html">Home</a></li>
-                <div class = "navbar_dropdown">
-                    <button class = "nav_dropbtn">Manager
-                        <i class = "fa fa-caret-down"></i>
-                    </button>
-                    <div class = "nav_dropdown_content">
-                        <a href="../manager/inventory/inventory.html">Inventory Information</a>
-                        <a href="#">Sales Information</a>
-                        <a href="../manager/new_item.html">New Item</a>
-                    </div>
+    <div class = "menu_bar">
+        <ul>
+            <li ><a href="../home/index.html"><i class="fa-sharp fa-solid fa-house"></i>Home</a>
+            <li ><a href="#"><i class="fa-solid fa-user-tie"></i>Manager</a>
+                <div class = "sub-menu-1">
+                    <ul>
+                        <li><a href = "../manager/inventory/inventory.html">Inventory</a></li>
+                        <li><a href = "../manager/managerHome.html">Sales</a></li>
+                        <li><a href = "../manager/newitem/newitem.html">New Item</a></li>
+                    </ul>
                 </div>
-                <li><a href="../customer/customerHome.html">Customer</a></li>
-                <li><a href="../clerk/clerkHome.html">Clerk</a></li>
-            </ul>
-        </div>
+            </li>
+            <li><a href="../clerk/clerkHome.html"><i class="fa-solid fa-user-lock"></i>Clerk</a></li>
+            <li><a href="../customer/customerHome.html"><i class="fa-solid fa-users"></i>Customer</a></li>
+        </ul>
     </div>
 
     <div class = "dropdown1">
@@ -46,7 +43,7 @@
             <button class = "dropdown_btn">Beef</button>
             <button class = "dropdown_btn">Steak</button>
             <button class = "dropdown_btn">Chicken</button>
-            <button class = "dropdown_btn">Vegetable_Medley</button>
+            <button class = "dropdown_btn">Vegetable Medley</button>
         </div>
     </div>
 
@@ -62,18 +59,25 @@
         </div>
     </div>
 
+    <div class ="start_date">
+        <input class = "date_inputs" type = "date" id = "start"  value = "2020-01-01" min = "2018-01-01" max = "2024-01-01">
+    </div>
+    <div class ="end_date">
+        <input class = "date_inputs" type = "date" id = "end"  value = "2024-01-01" min = "2018-01-01" max = "2024-01-01">
+    </div>
+
     <div class="table">
         <table>
             <thead>
-                <th>Sale ID</th>
-                <th>Date</th>
-                <th>Entree Type</th>
-                <th>Protein</th>
-                <th>Chips and Salsa</th>
-                <th>Chips and Queso</th>
-                <th>Chips and Guac</th>
-                <th>Drink </th>
-                <th>Cost</th>
+                <th id = "sale">Sale ID</th>
+                <th id = "date">Date</th>
+                <th id = "entree">Entree Type</th>
+                <th id = "protein">Protein</th>
+                <th id = "salsa">Chips and Salsa</th>
+                <th id = "queso">Chips and Queso</th>
+                <th id = "guac">Chips and Guac</th>
+                <th id = "drink">Drink </th>
+                <th id = "cost">Cost</th>
             </thead>
             <tbody>
             </tbody>

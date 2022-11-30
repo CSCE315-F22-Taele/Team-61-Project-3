@@ -1,112 +1,97 @@
 *{
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
+    box-sizing: border-box; 
 }
 
-
-.banner{
-    width: 100%;
-    height: 100vh;
-    background-image: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)), url(../../home/burrito_background.jpg);
+body {
+    background: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)), url(../../home/rice-and-chorizo-burrito.jpg.webp) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
     background-size: cover;
-    background-position: center;
-    z-index: 1; 
-}
-
-.navbar{
-    width: 85%;
-    margin: auto;
-    padding: 35px 0;
-    display: flex; 
-    align-items: center;
-    justify-content: space-between; 
-    z-index: 1; 
-}
-
-.logo{
-    width: 160px;
-    cursor: pointer;
-}
-
-.navbar ul li{
-    list-style: none;
-    display: inline-block;
-    margin: 0 20px;
-    position: relative; 
-}
-
-.navbar ul li a{
-    text-decoration: none;
-    color: #fff;
-    text-transform: uppercase; 
-    font-size: 16px; 
-}
-
-.navbar ul li::after{
-    content: '';
-    height: 3px;
-    width: 0;
-    background: #1995AA;
-    position: absolute;
-    left: 0;
-    bottom: -10px; 
-    transition: 0.5s; 
-}
-
-
-.navbar ul li:hover::after{
-    width: 100%;
-}
-
-.navbar_dropdown{
-    float: left; 
-    overflow: hidden; 
-}
-
-.nav_dropbtn{
-    font-size: 16px;
-    margin: 0 20px; 
-    border: none;
-    outline: none;
-    color: #fff;
-    background-color: inherit;
     font-family: sans-serif;
-    text-transform: uppercase;
 }
 
-.nav_dropdown_content{
-    display: none; 
-    position: absolute;
-    background-color: #17869C;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1; 
-    margin-top: 10px; 
+
+.menu_bar {
+    background: #17869C;
+    text-align: center;
 }
 
-.nav_dropdown_content a {
-    float: none;
-    color: black;
-    padding: 12px 16px;
+.menu_bar ul{
+    display: inline-flex;
+    list-style: none;
+    color: #fff; 
+}
+
+.menu_bar ul li {
+    width: 160px;
+    margin: 15px; 
+    padding: 15px; 
+
+}
+
+.menu_bar ul li a {
     text-decoration: none;
-    display: block; 
-    text-align: left;
+    color: white; 
 }
 
+.active, .menu_bar ul li:hover{
+    background-color: #1995AA;
+    border-radius: 3px;
 
-.navbar_dropdown:hover .nav_dropdown_content{
+}
+
+.menu_bar .fa-solid {
+    margin-right: 8px; 
+}
+
+.sub-menu-1{
+    display:none; 
+}
+
+.menu_bar ul li:hover .sub-menu-1 {
     display: block;
-    position: relative; 
-    margin: 0 20px; 
+    position: absolute;
+    background: #1995AA;
+    margin-top: 15px;
+    margin-left: -15px; 
+    z-index: 10; 
 }
+
+.menu_bar ul li:hover .sub-menu-1 ul{
+    display:block; 
+    margin: 10px; 
+}
+
+.menu_bar ul li:hover .sub-menu-1 ul li{
+    width: 110px;
+    padding: 10px;
+    border-bottom: 1px dotted white; 
+    background: transparent;
+    border-radius: 0;
+    text-align: left; 
+}
+
+
+
+.menu_bar ul li:hover .sub-menu-1 ul li:last-child{
+    border-bottom: none;
+}
+
+.menu_bar ul li:hover .sub-menu-1 ul li a:hover{
+    color: black; 
+}
+
 
 
 .table {
-    width: 44.8%;
-    left: 45%;
-    top: -600px; 
-    position: relative; 
+    max-width: 55%; 
+    left: 40%;
+    top: 20%; 
+    height: 70%; 
+    position: absolute; 
     text-align: center;
     color: #fff; 
 
@@ -116,8 +101,9 @@ table {
     text-align: center;
     color: #fff; 
     overflow-y: scroll; 
-    height: 320px; 
     display: block; 
+    height: 100%;
+    width: 100%; 
 }
 
 table, th, td {
@@ -127,6 +113,40 @@ table, th, td {
 
 th, td {
     padding: 5px; 
+}
+
+#sale {
+    width: 55px;
+}
+#date {
+    width: 75px;
+}
+
+#entree {
+    width: 95px; 
+}
+
+#protein {
+    width: 70px; 
+}
+
+#salsa {
+    width: 135px; 
+}
+
+#queso {
+    width: 135px; 
+}
+
+#guac {
+    width: 135px; 
+}
+
+#drink {
+    width: 50px;
+}
+#cost {
+    width: 75px;
 }
 
 .dropbtn{
@@ -140,9 +160,9 @@ th, td {
 }
 
 .dropdown {
-    top: -550px; 
-    left: 20px; 
-    position: relative; 
+    top: 20%; 
+    left: 3%; 
+    position: absolute; 
     display: inline-block;
 }
 

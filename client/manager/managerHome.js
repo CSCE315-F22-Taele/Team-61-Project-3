@@ -69,13 +69,8 @@ function loadHTMLTable(data) {
 }
 
 var btns = document.getElementsByClassName('dropdown_btn'); 
-var main_btns = document.getElementsByClassName('dropbtn'); 
-var button; 
 for (var i = 0; i < btns.length; i++){
     btns[i].onclick = change_color; 
-}
-for (var i = 0; i < main_btns.length; i++){
-    main_btns[i].onclick = change_color; 
 }
 
 
