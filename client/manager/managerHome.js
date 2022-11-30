@@ -36,7 +36,8 @@ function loadEntreeOptions(entrees) {
 
 
 function fetchAllOrders() {
-    fetch('https://project3-7bzcyqo3va-uc.a.run.app/getAllOrders')
+    fetch('http://localhost:5555/getAll')
+    //fetch('https://project3-7bzcyqo3va-uc.a.run.app/getAllOrders')
     .then(response => response.json())
     .then(data => loadHTMLTable(data['data']));
 }
@@ -45,7 +46,8 @@ allButton.addEventListener('click', fetchAllOrders);
 
 
 function fetchBowlOrders() {
-    fetch('https://project3-7bzcyqo3va-uc.a.run.app/getBowlOrders')
+    fetch('http://localhost:5555/getAll')
+    //fetch('https://project3-7bzcyqo3va-uc.a.run.app/getBowlOrders')
     .then(response => response.json())
     .then(data => loadHTMLTable(data['data']));
 }
@@ -54,7 +56,8 @@ bowlButton.addEventListener('click', fetchBowlOrders);
 
 
 function fetchNoneOrders() {
-    fetch('https://project3-7bzcyqo3va-uc.a.run.app/getNoneOrders')
+    fetch('http://localhost:5555/getAll')
+    //fetch('https://project3-7bzcyqo3va-uc.a.run.app/getNoneOrders')
     .then(response => response.json())
     .then(data => loadHTMLTable(data['data']));
 }
@@ -63,7 +66,8 @@ noneButton.addEventListener('click', fetchNoneOrders);
 
 
 function fetchBurritoOrders() {
-    fetch('https://project3-7bzcyqo3va-uc.a.run.app/getBurritoOrders')  
+    fetch('http://localhost:5555/getAll')
+    //fetch('https://project3-7bzcyqo3va-uc.a.run.app/getBurritoOrders')  
     .then(response => response.json())
     .then(data => loadHTMLTable(data['data']));
 }
@@ -72,7 +76,8 @@ burritoButton.addEventListener('click', fetchBurritoOrders);
 
 
 function fetchTacoOrders() {
-    fetch('https://project3-7bzcyqo3va-uc.a.run.app/getTacoOrders')
+    fetch('http://localhost:5555/getAll')
+    //fetch('https://project3-7bzcyqo3va-uc.a.run.app/getTacoOrders')
     .then(response => response.json())
     .then(data => loadHTMLTable(data['data']));
 }
