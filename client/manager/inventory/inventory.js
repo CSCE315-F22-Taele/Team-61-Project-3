@@ -6,9 +6,6 @@ function fetchAllInventory() {
 var allButton = document.getElementById('allBtn');
 allButton.addEventListener('click', fetchAllInventory);
 
-function nothing() {
-    return 0;
-}
 
 function fetchAllProtein() {
     fetch('https://project3-7bzcyqo3va-uc.a.run.app/getAllProteinInventory') 
