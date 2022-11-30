@@ -205,6 +205,10 @@ function completeOrder() {
         .then(response => response.json())
     }
     clearTextBoxes();
+    grandTotal = 0.00;
+    fetch(link + '/getNextSaleID') 
+    .then(response => response.json())
+    .then(data => loadSaleID(data['data']));
 }
 
 function clearTextBoxes() {
