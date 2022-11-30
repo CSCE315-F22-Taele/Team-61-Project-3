@@ -36,6 +36,14 @@ app.get('/getSideOptions', (request, response) => {
     .catch(err => console.log(err));
 });
 
+app.get('/getToppingOptions', (request, response) => {    
+    const db = dbService.getDbServiceInstance();
+    const result = db.getToppingOptions();
+    result
+    .then(data => response.json({data : data}))
+    .catch(err => console.log(err));
+});
+
 app.get('/getAllProteinInventory', (request, response) => {    
     const db = dbService.getDbServiceInstance();
     const result = db.getAllProteinInventory();
@@ -140,6 +148,23 @@ app.get('/getNextSaleID', (request, response) => {
     .then(data => response.json({data : data}))
     .catch(err => console.log(err));
 });
+
+app.get('/getProteinPrices', (request, response) => {    
+    const db = dbService.getDbServiceInstance();
+    const result = db.getProteinPrices();
+    result
+    .then(data => response.json({data : data}))
+    .catch(err => console.log(err));
+});
+
+app.get('/getSidePrices', (request, response) => {    
+    const db = dbService.getDbServiceInstance();
+    const result = db.getSidePrices();
+    result
+    .then(data => response.json({data : data}))
+    .catch(err => console.log(err));
+});
+
 
 app.post('/insert', (request, response) => {
     const { sale_id } = request.body;

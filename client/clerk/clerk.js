@@ -1,21 +1,32 @@
+//const link = 'http://localhost:5555';
+const link = 'https://project3-7bzcyqo3va-uc.a.run.app'
+
 document.addEventListener('DOMContentLoaded', function() {
-    //fetch('http://localhost:5555/getEntreeOptions')
-    fetch('https://project3-7bzcyqo3va-uc.a.run.app/getEntreeOptions')  
+    fetch(link + '/getEntreeOptions')
     .then(response => response.json())
     .then(data => loadEntreeOptions(data['data']));
 
-    //fetch('http://localhost:5555/getProteinOptions')
-    fetch('https://project3-7bzcyqo3va-uc.a.run.app/getProteinOptions')  
+    fetch(link + '/getProteinOptions')
     .then(response => response.json())
     .then(data => loadProteinOptions(data['data']));
 
-    //fetch('http://localhost:5555/getSideOptions')
-    fetch('https://project3-7bzcyqo3va-uc.a.run.app/getSideOptions')   
+    fetch(link + '/getSideOptions')  
     .then(response => response.json())
     .then(data => loadSideOptions(data['data']));
 
-    //fetch('http://localhost:5555/getNextSaleID')
-    fetch('https://project3-7bzcyqo3va-uc.a.run.app/getNextSaleID')   
+    fetch(link + '/getToppingOptions')  
+    .then(response => response.json())
+    .then(data => loadToppingOptions(data['data']));
+
+    fetch(link + '/getProteinPrices')
+    .then(response => response.json())
+    .then(data => loadProteinPrices(data['data']));
+
+    fetch(link + '/getSidePrices')  
+    .then(response => response.json())
+    .then(data => loadSidePrices(data['data']));
+
+    fetch(link + '/getNextSaleID') 
     .then(response => response.json())
     .then(data => loadSaleID(data['data']));
 }); 
@@ -39,7 +50,6 @@ function loadEntreeOptions(entrees) {
 function loadProteinOptions(protein) {    
     const proteinList = document.querySelector('.protein'); 
     proteinList.innerHTML = createHtmlString(protein);
-    //proteinList.innerHTML += "<button>Double Protein</button>"
 }
 
 function loadSideOptions(sides) {    
@@ -47,38 +57,26 @@ function loadSideOptions(sides) {
     sidesList.innerHTML = createHtmlString(sides);
 }
 
-function itemPrice(item) {
-    var price;
-    switch (item) {
-        case "chicken":
-            price = 8.50;
-            break;
-        case "steak":
-            price = 8.89;
-            break;
-        case "beef":
-            price = 8.79;
-            break;
-        case "vegetable medley":
-            price = 7.89;
-            break;
-        case "chips_and_queso":
-            price = 3.49;
-            break;
-        case "chips_and_guac":
-            price = 3.69;
-            break;
-        case "chips_and_salsa":
-            price = 2.19;
-            break;
-        case "drink":
-            price = 2.45;
-            break;
-        default:
-            price = 0.00;
-            break;
+function loadToppingOptions(toppings) {    
+    const toppingsList = document.querySelector('.toppings'); 
+    toppingsList.innerHTML = createHtmlString(toppings);
+}
+
+const proteinPrices = new Map();
+function loadProteinPrices(data) {
+    for (var key in data.rows) {
+        var item = (data.rows[key])['item_name'];
+        var price = (data.rows[key])['sale_cost'];
+        proteinPrices.set(item, price);
     }
-    return price;
+}
+const sidePrices = new Map();
+function loadSidePrices(data) {
+    for (var key in data.rows) {
+        var item = (data.rows[key])['item_name'];
+        var price = (data.rows[key])['sale_cost'];
+        sidePrices.set(item, price);
+    }
 }
 
 var grandTotal = 0.00;
@@ -126,7 +124,6 @@ function updateOrder() {
         if (btn.value == 1) {
             meal.entree_type = btn.id;
             htmlString += btn.id + " ";
-            totalPrice += itemPrice(btn.id);
         }
     }
     const proteinButtons = document.querySelectorAll('.protein .itemBtns');
@@ -135,7 +132,7 @@ function updateOrder() {
         if (btn.value == 1) {
             meal.protein = btn.id;
             htmlString += btn.id + " ";
-            totalPrice += itemPrice(btn.id);
+            totalPrice += proteinPrices.get(btn.id);
         }
     }
     const sideButtons = document.querySelectorAll('.sides .itemBtns');
@@ -155,13 +152,14 @@ function updateOrder() {
                 meal.drink = 1;
             }
             htmlString += btn.id + " ";
-            totalPrice += itemPrice(btn.id);
+            totalPrice += sidePrices.get(btn.id);
         }
     }
     orderTextBox.innerHTML += htmlString + "$" + totalPrice.toFixed(2).toString() + "</p>";
     updateTotal(totalPrice);
     meal.cost = totalPrice.toFixed(2);
     order.push(meal);
+    clearButtons();
 }
 
 function changeBtnColor(id) {
@@ -177,8 +175,7 @@ function changeBtnColor(id) {
 }
 
 function completeOrder() {
-    //fetch('http://localhost:5555/getNextSaleID')
-    fetch('https://project3-7bzcyqo3va-uc.a.run.app/getNextSaleID')   
+    fetch(link + '/getNextSaleID') 
     .then(response => response.json())
     .then(data => loadSaleID(data['data']));
 
@@ -188,7 +185,7 @@ function completeOrder() {
         meal.sale_id = saleID + i;
         i++;
 
-        fetch('https://project3-7bzcyqo3va-uc.a.run.app/insert', {
+        fetch(link + '/insert', {
             headers: {
                 'Content-type' : 'application/json'
             },
@@ -206,50 +203,49 @@ function completeOrder() {
             })
         })
         .then(response => response.json())
-        
-        var orderTextBox = document.getElementById("items");
-        orderTextBox.innerHTML = "Order: ";
+    }
+    clearTextBoxes();
+}
 
-        var orderTextBox = document.getElementById("total");
-        orderTextBox.innerHTML = "Total: ";
+function clearTextBoxes() {
+    var orderTextBox = document.getElementById("items");
+    orderTextBox.innerHTML = "Order: ";
 
-        const entreeButtons = document.querySelectorAll('.entree .itemBtns');
-        for (var i = 0; i < entreeButtons.length; i++) {
-            var btn = entreeButtons[i];
-            if (btn.value == 1) {
-                btn.style.backgroundColor = '#ffffff';
-                btn.value = 0;
-            }
+    var orderTextBox = document.getElementById("total");
+    orderTextBox.innerHTML = "Total: ";
+}
+
+function clearButtons() {
+    const entreeButtons = document.querySelectorAll('.entree .itemBtns');
+    for (var i = 0; i < entreeButtons.length; i++) {
+        var btn = entreeButtons[i];
+        if (btn.value == 1) {
+            btn.style.backgroundColor = '#ffffff';
+            btn.value = 0;
         }
-        const proteinButtons = document.querySelectorAll('.protein .itemBtns');
-        for (var i = 0; i < proteinButtons.length; i++) {
-            var btn = proteinButtons[i];
-            if (btn.value == 1) {
-                btn.style.backgroundColor = '#ffffff';
-                btn.value = 0;
-            }
+    }
+    const proteinButtons = document.querySelectorAll('.protein .itemBtns');
+    for (var i = 0; i < proteinButtons.length; i++) {
+        var btn = proteinButtons[i];
+        if (btn.value == 1) {
+            btn.style.backgroundColor = '#ffffff';
+            btn.value = 0;
         }
-        const sideButtons = document.querySelectorAll('.sides .itemBtns');
-        for (var i = 0; i < sideButtons.length; i++) {
-            var btn = sideButtons[i];
-            if (btn.value == 1) {
-                if (btn.id == "chips_and_salsa") {
-                    btn.style.backgroundColor = '#ffffff';
-                    btn.value = 0;
-                }
-                if (btn.id == "chips_and_guac") {
-                    btn.style.backgroundColor = '#ffffff';
-                    btn.value = 0;
-                }
-                if (btn.id == "chips_and_queso") {
-                    btn.style.backgroundColor = '#ffffff';
-                    btn.value = 0;
-                }
-                if (btn.id == "drink") {
-                    btn.style.backgroundColor = '#ffffff';
-                    btn.value = 0;
-                }
-            }
+    }
+    const sideButtons = document.querySelectorAll('.sides .itemBtns');
+    for (var i = 0; i < sideButtons.length; i++) {
+        var btn = sideButtons[i];
+        if (btn.value == 1) {
+            btn.style.backgroundColor = '#ffffff';
+            btn.value = 0;
+        }
+    }
+    const toppingButtons = document.querySelectorAll('.toppings .itemBtns');
+    for (var i = 0; i < toppingButtons.length; i++) {
+        var btn = toppingButtons[i];
+        if (btn.value == 1) {
+            btn.style.backgroundColor = '#ffffff';
+            btn.value = 0;
         }
     }
 }
