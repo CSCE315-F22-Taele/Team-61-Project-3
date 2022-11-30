@@ -57,9 +57,6 @@ function loadHTMLTable(data) {
         tableHTML += "<tr>";
         for (var keyName in data.rows[key]) {
             var dataEntry = (data.rows[key])[keyName];
-            if (keyName == 'date') {
-                dataEntry = new Date(dataEntry).toLocaleDateString();
-            } 
             tableHTML += `<td>${dataEntry}</td>`;
         }
         tableHTML += "</tr>";
