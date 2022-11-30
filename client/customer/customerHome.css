@@ -163,3 +163,38 @@ html {
     background: grey;
     color: maroon;
   }
+
+.addmore{
+    margin: auto;
+}
+
+#items {
+    padding: 5px;
+    background-color: white;
+    width: 20%;
+    margin: 5px;
+}
+
+#total {
+    padding: 5px;
+    background-color: white;
+    width: 20%;
+    margin: 5px;
+}
+
+.completeOrderBtn {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+}
+
+.completeOrderBtn:hover {
+    background-color: white; /* Green */
+    color: #4CAF50;
+}
