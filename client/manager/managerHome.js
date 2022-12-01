@@ -1,4 +1,5 @@
-const link = 'https://project3-7bzcyqo3va-uc.a.run.app'
+const link = 'https://project3-7bzcyqo3va-uc.a.run.app';
+
 document.addEventListener('DOMContentLoaded', function() {
     fetch(link + '/getEntreeOptions')
     .then(response => response.json())
@@ -43,19 +44,28 @@ function loadSideOptions(sides) {
 
 
 function fetchAllOrders() {
-    fetch('https://project3-7bzcyqo3va-uc.a.run.app/getAllOrders')
+    fetch(link + '/getAllOrders')
     .then(response => response.json())
     .then(data => loadHTMLTable(data['data']));
 }
 
 
 function fetchBowlOrders() {
-    fetch('https://project3-7bzcyqo3va-uc.a.run.app/getBowlOrders')
+    fetch(link + '/getBowlOrders')
     .then(response => response.json())
     .then(data => loadHTMLTable(data['data']));
 }
 
 
+<<<<<<< HEAD
+function fetchNoneOrders() {
+    fetch(link + '/getNoneOrders')
+    .then(response => response.json())
+    .then(data => loadHTMLTable(data['data']));
+}
+var noneButton = document.getElementById('noneBtn');
+noneButton.addEventListener('click', fetchNoneOrders);
+=======
 // function fetchNoneOrders() {
 //     fetch('https://project3-7bzcyqo3va-uc.a.run.app/getNoneOrders')
 //     .then(response => response.json())
@@ -63,15 +73,25 @@ function fetchBowlOrders() {
 // }
 // var noneButton = document.getElementById('noneBtn');
 // noneButton.addEventListener('click', fetchNoneOrders);
+>>>>>>> 9addce8a782845fe8bc9d8a9864487fb0c3deaca
 
 
 function fetchBurritoOrders() {
-    fetch('https://project3-7bzcyqo3va-uc.a.run.app/getBurritoOrders')  
+    fetch(link + '/getBurritoOrders')  
     .then(response => response.json())
     .then(data => loadHTMLTable(data['data']));
 }
 
 
+<<<<<<< HEAD
+function fetchTacoOrders() {
+    fetch(link + '/getTacoOrders')
+    .then(response => response.json())
+    .then(data => loadHTMLTable(data['data']));
+}
+var tacoButton = document.getElementById('tacoBtn');
+tacoButton.addEventListener('click', fetchTacoOrders);
+=======
 // function fetchTacoOrders() {
 //     fetch('https://project3-7bzcyqo3va-uc.a.run.app/getTacoOrders')
 //     .then(response => response.json())
@@ -79,6 +99,7 @@ function fetchBurritoOrders() {
 // }
 // var tacoButton = document.getElementById('tacoBtn');
 // tacoButton.addEventListener('click', fetchTacoOrders);
+>>>>>>> 9addce8a782845fe8bc9d8a9864487fb0c3deaca
 
 
 function loadHTMLTable(data) {
