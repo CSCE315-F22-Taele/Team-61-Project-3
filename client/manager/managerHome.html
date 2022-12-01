@@ -13,8 +13,9 @@
             <li ><a href="#"><i class="fa-solid fa-user-tie"></i>Manager</a>
                 <div class = "sub-menu-1">
                     <ul>
+                        <li><a href = "#">Home</a></li>
                         <li><a href = "../manager/inventory/inventory.html">Inventory</a></li>
-                        <li><a href = "../manager/managerHome.html">Sales</a></li>
+                        <li><a href = "../manager/sales/sales.html">Sales</a></li>
                         <li><a href = "../manager/newitem/newitem.html">New Item</a></li>
                     </ul>
                 </div>
@@ -24,48 +25,12 @@
         </ul>
     </div>
 
-    <div class = "dropdown1">
-        <button class = "dropbtn">Entree Types</button>
-        <div class = "dropdown_content" id = "entree_dropdown">
-        </div>
+    <div class="content">
+        <h1>Please use the Navigation bar at the top to get to your according page</h1>
+        <p>The edit item page can be used for both adding new items and editing inventory or pricing etc... for current items.<br> The program will automatically know to create a new item if that ID does not already exist</p>
     </div>
 
-    <div class = "dropdown2">
-        <button class = "dropbtn">Protein Types</button>
-        <div class = "dropdown_content" id = "protein_dropdown">
-        </div>
-    </div>
-
-    <div class = "dropdown3">
-        <button class = "dropbtn">Sides</button>
-        <div class = "dropdown_content" id = "sides_dropdown"> 
-        </div>
-    </div>
-
-    <div class ="start_date">
-        <input class = "date_inputs" type = "date" id = "start"  value = "2020-01-01" min = "2018-01-01" max = "2024-01-01">
-    </div>
-    <div class ="end_date">
-        <input class = "date_inputs" type = "date" id = "end"  value = "2024-01-01" min = "2018-01-01" max = "2024-01-01">
-    </div>
-
-    <div class="table">
-        <table>
-            <thead>
-                <th id = "sale">Sale ID</th>
-                <th id = "date">Date</th>
-                <th id = "entree">Entree Type</th>
-                <th id = "protein">Protein</th>
-                <th id = "salsa">Chips and Salsa</th>
-                <th id = "queso">Chips and Queso</th>
-                <th id = "guac">Chips and Guac</th>
-                <th id = "drink">Drink </th>
-                <th id = "cost">Cost</th>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
-    </div>
+    
     <script src="managerHome.js"></script>
 </body>
 </html>
