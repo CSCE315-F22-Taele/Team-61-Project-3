@@ -12,32 +12,42 @@ document.addEventListener('DOMContentLoaded', function() {
     fetch(link + '/getSideOptions')  
     .then(response => response.json())
     .then(data => loadSideOptions(data['data']));
-
 }); 
 
-function createHtmlString(data) {
+function createHtmlString(data, type) {
     var htmlString = "";
+    htmlString += `<button class = "dropdown_btn_`+type+`" id="allBtn`+type+`" onclick="change_color('allBtn`+type+`')">All</button>`;
+    htmlString += `<button class = "dropdown_btn_`+type+`" id="noneBtn`+type+`" onclick="change_color('noneBtn`+type+`')">NONE</button>`; 
     for (var key in data.rows) {
         for (var keyName in data.rows[key]) {
             var item = (data.rows[key])[keyName];
-            htmlString += `<button class="dropdown_btn" id="${item}btn">${item}</button>`;
+            htmlString += `<button class="dropdown_btn_`+type+`" id="${item}Btn" onclick="change_color('${item}Btn')">${item}</button>`;
         }
     }
     return htmlString;
 }
 
 function loadEntreeOptions(entrees) {    
-    const entreeList = document.querySelector('entree_dropdown'); 
-    entreeList.innerHTML = createHtmlString(entrees);
+    const entreeList = document.getElementById('entree_dropdown'); 
+    entreeList.innerHTML = createHtmlString(entrees, "entree");
 }
+
+function loadProteinOptions(protein) {    
+    const proteinList = document.getElementById('protein_dropdown'); 
+    proteinList.innerHTML = createHtmlString(protein, "protein");
+}
+
+function loadSideOptions(sides) {    
+    const sidesList = document.getElementById('sides_dropdown'); 
+    sidesList.innerHTML = createHtmlString(sides, "sides");
+}
+
 
 function fetchAllOrders() {
     fetch(link + '/getAllOrders')
     .then(response => response.json())
     .then(data => loadHTMLTable(data['data']));
 }
-var allButton = document.getElementById('allBtn');
-allButton.addEventListener('click', fetchAllOrders);
 
 
 function fetchBowlOrders() {
@@ -45,10 +55,9 @@ function fetchBowlOrders() {
     .then(response => response.json())
     .then(data => loadHTMLTable(data['data']));
 }
-var bowlButton = document.getElementById('bowlBtn');
-bowlButton.addEventListener('click', fetchBowlOrders);
 
 
+<<<<<<< HEAD
 function fetchNoneOrders() {
     fetch(link + '/getNoneOrders')
     .then(response => response.json())
@@ -56,6 +65,15 @@ function fetchNoneOrders() {
 }
 var noneButton = document.getElementById('noneBtn');
 noneButton.addEventListener('click', fetchNoneOrders);
+=======
+// function fetchNoneOrders() {
+//     fetch('https://project3-7bzcyqo3va-uc.a.run.app/getNoneOrders')
+//     .then(response => response.json())
+//     .then(data => loadHTMLTable(data['data']));
+// }
+// var noneButton = document.getElementById('noneBtn');
+// noneButton.addEventListener('click', fetchNoneOrders);
+>>>>>>> 9addce8a782845fe8bc9d8a9864487fb0c3deaca
 
 
 function fetchBurritoOrders() {
@@ -63,10 +81,9 @@ function fetchBurritoOrders() {
     .then(response => response.json())
     .then(data => loadHTMLTable(data['data']));
 }
-var burritoButton = document.getElementById('burritoBtn');
-burritoButton.addEventListener('click', fetchBurritoOrders);
 
 
+<<<<<<< HEAD
 function fetchTacoOrders() {
     fetch(link + '/getTacoOrders')
     .then(response => response.json())
@@ -74,6 +91,15 @@ function fetchTacoOrders() {
 }
 var tacoButton = document.getElementById('tacoBtn');
 tacoButton.addEventListener('click', fetchTacoOrders);
+=======
+// function fetchTacoOrders() {
+//     fetch('https://project3-7bzcyqo3va-uc.a.run.app/getTacoOrders')
+//     .then(response => response.json())
+//     .then(data => loadHTMLTable(data['data']));
+// }
+// var tacoButton = document.getElementById('tacoBtn');
+// tacoButton.addEventListener('click', fetchTacoOrders);
+>>>>>>> 9addce8a782845fe8bc9d8a9864487fb0c3deaca
 
 
 function loadHTMLTable(data) {
@@ -101,18 +127,23 @@ function loadHTMLTable(data) {
     table.innerHTML = tableHTML;
 }
 
-var btns = document.getElementsByClassName('dropdown_btn'); 
-for (var i = 0; i < btns.length; i++){
-    btns[i].onclick = change_color; 
-}
 
 
-function change_color(){
-    if (this.style.backgroundColor == 'rgb(249, 182, 24)'){
-        this.style.backgroundColor = '#1995AA'; 
+function change_color(id){
+    var btn = document.getElementById(id);
+    var all_btns = document.getElementsByClassName(btn.className);
+    if (btn.style.backgroundColor == 'rgb(249, 182, 24)'){
+        btn.style.backgroundColor = '#1995AA'; 
     }
     else{
-        this.style.backgroundColor = '#F9B618'; 
+        btn.style.backgroundColor = '#F9B618'; 
+    }
+    for (var i = 0; i < all_btns.length; i++){
+        //console.log("id is", all_btns[i]); 
+        if (all_btns[i].id != id){
+            console.log("button with id: ", all_btns[i].id, " should be changing color");
+            all_btns[i].style.backgroundColor = '#1995AA'; 
+        }
     }
 }
 
