@@ -1,4 +1,5 @@
-const link = 'https://project3-7bzcyqo3va-uc.a.run.app'
+const link = 'https://project3-7bzcyqo3va-uc.a.run.app';
+
 document.addEventListener('DOMContentLoaded', function() {
     fetch(link + '/getEntreeOptions')
     .then(response => response.json())
@@ -31,7 +32,7 @@ function loadEntreeOptions(entrees) {
 }
 
 function fetchAllOrders() {
-    fetch('https://project3-7bzcyqo3va-uc.a.run.app/getAllOrders')
+    fetch(link + '/getAllOrders')
     .then(response => response.json())
     .then(data => loadHTMLTable(data['data']));
 }
@@ -40,7 +41,7 @@ allButton.addEventListener('click', fetchAllOrders);
 
 
 function fetchBowlOrders() {
-    fetch('https://project3-7bzcyqo3va-uc.a.run.app/getBowlOrders')
+    fetch(link + '/getBowlOrders')
     .then(response => response.json())
     .then(data => loadHTMLTable(data['data']));
 }
@@ -49,7 +50,7 @@ bowlButton.addEventListener('click', fetchBowlOrders);
 
 
 function fetchNoneOrders() {
-    fetch('https://project3-7bzcyqo3va-uc.a.run.app/getNoneOrders')
+    fetch(link + '/getNoneOrders')
     .then(response => response.json())
     .then(data => loadHTMLTable(data['data']));
 }
@@ -58,7 +59,7 @@ noneButton.addEventListener('click', fetchNoneOrders);
 
 
 function fetchBurritoOrders() {
-    fetch('https://project3-7bzcyqo3va-uc.a.run.app/getBurritoOrders')  
+    fetch(link + '/getBurritoOrders')  
     .then(response => response.json())
     .then(data => loadHTMLTable(data['data']));
 }
@@ -67,7 +68,7 @@ burritoButton.addEventListener('click', fetchBurritoOrders);
 
 
 function fetchTacoOrders() {
-    fetch('https://project3-7bzcyqo3va-uc.a.run.app/getTacoOrders')
+    fetch(link + '/getTacoOrders')
     .then(response => response.json())
     .then(data => loadHTMLTable(data['data']));
 }
