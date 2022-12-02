@@ -175,16 +175,10 @@ function changeBtnColor(id) {
 }
 
 function completeOrder() {
-    fetch(link + '/getNextSaleID') 
-    .then(response => response.json())
-    .then(data => loadSaleID(data['data']));
-
     var i = 1;
     for (const meal of order) {
-
         meal.sale_id = saleID + i;
         i++;
-
         fetch(link + '/insert', {
             headers: {
                 'Content-type' : 'application/json'
@@ -206,10 +200,13 @@ function completeOrder() {
     }
     clearTextBoxes();
     grandTotal = 0.00;
+
     fetch(link + '/getNextSaleID') 
     .then(response => response.json())
     .then(data => loadSaleID(data['data']));
 }
+
+
 
 function clearTextBoxes() {
     var orderTextBox = document.getElementById("items");

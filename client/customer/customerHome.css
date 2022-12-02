@@ -86,6 +86,7 @@ body {
 
 .menuitems{
     margin: auto;
+    background-color: #4CAF50;
 }
 
 .menuitems li{
@@ -102,6 +103,10 @@ body {
 .itemimage {
     width: 200px;
     height: auto;
+}
+
+.itemimage:hover {
+    border: 1px solid white;
 }
 
 .checkout{
