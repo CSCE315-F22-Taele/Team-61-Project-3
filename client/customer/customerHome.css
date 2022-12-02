@@ -85,8 +85,9 @@ body {
 }
 
 .menuitems{
-    margin: auto;
-    background-color: #4CAF50;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .menuitems li{
@@ -94,6 +95,23 @@ body {
 }
 
 .menuitems ul li a{
+    text-decoration: none;
+    color: #fff;
+    text-transform: uppercase; 
+    
+}
+
+.proteinitems{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.proteinitems li{
+    display: inline;
+}
+
+.proteinitems ul li a{
     text-decoration: none;
     color: #fff;
     text-transform: uppercase; 
@@ -203,3 +221,22 @@ html {
     background-color: white; /* Green */
     color: #4CAF50;
 }
+
+.selectItem {
+    text-align: center;
+    padding: 50px;
+    color: white;
+}
+
+.itembox {
+    display: inline-block;
+    width: 15%;
+    margin: 5px;
+    padding: 10px;
+    vertical-align: middle;
+ }
+
+ .itemtag {
+    text-align: center;
+    color: white;
+ }

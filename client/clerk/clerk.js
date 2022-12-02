@@ -1,4 +1,5 @@
-const link = 'https://project3-7bzcyqo3va-uc.a.run.app'
+//const link = 'https://project3-7bzcyqo3va-uc.a.run.app'
+const link = 'http://localhost:5555';
 
 document.addEventListener('DOMContentLoaded', function() {
     fetch(link + '/getEntreeOptions')
