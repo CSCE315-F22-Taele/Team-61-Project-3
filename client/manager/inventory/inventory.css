@@ -57,12 +57,13 @@ body {
     background: #1995AA;
     margin-top: 15px;
     margin-left: -15px; 
-    z-index: 10; 
+    z-index: 20; 
 }
 
 .menu_bar ul li:hover .sub-menu-1 ul{
     display:block; 
     margin: 10px; 
+    z-index: 20; 
 }
 
 .menu_bar ul li:hover .sub-menu-1 ul li{
@@ -115,39 +116,7 @@ th, td {
     padding: 5px; 
 }
 
-#sale {
-    width: 55px;
-}
-#date {
-    width: 75px;
-}
 
-#entree {
-    width: 95px; 
-}
-
-#protein {
-    width: 70px; 
-}
-
-#salsa {
-    width: 135px; 
-}
-
-#queso {
-    width: 135px; 
-}
-
-#guac {
-    width: 135px; 
-}
-
-#drink {
-    width: 50px;
-}
-#cost {
-    width: 75px;
-}
 
 .dropbtn{
     text-align: center;

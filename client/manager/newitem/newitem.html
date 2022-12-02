@@ -1,0 +1,70 @@
+!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="newitem.css"> 
+    <link rel="stylesheet" href="../../home/fontawesome-free-6.2.1-web/css/all.css">
+</head>
+<body>
+    <div class = "menu_bar">
+        <ul>
+            <li ><a href="../../home/index.html"><i class="fa-sharp fa-solid fa-house"></i>Home</a>
+            <li ><a href="../managerHome.html"><i class="fa-solid fa-user-tie"></i>Manager</a>
+                <div class = "sub-menu-1">
+                    <ul>
+                        <li><a href = "../../manager/managerHome.html">Manager Home</a></li>
+                        <li><a href = "../../manager/inventory/inventory.html">Inventory</a></li>
+                        <li><a href = "#">Sales</a></li>
+                        <li><a href = "../../manager/newitem/newitem.html">New Item</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li><a href="../../clerk/clerkHome.html"><i class="fa-solid fa-user-lock"></i>Clerk</a></li>
+            <li><a href="../../customer/customerHome.html"><i class="fa-solid fa-users"></i>Customer</a></li>
+            <li>
+                <div id="google_translate_element"></div>
+                <script type="text/javascript">
+                    function googleTranslateElementInit() {
+                        new google.translate.TranslateElement({pageLanguage: 'en'},'google_translate_element');
+                    }
+                </script>
+                <script type="text/javascript"
+                    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+                </script>
+            </li>
+        </ul>
+    </div>
+
+    <div class = "item_id">
+        <label for = "id">ID (must be whole number)</label>
+        <input type = "number" id = "id">
+    </div>
+
+    <div class = "dropdown">
+        <button class = "dropbtn">Type</button>
+        <div class = "dropdown_content">
+            <button class = "dropdown_btn" id="entreeBtn" onclick="change_color('entreeBtn')">entree</button>
+            <button class = "dropdown_btn" id="proteinBtn" onclick="change_color('proteinBtn')">protein</button>
+            <button class = "dropdown_btn" id="sideBtn" onclick="change_color('sideBtn')">side</button>
+            <button class = "dropdown_btn" id="toppingBtn" onclick="change_color('toppingBtn')">topping</button>
+        </div>
+    </div>
+
+    <div class = "quantity_class">
+        <label for = "quantity">Quantity (must be a whole number)</label>
+        <input type = "number" id = "quantity">
+    </div>
+
+    <div class = "cost_class">
+        <label for = "cost">Cost</label>
+        <input type = "number" id = "cost">
+    </div>
+
+    <div class = "supply_class">
+        <label for = "supply">Minimum Supply (must be a whole number)</label>
+        <input type = "number" id = "supply">
+    </div>
+
+    <script src="newitem.js"></script>
+</body>

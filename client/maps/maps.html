@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="maps_stylesheet.css"> 
+    <link rel="stylesheet" href="../home/fontawesome-free-6.2.1-web/css/all.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class = "menu_bar">
+        <ul>
+            <li><a href="#"><i class="fa-sharp fa-solid fa-house"></i>Home</a>
+            <li><a href="../manager/managerHome.html"><i class="fa-solid fa-user-tie"></i>Manager</a></li>
+            <li><a href="../clerk/clerkHome.html"><i class="fa-solid fa-user-lock"></i>Clerk</a></li>
+            <li><a href="../customer/customerHome.html"><i class="fa-solid fa-users"></i>Customer</a></li>
+            <li>
+                <div id="google_translate_element"></div>
+                <script type="text/javascript">
+                    function googleTranslateElementInit() {
+                        new google.translate.TranslateElement({pageLanguage: 'en'},'google_translate_element');
+                    }
+                </script>
+                <script type="text/javascript"
+                    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+                </script>
+            </li>
+            <li><a href="../maps/maps.html"><i class="fa-solid fa-location-dot"></i>Location</a></li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <h1>Cabo Grill Location</h1>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13735.056954806945!2d-96.34997896582259!3d30.61241247409478!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864683dadd3dfba3%3A0x264a1e0d3cb91113!2sCabo%20Grill%20-%20MSC!5e0!3m2!1sen!2sus!4v1669852831794!5m2!1sen!2sus" 
+        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+</body>
+</html>
