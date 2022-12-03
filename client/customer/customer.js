@@ -64,6 +64,9 @@ function createProteinHtmlString(data) {
             else if (item === "beef") {
                 htmlString += `<div class='itembox'><a href='../customer/extras.html'><img src='pictures/beef2.png' class='itemimage' onclick="setProtein('${item}')"></a><div class='itemtag'>${item}</div></div>`;
             }
+            else {
+                htmlString += `<div class='itembox'><a href='../customer/extras.html'><img src='pictures/newitem.png' class='itemimage' onclick="setProtein('${item}')"></a><div class='itemtag'>${item}</div></div>`;
+            }
         }
     }
     return htmlString;
@@ -74,7 +77,7 @@ function createSideHtmlString(data) {
     for (var key in data.rows) {
         for (var keyName in data.rows[key]) {
             var item = (data.rows[key])[keyName];
-            htmlString += `<div class='checks'><input type="checkbox" id="${item}" name="side" value="${item}" /><label for="${item}">${item}</label></div>`;
+            htmlString += `<div class='checks'><input type="checkbox" id="${item}" name="side" value="${item}" onclick="setSide('${item}')" /><label for="${item}">${item}</label></div>`;
         }
     }
     return htmlString;
@@ -135,15 +138,168 @@ function setProtein(proteinType) {
     localStorage.setItem("protein", proteinType);
 }
 
-function finalizeOrder() {
+function setSide(side) {
+    const sides = localStorage.getItem("sides");
+    if (sides === 'null') {
+        localStorage.setItem("sides", side);
+    } else {
+        localStorage.setItem("sides", sides + " " + side);
+    }
+}
+
+class Meal {
+    constructor(sale_id, date, entree_type, protein, chips_and_salsa, chips_and_queso, chips_and_guac, drink, cost) {
+        this.sale_id = sale_id;
+        this.date = date;
+        this.entree_type = entree_type;
+        this.protein = protein;
+        this.chips_and_salsa = chips_and_salsa;
+        this.chips_and_queso = chips_and_queso;
+        this.chips_and_guac = chips_and_guac;
+        this.drink = drink;
+        this.cost = cost;
+    }
+}
+
+var saleID;
+function loadSaleID(data) {
+    for (var key in data.rows) {
+        for (var keyName in data.rows[key]) {
+            saleID = (data.rows[key])[keyName];
+        }
+    }
+}
+
+function loadOrder() {
+    const orderTextBox = document.getElementById("items");
+    const totalTextBox = document.getElementById("total");
+    
     const entree = localStorage.getItem("entree");
     const protein = localStorage.getItem("protein");
+    const sides = localStorage.getItem("sides");
 
-    const order = document.getElementById("items");
-    order.innerHTML += (entree + " "+ protein);
+    const sidesArray = sides.split(" ");
 
-    const proteinPrice = localStorage.getItem(protein + "Price");
+    var totalPrice = 0.00;
+    const meal = new Meal(0, new Date().toLocaleDateString(), "", "", 0, 0, 0, 0, 0);
 
-    const total = document.getElementById("total");
-    total.innerHTML += proteinPrice;
+    meal.sale_id = saleID;
+    meal.entree_type = entree;
+    meal.protein = protein;
+
+    totalPrice += parseFloat(localStorage.getItem(protein + "Price"));
+    
+    for (var i = 0; i < sidesArray.length; i++) {
+        if (sidesArray[i] === 'chips_and_salsa') {
+            meal.chips_and_salsa = 1;
+        }
+        if (sidesArray[i] === 'chips_and_queso') {
+            meal.chips_and_queso = 1;
+        }
+        if (sidesArray[i] === 'chips_and_guac') {
+            meal.chips_and_guac = 1;
+        }
+        if (sidesArray[i] === 'drink') {
+            meal.drink = 1;
+        }
+        if (sidesArray[i] === 'null') {
+            break;
+        }
+        totalPrice += parseFloat(localStorage.getItem(sidesArray[i] + "Price"));
+    }
+    meal.cost = totalPrice.toFixed(2);
+
+    const orders = JSON.parse(localStorage.getItem('orders'));  
+    if (orders == undefined) {
+        localStorage.setItem('orders', JSON.stringify([meal]))
+        orderTextBox.innerHTML += getHtmlMealString(meal, 1);
+        totalTextBox.innerHTML = "Total: $"+(meal.cost).toString();
+    }
+    else {
+        orders.push(meal);
+        localStorage.setItem('orders', JSON.stringify(orders));
+
+        htmlString = "";
+        total = 0.00;
+        for (var i = 0; i < orders.length - 1; i++) {
+            htmlString += getHtmlMealString(orders[i], i + 1);
+            total += parseFloat(orders[i].cost);
+        }
+        htmlString += getHtmlMealString(meal, orders.length);
+        total += parseFloat(meal.cost);
+
+        orderTextBox.innerHTML += htmlString;
+        totalTextBox.innerHTML = "Total: $" + total.toFixed(2).toString();
+    }
+}
+
+function getHtmlMealString(meal, i) {
+    var htmlString = "<p>";
+    htmlString += "Item #" + (i).toString() + ": ";
+    htmlString += meal.entree_type + ", ";
+    htmlString += meal.protein + ", ";
+    if (meal.chips_and_salsa === 1) {
+        htmlString += "chips and salsa, ";
+    }
+    if (meal.chips_and_queso === 1) {
+        htmlString += "chips and queso, ";
+    }
+    if (meal.chips_and_guac === 1) {
+        htmlString += "chips and guac, ";
+    }
+    if (meal.drink === 1) {
+        htmlString += "drink, ";
+    }
+    htmlString += ("$"+(meal.cost).toString() + "</p>");
+    return htmlString;
+}
+
+function addMoreItems() {
+    localStorage.setItem("sides", 'null');
+}
+
+function clearOrder() {
+    localStorage.clear();
+    localStorage.setItem("sides", 'null');
+    const orderTextBox = document.getElementById("items");
+    const totalTextBox = document.getElementById("total");
+    orderTextBox.innerHTML = "Order: Cleared";
+    totalTextBox.innerHTML = "Total: $0.00";
+}
+
+function finalizeOrder() {
+    const orders = JSON.parse(localStorage.getItem('orders'));
+    const orderTextBox = document.getElementById("items");
+    const orderHeader = document.getElementById("orderHeader");
+
+    let i = 1;
+    for (const meal of orders) {
+        meal.sale_id = saleID + i;
+        i++;
+        fetch(link + '/insert', {
+            headers: {
+                'Content-type' : 'application/json'
+            },
+            method: 'POST',
+            body: JSON.stringify({ 
+                sale_id : meal.sale_id, 
+                date : meal.date,
+                entree_type : meal.entree_type,
+                protein : meal.protein,
+                chips_and_salsa : meal.chips_and_salsa,
+                chips_and_queso : meal.chips_and_queso,
+                chips_and_guac : meal.chips_and_guac,
+                drink : meal.drink,
+                cost : meal.cost
+            })
+        })
+        .then(response => response.json())
+    }
+    clearOrder();
+    orderTextBox.innerHTML = "Order: Complete";
+    orderHeader.innerHTML = "Thank you!";
+
+    fetch(link + '/getNextSaleID') 
+    .then(response => response.json())
+    .then(data => loadSaleID(data['data']));
 }
