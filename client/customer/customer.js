@@ -1,15 +1,23 @@
-const link = 'https://project3-7bzcyqo3va-uc.a.run.app'
-//const link = 'http://localhost:5555';
+//const link = 'https://project3-7bzcyqo3va-uc.a.run.app'
+const link = 'http://localhost:5555';
 
-document.addEventListener('DOMContentLoaded', function() {
+function fetchEntree() {
     fetch(link + '/getEntreeOptions')
     .then(response => response.json())
     .then(data => loadEntreeOptions(data['data']));
+}
 
+function fetchProtein() {
     fetch(link + '/getProteinOptions')
     .then(response => response.json())
     .then(data => loadProteinOptions(data['data']));
 
+    fetch(link + '/getProteinPrices')
+    .then(response => response.json())
+    .then(data => loadProteinPrices(data['data']));
+}
+
+function fetchExtras() {
     fetch(link + '/getSideOptions')  
     .then(response => response.json())
     .then(data => loadSideOptions(data['data']));
@@ -18,24 +26,17 @@ document.addEventListener('DOMContentLoaded', function() {
     .then(response => response.json())
     .then(data => loadToppingOptions(data['data']));
 
-    fetch(link + '/getProteinPrices')
-    .then(response => response.json())
-    .then(data => loadProteinPrices(data['data']));
-
     fetch(link + '/getSidePrices')  
     .then(response => response.json())
     .then(data => loadSidePrices(data['data']));
+}
 
+function fetchSaleID() {
     fetch(link + '/getNextSaleID') 
     .then(response => response.json())
     .then(data => loadSaleID(data['data']));
-}); 
-
-function loadEntrees() {
-    fetch(link + '/getEntreeOptions')
-    .then(response => response.json())
-    .then(data => loadEntreeOptions(data['data']));
 }
+
 function createEntreeHtmlString(data) {
     var htmlString = "";
     for (var key in data.rows) {
