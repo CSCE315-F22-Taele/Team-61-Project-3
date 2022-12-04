@@ -127,9 +127,27 @@ body {
 
 .supply_class {
     top: 60%;
-    left: 70%;
+    left: 35%;
     position: absolute; 
     display: block; 
+}
+
+.submit_class {
+    top: 60%;
+    left: 80%;
+    position: absolute; 
+    display: block; 
+}
+
+#submit {
+    text-align: center;
+    color: #fff; 
+    background-color: #1995AA;
+    color: #fff;
+    padding: 16px; 
+    font-size: 16px; 
+    border-radius: 15px; 
+    width: 100px; 
 }
 
 
