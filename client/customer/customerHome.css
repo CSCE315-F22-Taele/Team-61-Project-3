@@ -85,7 +85,9 @@ body {
 }
 
 .menuitems{
-    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .menuitems li{
@@ -99,9 +101,30 @@ body {
     
 }
 
+.proteinitems{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.proteinitems li{
+    display: inline;
+}
+
+.proteinitems ul li a{
+    text-decoration: none;
+    color: #fff;
+    text-transform: uppercase; 
+    
+}
+
 .itemimage {
     width: 200px;
     height: auto;
+}
+
+.itemimage:hover {
+    border: 1px solid white;
 }
 
 .checkout{
@@ -111,9 +134,9 @@ body {
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
     font-size: 16px;
     transition-duration: 0.4s;
+    margin: 5px;
 }
 
 .checkout:hover {
@@ -142,7 +165,7 @@ html {
 }
   
   form {
-    width: 600px;
+    width: 30%;
     margin: 0 auto;
   }
   
@@ -162,24 +185,52 @@ html {
     padding: 10px;
     background: grey;
     color: maroon;
+    font-weight: bold;
   }
 
 .addmore{
     margin: auto;
 }
 
+#orderHeader {
+    margin-top: 50px;
+    padding: 20px;
+    color: white;
+    font-size: 50px;
+    font-weight: bold;
+}
+
 #items {
-    padding: 5px;
-    background-color: white;
-    width: 20%;
-    margin: 5px;
+    padding: 10px;
+    color: white;
+    font-size: 20px;
 }
 
 #total {
-    padding: 5px;
-    background-color: white;
-    width: 20%;
-    margin: 5px;
+    padding: 10px;
+    color: white;
+    text-align: center;
+    font-size: 20px;
+    background-color: #17869C;
+    margin-top: 20px;
+}
+
+.checkoutContent li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.checkoutContent ul {
+    justify-content: center;
+    display: flex;
+}
+
+.checkoutButtons {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .completeOrderBtn {
@@ -189,12 +240,40 @@ html {
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
     font-size: 16px;
     transition-duration: 0.4s;
+    margin: 5px;
 }
 
 .completeOrderBtn:hover {
     background-color: white; /* Green */
     color: #4CAF50;
 }
+
+.selectItem {
+    text-align: center;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: 120px;
+}
+
+.itembox {
+    display: inline-block;
+    width: 15%;
+    margin: 5px;
+    padding: 10px;
+    vertical-align: middle;
+ }
+
+ .itemtag {
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+ }
+
+
+ .toppingitems {
+    margin-top: 40px;
+ }

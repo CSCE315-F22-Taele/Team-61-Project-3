@@ -57,15 +57,6 @@ function fetchBowlOrders() {
 }
 
 
-<<<<<<< HEAD
-function fetchNoneOrders() {
-    fetch(link + '/getNoneOrders')
-    .then(response => response.json())
-    .then(data => loadHTMLTable(data['data']));
-}
-var noneButton = document.getElementById('noneBtn');
-noneButton.addEventListener('click', fetchNoneOrders);
-=======
 // function fetchNoneOrders() {
 //     fetch('https://project3-7bzcyqo3va-uc.a.run.app/getNoneOrders')
 //     .then(response => response.json())
@@ -73,7 +64,6 @@ noneButton.addEventListener('click', fetchNoneOrders);
 // }
 // var noneButton = document.getElementById('noneBtn');
 // noneButton.addEventListener('click', fetchNoneOrders);
->>>>>>> 9addce8a782845fe8bc9d8a9864487fb0c3deaca
 
 
 function fetchBurritoOrders() {
@@ -83,15 +73,6 @@ function fetchBurritoOrders() {
 }
 
 
-<<<<<<< HEAD
-function fetchTacoOrders() {
-    fetch(link + '/getTacoOrders')
-    .then(response => response.json())
-    .then(data => loadHTMLTable(data['data']));
-}
-var tacoButton = document.getElementById('tacoBtn');
-tacoButton.addEventListener('click', fetchTacoOrders);
-=======
 // function fetchTacoOrders() {
 //     fetch('https://project3-7bzcyqo3va-uc.a.run.app/getTacoOrders')
 //     .then(response => response.json())
@@ -99,7 +80,6 @@ tacoButton.addEventListener('click', fetchTacoOrders);
 // }
 // var tacoButton = document.getElementById('tacoBtn');
 // tacoButton.addEventListener('click', fetchTacoOrders);
->>>>>>> 9addce8a782845fe8bc9d8a9864487fb0c3deaca
 
 
 function loadHTMLTable(data) {

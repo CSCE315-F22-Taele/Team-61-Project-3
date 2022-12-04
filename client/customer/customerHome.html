@@ -26,18 +26,12 @@
                     src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
                 </script>
             </li>
+            <li><a href="../maps/maps.html">Location</a></li>
         </ul>
     </div>
-
-        <div class = "menuitems">
-            <ul>
-                <li><a href="../customer/proteins.html">Burrito<img src="burrito.png" class="itemimage"></a></li>
-                <li><a href="../customer/proteins.html">Bowl<img src="bowl.jpg" class="itemimage"></a></li>
-                <li><a href="../customer/proteins.html">Tacos<img src="tacos.png" class="itemimage"></a></li>
-                <li><a href="../customer/proteins.html">Sides<img src="guac.png" class="itemimage"></a></li>
-            </ul>
-            
-        </div>
-
+        <body onload="fetchEntree()"></body>
+        <div class='selectItem'>Select Entree</div>
+        <div class = "menuitems"></div>
+        <script src="customer.js"></script>
 </body>
 </html>

@@ -85,148 +85,30 @@ body {
 }
 
 
+.content{
+    width: 100%;
+    position: absolute; 
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+    color: #fff; 
+}
 
-.table {
-    max-width: 55%; 
-    left: 40%;
+.content h1{
+    font-size: 50px;
+    margin-top: 80px;
+    margin-bottom: 100px; 
+}
+
+.content p{
+    margin: 20px auto; 
+    font-weight: 100;
+    line-height: 25px; 
+    font-size: 20px;
+}
+
+.g-signin2 {
     top: 20%; 
-    height: 70%; 
+    left: 45%; 
     position: absolute; 
-    text-align: center;
-    color: #fff; 
-
-}
-table {
-    position: relative; 
-    text-align: center;
-    color: #fff; 
-    overflow-y: scroll; 
-    display: block; 
-    height: 100%;
-    width: 100%; 
-}
-
-table, th, td {
-    border-collapse: collapse;
-    border: 2px solid  #1995AA;
-}
-
-th, td {
-    padding: 5px; 
-}
-
-
-
-
-
-.dropbtn{
-    text-align: center;
-    color: #fff; 
-    background-color: #1995AA;
-    color: #fff;
-    padding: 16px; 
-    font-size: 16px; 
-    border-radius: 15px; 
-    min-width: 80px; 
-}
-
-.dropdown1 {
-    top: 20%; 
-    left: 3%; 
-    position: absolute; 
-    display: inline-block;
-}
-
-.dropdown2 {
-    top: 20%;
-    left: 17%; 
-    position: absolute;
-    display: inline-block; 
-}
-
-.dropdown3 {
-    top: 20%;
-    left: 31%; 
-    position: absolute;
-    display: inline-block; 
-    z-index: 10;
-}
-
-.start_date {
-    top: 70%;
-    position: absolute;
-    left: 3%; 
-}
-.end_date {
-    top: 70%;
-    position: absolute; 
-    left: 17%; 
-}
-
-
-
-.date_inputs {
-    font-size: 16px; 
-    background-color: #1995AA;
-    color: white; 
-    border-radius: 15px;
-    padding: 15px; 
-}
-
-.date_inputs:hover {
-    background-color: #17869C;
-}
-
-.dropdown_content{
-    display: none; 
-    position: absolute;
-    background-color: #17869C;
-    min-width: 80px;
-    box-shadow: 0px 8px 16px rgba(0,0,0,0.2); 
-}
-
-.dropdown_content a{
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block; 
-}
-
-.dropdown_content button{
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block; 
-    min-width: 140px;
-    background-color: #1995AA;
-}
-
-.dropdown_content button:hover {
-    background-color: #17869C;
-    opacity: .3; 
-}
-
-
-.dropdown1:hover .dropdown_content {
-    display: block; 
-}
-
-.dropdown1:hover .dropbtn {
-    background-color: #17869C;
-}
-
-.dropdown2:hover .dropdown_content {
-    display: block; 
-}
-
-.dropdown2:hover .dropbtn {
-    background-color: #17869C;
-}
-
-.dropdown3:hover .dropdown_content {
-    display: block; 
-}
-
-.dropdown3:hover .dropbtn {
-    background-color: #17869C;
 }

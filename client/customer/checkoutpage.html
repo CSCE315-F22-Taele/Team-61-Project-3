@@ -28,16 +28,27 @@
             </li>
         </ul>
     </div>
-            
         
-        <div id="items"> Order:</div>
+        <ul class="checkoutContent">
+            <li>
+                <div id="orderHeader">Your Order</div>
+            </li>
+            <li>
+                <div id="items"></div>
+            </li>
+            <li>
+                <div id="total"> Total:</div>
+            </li>
+        </ul>
 
-        <div id="total"> Total:</div>
+        <body onload="fetchSaleID(); loadOrder()"></body>
 
-        <button onclick="window.location.href='../customer/customerHome.html'" type="button" class="checkout" >Add More Items</button>
+        <div class="checkoutButtons">
+            <button onclick="addMoreItems(); window.location.href='../customer/customerHome.html'" type="button" class="checkout" >Add Items</button>
+            <button class = "completeOrderBtn" onclick ="clearOrder()">Clear Order</button>
+            <button class = "completeOrderBtn" onclick ="finalizeOrder()">Pay Now</button>
+        </div>
 
-        <button class = "completeOrderBtn" onclick ="updateOrder()">Finalize Order</button>
-
-        
+    <script src="customer.js"></script>
 </body>
 </html>

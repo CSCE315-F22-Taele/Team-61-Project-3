@@ -28,53 +28,20 @@
             </li>
         </ul>
     </div>
-
+    <body onload="fetchExtras()"></body>
     <form>
-        <fieldset>
-          <legend>Choose your Sides</legend>
-          <div class = "checks">
-            <input type="checkbox" id="lettuce" name="side" value="lettuce" />
-            <label for="lettuce">Lettuce</label>
-          </div>
-          <div class = "checks">
-            <input type="checkbox" id="tomatoes" name="side" value="tomatoes" />
-            <label for="Tomatoes">Tomatoes</label>
-          </div>
-          <div class = "checks">
-            <input type="checkbox" id="sourcream" name="side" value="sourcream" />
-            <label for="sourcream">Sour Cream</label>
-          </div>
-          <div class = "checks">
-            <input type="checkbox" id="corn" name="side" value="corn" />
-            <label for="corn">Corn</label>
-          </div>
-          <div class = "checks">
-            <input type="checkbox" id="salsa" name="side" value="salsa" />
-            <label for="salsa">Salsa</label>
-          </div>
-          <div class = "checks">
-            <input type="checkbox" id="pico" name="side" value="pico" />
-            <label for="pico">Pico de Gallo</label>
-          </div>
-          <div class = "checks">
-            <input type="checkbox" id="guac" name="side" value="guac" />
-            <label for="guac">Guacamole</label>
-          </div>
-          <div class = "checks">
-            <input type="checkbox" id="queso" name="side" value="queso" />
-            <label for="queso">Queso</label>
-          </div>
-          <div class = "checks">
-            <input type="checkbox" id="tortilla" name="side" value="tortilla" />
-            <label for="tortilla">Extra Tortilla</label>
-          </div>
-          <div>
-            <button onclick="window.location.href='../customer/checkoutpage.html'" type="button" class="checkout">Checkout</button>
-          </div>
+      	<fieldset class="toppingitems">
+          	<legend>Choose your Toppings</legend>
         </fieldset>
+        <br>
+        <fieldset class="sideitems">
+          	<legend>Add Additional Items</legend>
+        </fieldset>
+        <br>
+        <div>
+          	<button onclick="window.location.href='../customer/checkoutpage.html'" type="button" class="checkout">Checkout</button>
+        </div>
       </form>
-
-
-
+    <script src="customer.js"></script>
 </body>
 </html>
