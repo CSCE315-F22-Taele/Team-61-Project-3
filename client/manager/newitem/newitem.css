@@ -139,16 +139,6 @@ body {
     display: block; 
 }
 
-#submit {
-    text-align: center;
-    color: #fff; 
-    background-color: #1995AA;
-    color: #fff;
-    padding: 16px; 
-    font-size: 16px; 
-    border-radius: 15px; 
-    width: 100px; 
-}
 
 
 label{
