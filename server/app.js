@@ -197,7 +197,8 @@ app.get('/getOrders/:entreeType/:proteinType/:chipsAndSalsa/:chipsAndQueso/:chip
     const result = db.getOrders(entree_type, protein_type, chips_and_salsa, chips_and_queso, chips_and_guac, drink);
 
     result 
-    .then(data => response.json({ data : data }));
+    .then(data => response.json({ data : data }))
+    .catch(err => console.log(err));
 })
 
 app.listen(process.env.PORT || 5555, () => console.log('app is running'));

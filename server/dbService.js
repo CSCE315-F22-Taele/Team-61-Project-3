@@ -424,8 +424,8 @@ class DbService {
     async getOrders(entree_type, protein_type, chips_and_salsa, chips_and_queso, chips_and_guac, drink) {
         try {
             const response = await new Promise((resolve, reject) => {
-                const query = `SELECT * FROM cabo_grill_sales WHERE (entree_type IN (${entree_type.join(',')} AND protein IN (${protein_type.join(',')}) AND chips_and_salsa = '${chips_and_salsa}' AND chips_and_queso = '${chips_and_queso}' AND chips_and_guac = '${chips_and_guac}' AND drink = '${drink}'
-                AND sale_id > 1) ORDER BY sale_id DESC;`;
+                const query = `SELECT * FROM cabo_grill_sales WHERE (entree_type IN (${entree_type.join(',')} AND protein IN (${protein_type.join(',')}) AND chips_and_salsa = '${chips_and_salsa}' AND chips_and_queso = '${chips_and_queso}'
+                 AND chips_and_guac = '${chips_and_guac}' AND drink = '${drink}' AND sale_id > 1) ORDER BY sale_id DESC;`;
                 connection.query(query, (err, results) => {
                     if (err)
                         reject(new Error(err.message));
