@@ -115,3 +115,21 @@ function change_color(id){
 }
 
 // How to access drop down buttons IDs after they are created
+
+function buttons() {
+    const table = document.querySelector('table tbody'); 
+    const entreeButtons = document.querySelectorAll('.dropdown_btn_entree');
+    for (let i = 0; i < entreeButtons.length; i++) {
+        table.innerHTML += "<p>" + entreeButtons[i].id + "</p>"; 
+    }
+    table.innerHTML += "<br>";
+    const proteinButtons = document.querySelectorAll('.dropdown_btn_protein');
+    for (let i = 0; i < proteinButtons.length; i++) {
+        table.innerHTML += "<p>" + proteinButtons[i].id + "</p>"; 
+    }
+    table.innerHTML += "<br>";
+    const sideButtons = document.querySelectorAll('.dropdown_btn_sides');
+    for (let i = 0; i < sideButtons.length; i++) {
+        table.innerHTML += "<p>" + sideButtons[i].id + "</p>"; 
+    }
+}
