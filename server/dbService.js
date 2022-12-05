@@ -421,24 +421,54 @@ class DbService {
         }
     }
 
-    async getOrders(entree_type) {
+    async getOrders(entree_type, protein_type, chips_and_salsa, chips_and_queso, chips_and_guac, drink) {
         try {
+            // const response = await new Promise((resolve, reject) => {
+            //     if (entree_type == 'none' && protein_type == 'none') {
+            //         const query = `SELECT * FROM cabo_grill_sales WHERE (entree_type IS NULL AND chips_and_salsa = '${chips_and_salsa}' AND chips_and_queso = '${chips_and_queso}' AND chips_and_guac = '${chips_and_guac}' AND drink = '${drink}'
+            //         AND sale_id > 1) ORDER BY sale_id DESC;`;
+            //     } 
+            //     else {
+            //     const query = `SELECT * FROM cabo_grill_sales WHERE (entree_type IN (${entree_type.join(',')} AND protein IN (${protein_type.join(',')}) AND chips_and_salsa = '${chips_and_salsa}' AND chips_and_queso = '${chips_and_queso}' AND chips_and_guac = '${chips_and_guac}' AND drink = '${drink}'
+            //     AND sale_id > 1) ORDER BY sale_id DESC;`;
+            //     connection.query(query, (err, results) => {
+            //         if (err)
+            //             reject(new Error(err.message));
+            //         else
+            //             resolve(results);
+            //     });
+            //     }
+            // });
             const response = await new Promise((resolve, reject) => {
-                // `SELECT * FROM cabo_grill_sales WHERE (entree_type IN (${entree_type.join(',')}) AND protein IN (${protein_type.join(',')}) AND chips_and_salsa = '${chips_and_salsa}' AND chips_and_queso = '${chips_and_queso}' AND chips_and_guac = '${chips_and_guac}' AND drink = '${drink}' AND sale_id > 1) ORDER BY sale_id DESC;`
-                const query = `SELECT * FROM cabo_grill_sales WHERE entree_type = ${entree_type};`;
-                console.log(query);
+                const query = "SELECT * FROM cabo_grill_sales;";
                 connection.query(query, (err, results) => {
-                    if (err)
+                    if (err) {
                         reject(new Error(err.message));
-                    else
+                    }
+                    else {
                         resolve(results);
+                    }
                 });
             });
+            return response;
         } 
         catch (error) {
             console.log(error);
         }
     }
+
+    /*
+    // No entree or protein but all or no sides
+    if ((entree_type == "none" || protein_type == "none") && (sideBtnPressed == "All" || sideBtnPressed == "none"))
+        const query = SELECT * FROM cabo_grill_sales WHERE (entree_type IS NULL AND chips_and_salsa = '${chips_and_salsa}' AND chips_and_queso = '${chips_and_queso}' AND chips_and_guac = '${chips_and_guac}' AND drink = '${drink} AND sale_id > 1) ORDER BY sale_id DESC;
+    // No entree or protein but specific side
+    else if ((entree_type == "none" || protein_type == "none") && (sideBtnPressed == "chips_and_salsa"))
+        const query = SELECT * FROM cabo_grill_sales WHERE (entree_type IS NULL AND ${side_choice} AND sale_id > 1) ORDER BY sale_id DESC;
+
+
+    */
+
+
 }
 
 module.exports = DbService;
