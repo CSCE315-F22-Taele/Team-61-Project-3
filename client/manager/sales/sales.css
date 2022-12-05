@@ -166,6 +166,21 @@ th, td {
 }
 
 
+.submit-btn {
+    text-align: center;
+    color: #fff; 
+    background-color: #1995AA;
+    color: #fff;
+    padding: 16px; 
+    font-size: 16px; 
+    border-radius: 15px; 
+    min-width: 80px; 
+    position: absolute; 
+    top: 70%; 
+    left: 31%; 
+    
+}
+
 
 .date_inputs {
     font-size: 16px; 

@@ -97,8 +97,6 @@ function loadHTMLTable(data) {
     table.innerHTML = tableHTML;
 }
 
-
-
 function change_color(id){
     var btn = document.getElementById(id);
     var all_btns = document.getElementsByClassName(btn.className);
@@ -116,3 +114,4 @@ function change_color(id){
     }
 }
 
+// How to access drop down buttons IDs after they are created
