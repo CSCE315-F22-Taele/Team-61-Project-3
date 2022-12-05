@@ -16,12 +16,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function createHtmlString(data, type) {
     var htmlString = "";
-    htmlString += `<button class = "dropdown_btn_`+type+`" id="allBtn`+type+`" onclick="change_color('allBtn`+type+`')">All</button>`;
-    htmlString += `<button class = "dropdown_btn_`+type+`" id="noneBtn`+type+`" onclick="change_color('noneBtn`+type+`')">NONE</button>`; 
+    htmlString += `<button class = "dropdown_btn_`+type+`" id="allBtn`+type+`" onclick="change_color('allBtn`+type+`'); fetchAllOrders();">All</button>`;
+    htmlString += `<button class = "dropdown_btn_`+type+`" id="noneBtn`+type+`" onclick="change_color('noneBtn`+type+`'); fetchNoneOrders();">NONE</button>`; 
     for (var key in data.rows) {
         for (var keyName in data.rows[key]) {
             var item = (data.rows[key])[keyName];
-            htmlString += `<button class="dropdown_btn_`+type+`" id="${item}Btn" onclick="change_color('${item}Btn')">${item}</button>`;
+            htmlString += `<button class="dropdown_btn_`+type+`" id="${item}Btn" onclick="change_color('${item}Btn'); fetch${item}Orders();">${item}</button>`;
         }
     }
     return htmlString;
@@ -42,45 +42,35 @@ function loadSideOptions(sides) {
     sidesList.innerHTML = createHtmlString(sides, "sides");
 }
 
-
 function fetchAllOrders() {
     fetch(link + '/getAllOrders')
     .then(response => response.json())
     .then(data => loadHTMLTable(data['data']));
 }
 
+function fetchNoneOrders() {
+    fetch(link + '/getNoneOrders')
+    .then(response => response.json())
+    .then(data => loadHTMLTable(data['data']));
+}
 
-function fetchBowlOrders() {
+function fetchbowlOrders() {
     fetch(link + '/getBowlOrders')
     .then(response => response.json())
     .then(data => loadHTMLTable(data['data']));
 }
 
-
-// function fetchNoneOrders() {
-//     fetch('https://project3-7bzcyqo3va-uc.a.run.app/getNoneOrders')
-//     .then(response => response.json())
-//     .then(data => loadHTMLTable(data['data']));
-// }
-// var noneButton = document.getElementById('noneBtn');
-// noneButton.addEventListener('click', fetchNoneOrders);
-
-
-function fetchBurritoOrders() {
+function fetchburritoOrders() {
     fetch(link + '/getBurritoOrders')  
     .then(response => response.json())
     .then(data => loadHTMLTable(data['data']));
 }
 
-
-// function fetchTacoOrders() {
-//     fetch('https://project3-7bzcyqo3va-uc.a.run.app/getTacoOrders')
-//     .then(response => response.json())
-//     .then(data => loadHTMLTable(data['data']));
-// }
-// var tacoButton = document.getElementById('tacoBtn');
-// tacoButton.addEventListener('click', fetchTacoOrders);
-
+function fetchtacosOrders() {
+    fetch(link + '/getTacoOrders')
+    .then(response => response.json())
+    .then(data => loadHTMLTable(data['data']));
+}
 
 function loadHTMLTable(data) {
     const table = document.querySelector('table tbody'); 
