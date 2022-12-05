@@ -137,6 +137,10 @@ function displayButtonNames() {
 
 var entree = "";
 var protein = "";
+var chipsAndSalsa = "";
+var chipsAndQueso = "";
+var chipsAndGuac = "";
+var drinkOption = "";
 function enableButtons() {
     // ENTREE OPTIONS
     const allEntreeBtn = document.querySelector('#allBtnentree');
@@ -164,9 +168,7 @@ function enableButtons() {
         entree = 'tacos';
     })
 
-    
-
-
+    // PROTEIN OPTIONS
     const allProteinBtn = document.querySelector('#allBtnprotein');
     allProteinBtn.addEventListener('click', function() {
         protein = ['steak', 'vegetable medley', 'beef', 'chicken'];
@@ -196,25 +198,74 @@ function enableButtons() {
     chickenProteinBtn.addEventListener('click', function() {
         protein = 'chicken';
     })
-    
-    // fetch(link + '/getOrders', {
-    //     headers: {
-    //         'Content-type' : 'application/json'
-    //     },
-    //     method: 'GET',
-    //     body: JSON.stringify({
-    //         entree_type : entree
-    //         protein_type : 
-    //         chips_and_salsa :
-    //         chips_and_queso : 
-    //         chips_and_guac :
-    //         drink : 
-    //     })
-    // })
+
+    // SIDE OPTIONS
+    const allSidesBtn = document.querySelector('#allBtnsides');
+    allSidesBtn.addEventListener('click', function() {
+        chipsAndSalsa = '1';
+        chipsAndQueso = '1';
+        chipsAndGuac = '1';
+        drinkOption = '1';
+    })
+
+    const noneSidesBtn = document.querySelector('#noneBtnsides');
+    noneSidesBtn.addEventListener('click', function() {
+        chipsAndSalsa = '0';
+        chipsAndQueso = '0';
+        chipsAndGuac = '0';
+        drinkOption = '0';
+    })
+
+    const chipsAndSalsaBtn = document.querySelector('#chips_and_salsaBtn');
+    chipsAndSalsaBtn.addEventListener('click', function() {
+        chipsAndSalsa = '1';
+        chipsAndQueso = '0';
+        chipsAndGuac = '0';
+        drinkOption = '0';
+    })
+
+    const chipsAndQuesoBtn = document.querySelector('#chips_and_quesoBtn');
+    chipsAndQuesoBtn.addEventListener('click', function() {
+        chipsAndSalsa = '0';
+        chipsAndQueso = '1';
+        chipsAndGuac = '0';
+        drinkOption = '0';
+    })
+
+    const chipsAndGuacBtn = document.querySelector('#chips_and_guacBtn');
+    chipsAndGuacBtn.addEventListener('click', function() {
+        chipsAndSalsa = '0';
+        chipsAndQueso = '0';
+        chipsAndGuac = '1';
+        drinkOption = '0';
+    })
+
+    const drinkOptionBtn = document.querySelector('#drinkBtn');
+    drinkOptionBtn.addEventListener('click', function() {
+        chipsAndSalsa = '0';
+        chipsAndQueso = '0';
+        chipsAndGuac = '0';
+        drinkOption = '1';
+    })
 }
 
 function submitOrder() {
-    console.log(`entree:${entree} \nprotein:${protein}`);
+    // console.log(`entree:${entree} protein:${protein} cas: ${chipsAndSalsa} caq: ${chipsAndQueso} cag: ${chipsAndGuac} drink: ${drinkOption}`);
+    fetch(link + '/getOrders', {
+        headers: {
+            'Content-type' : 'application/json'
+        },
+        method: 'GET',
+        body: JSON.stringify({
+            entree_type : entree,
+            protein_type : protein,
+            chips_and_salsa : chipsAndSalsa,
+            chips_and_queso : chipsAndQueso,
+            chips_and_guac : chipsAndGuac,
+            drink : drinkOption
+        })
+    })
+    .then(response => response.json())
 }
 
     
