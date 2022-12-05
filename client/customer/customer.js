@@ -1,5 +1,5 @@
-const link = 'https://project3-7bzcyqo3va-uc.a.run.app';
-//const link = 'http://localhost:5555';
+//const link = 'https://project3-7bzcyqo3va-uc.a.run.app';
+const link = 'http://localhost:5555';
 
 function fetchEntree() {
     fetch(link + '/getEntreeOptions')
@@ -98,7 +98,7 @@ function createSideHtmlString(data) {
     for (var key in data.rows) {
         for (var keyName in data.rows[key]) {
             var item = (data.rows[key])[keyName];
-            htmlString += `<div class='checks'><input type="checkbox" id="${item}CheckBox" name="side" value="${item}" value="0" onclick="updateSideCheckBoxValue('${item}')" /><label for="${item}">${item}</label></div>`;
+            htmlString += `<div class='checks'><input type="checkbox" id="${item}CheckBox" name="side" value="0" onclick="updateSideCheckBoxValue('${item}')" /><label for="${item}">${item}</label></div>`;
         }
     }
     return htmlString;
@@ -180,11 +180,11 @@ function addSide(side) {
 
 function removeSide(side) {
     const sides = JSON.parse(localStorage.getItem('sides'));
-
     const index = sides.indexOf(side);
-    const updatedSides = sides.splice(index, 1);
-
-    localStorage.setItem('sides', JSON.stringify(updatedSides));
+    if (index > -1) {
+        sides.splice(index, 1);
+    }
+    localStorage.setItem('sides', JSON.stringify(sides));
 }
 
 function updateSideCheckBoxValue(item) {
@@ -194,10 +194,12 @@ function updateSideCheckBoxValue(item) {
         //uncheck
         btn.value = 0;
         removeSide(item);
+        console.log("remove side");
     } else { 
         //check
         btn.value = 1;
         addSide(item);
+        console.log("add side");
     }
 }
 
@@ -213,11 +215,11 @@ function addTopping(topping) {
 
 function removeTopping(topping) {
     const toppings = JSON.parse(localStorage.getItem('toppings'));
-
     const index = toppings.indexOf(topping);
-    const updatedToppings = toppings.splice(index, 1);
-
-    localStorage.setItem('toppings', JSON.stringify(updatedToppings));
+    if (index > -1) {
+        toppings.splice(index, 1);
+    }
+    localStorage.setItem('toppings', JSON.stringify(toppings));
 }
 
 function updateToppingCheckBoxValue(item) {
@@ -274,23 +276,25 @@ function loadOrder() {
 
     totalPrice += parseFloat(localStorage.getItem(protein + "Price"));
     
-    for (var i = 0; i < sides.length; i++) {
-        if (sides[i] === 'chips_and_salsa') {
-            meal.chips_and_salsa = 1;
+    if (sides != null) {
+        for (var i = 0; i < sides.length; i++) {
+            if (sides[i] === 'chips_and_salsa') {
+                meal.chips_and_salsa = 1;
+            }
+            if (sides[i] === 'chips_and_queso') {
+                meal.chips_and_queso = 1;
+            }
+            if (sides[i] === 'chips_and_guac') {
+                meal.chips_and_guac = 1;
+            }
+            if (sides[i] === 'drink') {
+                meal.drink = 1;
+            }
+            if (sides[i] === 'null') {
+                break;
+            }
+            totalPrice += parseFloat(localStorage.getItem(sides[i] + "Price"));
         }
-        if (sides[i] === 'chips_and_queso') {
-            meal.chips_and_queso = 1;
-        }
-        if (sides[i] === 'chips_and_guac') {
-            meal.chips_and_guac = 1;
-        }
-        if (sides[i] === 'drink') {
-            meal.drink = 1;
-        }
-        if (sides[i] === 'null') {
-            break;
-        }
-        totalPrice += parseFloat(localStorage.getItem(sides[i] + "Price"));
     }
     meal.cost = totalPrice.toFixed(2);
 
@@ -340,7 +344,7 @@ function getHtmlMealString(meal, i) {
 }
 
 function addMoreItems() {
-    localStorage.setItem("sides", 'null');
+    //localStorage.setItem("sides", 'null');
 }
 
 function clearOrder() {
