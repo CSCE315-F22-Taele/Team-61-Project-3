@@ -185,4 +185,19 @@ app.post('/insert', (request, response) => {
     .then(data => response.json({ data : data }));
 }) 
 
+app.get('/getOrders', (request, response) => {
+    const { entree_type } = request.body;
+    const { protein_type } = request.body;
+    const { chips_and_salsa } = request.body;
+    const { chips_and_queso } = request.body;
+    const { chips_and_guac } = request.body;
+    const { drink } = request.body;
+    
+    const db = dbService.getDbServiceInstance()
+    const result = db.getOrders(entree_type, protein_type, chips_and_salsa, chips_and_queso, chips_and_guac, drink);
+
+    result 
+    .then(data => response.json({ data : data }));
+})
+
 app.listen(process.env.PORT || 5555, () => console.log('app is running'));

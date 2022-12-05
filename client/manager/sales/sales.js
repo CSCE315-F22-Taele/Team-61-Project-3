@@ -16,12 +16,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function createHtmlString(data, type) {
     var htmlString = "";
-    htmlString += `<button class = "dropdown_btn_`+type+`" id="allBtn`+type+`" onclick="change_color('allBtn`+type+`'); fetchAllOrders();">All</button>`;
-    htmlString += `<button class = "dropdown_btn_`+type+`" id="noneBtn`+type+`" onclick="change_color('noneBtn`+type+`'); fetchNoneOrders();">NONE</button>`; 
+    htmlString += `<button class = "dropdown_btn_`+type+`" id="allBtn`+type+`" onclick="change_color('allBtn`+type+`')">All</button>`;
+    htmlString += `<button class = "dropdown_btn_`+type+`" id="noneBtn`+type+`" onclick="change_color('noneBtn`+type+`')">NONE</button>`; 
     for (var key in data.rows) {
         for (var keyName in data.rows[key]) {
             var item = (data.rows[key])[keyName];
-            htmlString += `<button class="dropdown_btn_`+type+`" id="${item}Btn" onclick="change_color('${item}Btn'); fetch${item}Orders();">${item}</button>`;
+            htmlString += `<button class="dropdown_btn_`+type+`" id="${item}Btn" onclick="change_color('${item}Btn')">${item}</button>`;
         }
     }
     return htmlString;
@@ -42,35 +42,35 @@ function loadSideOptions(sides) {
     sidesList.innerHTML = createHtmlString(sides, "sides");
 }
 
-function fetchAllOrders() {
-    fetch(link + '/getAllOrders')
-    .then(response => response.json())
-    .then(data => loadHTMLTable(data['data']));
-}
+// function fetchAllOrders() {
+//     fetch(link + '/getAllOrders')
+//     .then(response => response.json())
+//     .then(data => loadHTMLTable(data['data']));
+// }
 
-function fetchNoneOrders() {
-    fetch(link + '/getNoneOrders')
-    .then(response => response.json())
-    .then(data => loadHTMLTable(data['data']));
-}
+// function fetchNoneOrders() {
+//     fetch(link + '/getNoneOrders')
+//     .then(response => response.json())
+//     .then(data => loadHTMLTable(data['data']));
+// }
 
-function fetchbowlOrders() {
-    fetch(link + '/getBowlOrders')
-    .then(response => response.json())
-    .then(data => loadHTMLTable(data['data']));
-}
+// function fetchbowlOrders() {
+//     fetch(link + '/getBowlOrders')
+//     .then(response => response.json())
+//     .then(data => loadHTMLTable(data['data']));
+// }
 
-function fetchburritoOrders() {
-    fetch(link + '/getBurritoOrders')  
-    .then(response => response.json())
-    .then(data => loadHTMLTable(data['data']));
-}
+// function fetchburritoOrders() {
+//     fetch(link + '/getBurritoOrders')  
+//     .then(response => response.json())
+//     .then(data => loadHTMLTable(data['data']));
+// }
 
-function fetchtacosOrders() {
-    fetch(link + '/getTacoOrders')
-    .then(response => response.json())
-    .then(data => loadHTMLTable(data['data']));
-}
+// function fetchtacosOrders() {
+//     fetch(link + '/getTacoOrders')
+//     .then(response => response.json())
+//     .then(data => loadHTMLTable(data['data']));
+// }
 
 function loadHTMLTable(data) {
     const table = document.querySelector('table tbody'); 
@@ -108,7 +108,7 @@ function change_color(id){
     }
     for (var i = 0; i < all_btns.length; i++){
         if (all_btns[i].id != id){
-            console.log("button with id: ", all_btns[i].id, " should be changing color");
+            // console.log("button with id: ", all_btns[i].id, " should be changing color");
             all_btns[i].style.backgroundColor = '#1995AA'; 
         }
     }
@@ -116,7 +116,7 @@ function change_color(id){
 
 // How to access drop down buttons IDs after they are created
 
-function buttons() {
+function displayButtonNames() {
     const table = document.querySelector('table tbody'); 
     const entreeButtons = document.querySelectorAll('.dropdown_btn_entree');
     for (let i = 0; i < entreeButtons.length; i++) {
@@ -132,4 +132,89 @@ function buttons() {
     for (let i = 0; i < sideButtons.length; i++) {
         table.innerHTML += "<p>" + sideButtons[i].id + "</p>"; 
     }
+    
 }
+
+var entree = "";
+var protein = "";
+function enableButtons() {
+    // ENTREE OPTIONS
+    const allEntreeBtn = document.querySelector('#allBtnentree');
+    allEntreeBtn.addEventListener('click', function() {
+        entree = ['tacos', 'burrito', 'bowl'];
+    });
+
+    const noneEntreeBtn = document.querySelector('#noneBtnentree');
+    noneEntreeBtn.addEventListener('click', function() {
+        entree = 'none';
+    })
+
+    const bowlEntreeBtn = document.querySelector('#bowlBtn');
+    bowlEntreeBtn.addEventListener('click', function() {
+        entree = 'bowl';
+    })
+
+    const burritoEntreeBtn = document.querySelector('#burritoBtn');
+    burritoEntreeBtn.addEventListener('click', function() {
+        entree = 'burrito';
+    })
+
+    const tacosEntreeBtn = document.querySelector('#tacosBtn');
+    tacosEntreeBtn.addEventListener('click', function() {
+        entree = 'tacos';
+    })
+
+    
+
+
+    const allProteinBtn = document.querySelector('#allBtnprotein');
+    allProteinBtn.addEventListener('click', function() {
+        protein = ['steak', 'vegetable medley', 'beef', 'chicken'];
+    });
+
+    const noneProteinBtn = document.querySelector('#noneBtnprotein');
+    noneProteinBtn.addEventListener('click', function() {
+        protein = 'none';
+    })
+
+    const steakProteinBtn = document.querySelector('#steakBtn');
+    steakProteinBtn.addEventListener('click', function() {
+        protein = 'steak';
+    })
+
+    const vegProteinBtn = document.getElementById('vegetable medleyBtn');
+    vegProteinBtn.addEventListener('click', function() {
+        protein = 'vegetable medley';
+    })
+
+    const beefProteinBtn = document.querySelector('#beefBtn');
+    beefProteinBtn.addEventListener('click', function() {
+        protein = 'beef';
+    })
+
+    const chickenProteinBtn = document.querySelector('#chickenBtn');
+    chickenProteinBtn.addEventListener('click', function() {
+        protein = 'chicken';
+    })
+    
+    // fetch(link + '/getOrders', {
+    //     headers: {
+    //         'Content-type' : 'application/json'
+    //     },
+    //     method: 'GET',
+    //     body: JSON.stringify({
+    //         entree_type : entree
+    //         protein_type : 
+    //         chips_and_salsa :
+    //         chips_and_queso : 
+    //         chips_and_guac :
+    //         drink : 
+    //     })
+    // })
+}
+
+function submitOrder() {
+    console.log(`entree:${entree} \nprotein:${protein}`);
+}
+
+    
