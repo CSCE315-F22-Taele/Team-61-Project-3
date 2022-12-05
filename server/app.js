@@ -185,13 +185,13 @@ app.post('/insert', (request, response) => {
     .then(data => response.json({ data : data }));
 }) 
 
-app.get('/getOrders', (request, response) => {
-    const { entree_type } = request.body;
-    const { protein_type } = request.body;
-    const { chips_and_salsa } = request.body;
-    const { chips_and_queso } = request.body;
-    const { chips_and_guac } = request.body;
-    const { drink } = request.body;
+app.get('/getOrders/:entreeType/:proteinType/:chipsAndSalsa/:chipsAndQueso/:chipsAndGuac/:drink', (request, response) => {
+    const { entree_type } = request.params.entreeType;
+    const { protein_type } = request.params.proteinType;
+    const { chips_and_salsa } = request.params.chipsAndSalsa;
+    const { chips_and_queso } = request.params.chipsAndQueso;
+    const { chips_and_guac } = request.params.chipsAndGuac;
+    const { drink } = request.params.drink;
     
     const db = dbService.getDbServiceInstance()
     const result = db.getOrders(entree_type, protein_type, chips_and_salsa, chips_and_queso, chips_and_guac, drink);

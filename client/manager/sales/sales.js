@@ -132,7 +132,6 @@ function displayButtonNames() {
     for (let i = 0; i < sideButtons.length; i++) {
         table.innerHTML += "<p>" + sideButtons[i].id + "</p>"; 
     }
-    
 }
 
 var entree = "";
@@ -141,6 +140,7 @@ var chipsAndSalsa = "";
 var chipsAndQueso = "";
 var chipsAndGuac = "";
 var drinkOption = "";
+var sideBtnPressed = "";
 function enableButtons() {
     // ENTREE OPTIONS
     const allEntreeBtn = document.querySelector('#allBtnentree');
@@ -202,6 +202,7 @@ function enableButtons() {
     // SIDE OPTIONS
     const allSidesBtn = document.querySelector('#allBtnsides');
     allSidesBtn.addEventListener('click', function() {
+        sideBtnPressed = 'All';
         chipsAndSalsa = '1';
         chipsAndQueso = '1';
         chipsAndGuac = '1';
@@ -210,6 +211,7 @@ function enableButtons() {
 
     const noneSidesBtn = document.querySelector('#noneBtnsides');
     noneSidesBtn.addEventListener('click', function() {
+        sideBtnPressed = 'none'
         chipsAndSalsa = '0';
         chipsAndQueso = '0';
         chipsAndGuac = '0';
@@ -218,6 +220,7 @@ function enableButtons() {
 
     const chipsAndSalsaBtn = document.querySelector('#chips_and_salsaBtn');
     chipsAndSalsaBtn.addEventListener('click', function() {
+        sideBtnPressed = 'chips_and_salsa';
         chipsAndSalsa = '1';
         chipsAndQueso = '0';
         chipsAndGuac = '0';
@@ -226,6 +229,7 @@ function enableButtons() {
 
     const chipsAndQuesoBtn = document.querySelector('#chips_and_quesoBtn');
     chipsAndQuesoBtn.addEventListener('click', function() {
+        sideBtnPressed = 'chips_and_queso';
         chipsAndSalsa = '0';
         chipsAndQueso = '1';
         chipsAndGuac = '0';
@@ -234,6 +238,7 @@ function enableButtons() {
 
     const chipsAndGuacBtn = document.querySelector('#chips_and_guacBtn');
     chipsAndGuacBtn.addEventListener('click', function() {
+        sideBtnPressed = 'chips_and_guac';
         chipsAndSalsa = '0';
         chipsAndQueso = '0';
         chipsAndGuac = '1';
@@ -242,6 +247,7 @@ function enableButtons() {
 
     const drinkOptionBtn = document.querySelector('#drinkBtn');
     drinkOptionBtn.addEventListener('click', function() {
+        sideBtnPressed = 'drink';
         chipsAndSalsa = '0';
         chipsAndQueso = '0';
         chipsAndGuac = '0';
@@ -251,21 +257,14 @@ function enableButtons() {
 
 function submitOrder() {
     // console.log(`entree:${entree} protein:${protein} cas: ${chipsAndSalsa} caq: ${chipsAndQueso} cag: ${chipsAndGuac} drink: ${drinkOption}`);
-    fetch(link + '/getOrders', {
-        headers: {
-            'Content-type' : 'application/json'
-        },
-        method: 'GET',
-        body: JSON.stringify({
-            entree_type : entree,
-            protein_type : protein,
-            chips_and_salsa : chipsAndSalsa,
-            chips_and_queso : chipsAndQueso,
-            chips_and_guac : chipsAndGuac,
-            drink : drinkOption
-        })
-    })
-    .then(response => response.json())
+    fetch(link + '/getOrders/'+entree+'/'+protein+'/'+chipsAndSalsa+'/'+chipsAndQueso+'/'+chipsAndGuac)
+        .then(response => response.json())
+        .then(data => loadHTMLTable(data['data']));
 }
 
+// function fetchtacosOrders() {
+//     fetch(link + '/getTacoOrders')
+//     .then(response => response.json())
+//     .then(data => loadHTMLTable(data['data']));
+// }
     
