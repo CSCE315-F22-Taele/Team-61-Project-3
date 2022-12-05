@@ -192,7 +192,8 @@ app.get('/getOrders/:entreeType/:proteinType/:chipsAndSalsa/:chipsAndQueso/:chip
     const { chips_and_queso } = request.params.chipsAndQueso;
     const { chips_and_guac } = request.params.chipsAndGuac;
     const { drink } = request.params.drink;
-    
+    console.log('in get request');
+
     const db = dbService.getDbServiceInstance()
     const result = db.getOrders(entree_type, protein_type, chips_and_salsa, chips_and_queso, chips_and_guac, drink);
 

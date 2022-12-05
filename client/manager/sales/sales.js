@@ -256,7 +256,7 @@ function enableButtons() {
 }
 
 function submitOrder() {
-    // console.log(`entree:${entree} protein:${protein} cas: ${chipsAndSalsa} caq: ${chipsAndQueso} cag: ${chipsAndGuac} drink: ${drinkOption}`);
+    console.log(`entree:${entree} protein:${protein} cas: ${chipsAndSalsa} caq: ${chipsAndQueso} cag: ${chipsAndGuac} drink: ${drinkOption}`);
     fetch(link + '/getOrders/'+entree+'/'+protein+'/'+chipsAndSalsa+'/'+chipsAndQueso+'/'+chipsAndGuac+'/'+drinkOption)
         .then(response => response.json())
         .then(data => loadHTMLTable(data['data']));
