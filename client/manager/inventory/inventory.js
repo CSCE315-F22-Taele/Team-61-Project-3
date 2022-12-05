@@ -3,8 +3,11 @@ function fetchAllInventory() {
     .then(response => response.json())
     .then(data => loadHTMLTable(data['data']));
 }
-var allButton = document.getElementById('allBtn');
-allButton.addEventListener('click', fetchAllInventory);
+
+const allButton = document.getElementById('allBtn');
+allButton.addEventListener('click', function() {
+    fetchAllInventory();
+});
 
 
 function fetchAllProtein() {
