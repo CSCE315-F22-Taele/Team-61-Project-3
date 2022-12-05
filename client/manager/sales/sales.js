@@ -42,13 +42,11 @@ function loadSideOptions(sides) {
     sidesList.innerHTML = createHtmlString(sides, "sides");
 }
 
-
 function fetchAllOrders() {
     fetch(link + '/getAllOrders')
     .then(response => response.json())
     .then(data => loadHTMLTable(data['data']));
 }
-
 
 function fetchBowlOrders() {
     fetch(link + '/getBowlOrders')
@@ -56,30 +54,12 @@ function fetchBowlOrders() {
     .then(data => loadHTMLTable(data['data']));
 }
 
-
-// function fetchNoneOrders() {
-//     fetch('https://project3-7bzcyqo3va-uc.a.run.app/getNoneOrders')
-//     .then(response => response.json())
-//     .then(data => loadHTMLTable(data['data']));
-// }
-// var noneButton = document.getElementById('noneBtn');
-// noneButton.addEventListener('click', fetchNoneOrders);
-
-
 function fetchBurritoOrders() {
     fetch(link + '/getBurritoOrders')  
     .then(response => response.json())
     .then(data => loadHTMLTable(data['data']));
 }
 
-
-// function fetchTacoOrders() {
-//     fetch('https://project3-7bzcyqo3va-uc.a.run.app/getTacoOrders')
-//     .then(response => response.json())
-//     .then(data => loadHTMLTable(data['data']));
-// }
-// var tacoButton = document.getElementById('tacoBtn');
-// tacoButton.addEventListener('click', fetchTacoOrders);
 
 
 function loadHTMLTable(data) {
@@ -107,8 +87,6 @@ function loadHTMLTable(data) {
     table.innerHTML = tableHTML;
 }
 
-
-
 function change_color(id){
     var btn = document.getElementById(id);
     var all_btns = document.getElementsByClassName(btn.className);
@@ -126,3 +104,4 @@ function change_color(id){
     }
 }
 
+// How to access drop down buttons IDs after they are created
