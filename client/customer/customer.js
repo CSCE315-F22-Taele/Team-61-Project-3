@@ -1,10 +1,14 @@
-//const link = 'https://project3-7bzcyqo3va-uc.a.run.app'
-const link = 'http://localhost:5555';
+const link = 'https://project3-7bzcyqo3va-uc.a.run.app'
+//const link = 'http://localhost:5555';
 
 function fetchEntree() {
     fetch(link + '/getEntreeOptions')
     .then(response => response.json())
     .then(data => loadEntreeOptions(data['data']));
+
+    fetch(link + '/getEntreeQuantity')
+    .then(response => response.json())
+    .then(data => loadQuantities(data['data']));
 }
 
 function fetchProtein() {
@@ -15,6 +19,10 @@ function fetchProtein() {
     fetch(link + '/getProteinPrices')
     .then(response => response.json())
     .then(data => loadProteinPrices(data['data']));
+
+    fetch(link + '/getProteinQuantity')
+    .then(response => response.json())
+    .then(data => loadQuantities(data['data']));
 }
 
 function fetchExtras() {
@@ -29,6 +37,10 @@ function fetchExtras() {
     fetch(link + '/getSidePrices')  
     .then(response => response.json())
     .then(data => loadSidePrices(data['data']));
+
+    fetch(link + '/getSideQuantity')  
+    .then(response => response.json())
+    .then(data => loadQuantities(data['data']));
 }
 
 function fetchSaleID() {
@@ -128,6 +140,14 @@ function loadSidePrices(data) {
         var item = (data.rows[key])['item_name'];
         var price = (data.rows[key])['sale_cost'];
         localStorage.setItem(item + "Price", price);
+    }
+}
+
+function loadQuantities(data) {
+    for (var key in data.rows) {
+        var item = (data.rows[key])['item_name'];
+        var quantity = (data.rows[key])['quantity'];
+        localStorage.setItem(item + "Quantity", quantity);
     }
 }
 
@@ -273,6 +293,12 @@ function finalizeOrder() {
     const orderTextBox = document.getElementById("items");
     const orderHeader = document.getElementById("orderHeader");
 
+    let quantityProtein = 0;
+    let quantityOfChipsAndSalsa = localStorage.getItem("chips_and_salsaQuantity");
+    let quantityOfChipsAndQueso = localStorage.getItem("chips_and_quesoQuantity");
+    let quantityOfChipsAndGuac = localStorage.getItem("chips_and_guacQuantity");
+    let quantityOfDrinks = localStorage.getItem("drinkQuantity");
+
     let i = 1;
     for (const meal of orders) {
         meal.sale_id = saleID + i;
@@ -294,7 +320,39 @@ function finalizeOrder() {
                 cost : meal.cost
             })
         })
-        .then(response => response.json())
+        .then(response => response.json());
+
+        quantityProtein = localStorage.getItem(meal.protein + "Quantity");
+        quantityProtein--;
+
+        if (meal.chips_and_salsa === 1) {
+            quantityOfChipsAndSalsa--;
+        }
+        if (meal.chips_and_queso === 1) {
+            quantityOfChipsAndQueso--;
+        }
+        if (meal.chips_and_guac === 1) {
+            quantityOfChipsAndGuac--;
+        }
+        if (meal.drink === 1) {
+            quantityOfDrinks--;
+        }
+        
+        fetch(link + '/updateQuantities', {
+            headers: {
+                'Content-type' : 'application/json'
+            },
+            method: 'POST',
+            body: JSON.stringify({ 
+                protein : meal.protein,
+                proteinQuantity : quantityProtein,
+                chips_and_salsaQuantity : quantityOfChipsAndSalsa,
+                chips_and_quesoQuantity : quantityOfChipsAndQueso,
+                chips_and_guacQuantity : quantityOfChipsAndGuac,
+                drinkQuantity : quantityOfDrinks
+            })
+        })
+        .then(response => response.json());
     }
     clearOrder();
     orderTextBox.innerHTML = "Order: Complete";

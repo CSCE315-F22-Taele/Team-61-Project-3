@@ -165,6 +165,29 @@ app.get('/getSidePrices', (request, response) => {
     .catch(err => console.log(err));
 });
 
+app.get('/getEntreeQuantity', (request, response) => {   
+    const db = dbService.getDbServiceInstance();
+    const result = db.getEntreeQuantity();
+    result
+    .then(data => response.json({data : data}))
+    .catch(err => console.log(err));
+});
+
+app.get('/getProteinQuantity', (request, response) => {   
+    const db = dbService.getDbServiceInstance();
+    const result = db.getProteinQuantity();
+    result
+    .then(data => response.json({data : data}))
+    .catch(err => console.log(err));
+});
+
+app.get('/getSideQuantity', (request, response) => {   
+    const db = dbService.getDbServiceInstance();
+    const result = db.getSideQuantity();
+    result
+    .then(data => response.json({data : data}))
+    .catch(err => console.log(err));
+});
 
 app.post('/insert', (request, response) => {
     const { sale_id } = request.body;
@@ -180,6 +203,21 @@ app.post('/insert', (request, response) => {
 
     const db = dbService.getDbServiceInstance();
     const result = db.insertNewOrder(sale_id, date, entree_type, protein, chips_and_salsa, chips_and_queso, chips_and_guac, drink, cost);
+
+    result
+    .then(data => response.json({ data : data }));
+}) 
+
+app.post('/updateQuantities', (request, response) => {
+    const { protein } = request.body;
+    const { proteinQuantity } = request.body;
+    const { chips_and_salsaQuantity } = request.body;
+    const { chips_and_quesoQuantity } = request.body;
+    const { chips_and_guacQuantity } = request.body;
+    const { drinkQuantity } = request.body;
+
+    const db = dbService.getDbServiceInstance();
+    const result = db.updateQuantities(protein, proteinQuantity, chips_and_salsaQuantity, chips_and_quesoQuantity, chips_and_guacQuantity, drinkQuantity);
 
     result
     .then(data => response.json({ data : data }));

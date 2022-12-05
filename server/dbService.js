@@ -386,6 +386,66 @@ class DbService {
         }
     }
 
+    async getEntreeQuantity() {
+        try {
+            const response = await new Promise((resolve, reject) => {
+                const query = "SELECT item_name, quantity FROM cabo_grill WHERE type='entree';";
+                connection.query(query, (err, results) => {
+                    if (err) {
+                        reject(new Error(err.message));
+                    }
+                    else {
+                        resolve(results);
+                    }
+                });
+            });
+            return response;
+        } 
+        catch (error) {
+            console.log(error);
+        }
+    }
+
+    async getProteinQuantity() {
+        try {
+            const response = await new Promise((resolve, reject) => {
+                const query = "SELECT item_name, quantity FROM cabo_grill WHERE type='protein';";
+                connection.query(query, (err, results) => {
+                    if (err) {
+                        reject(new Error(err.message));
+                    }
+                    else {
+                        resolve(results);
+                    }
+                });
+            });
+            return response;
+        } 
+        catch (error) {
+            console.log(error);
+        }
+    }
+
+    async getSideQuantity() {
+        try {
+            const response = await new Promise((resolve, reject) => {
+                const query = "SELECT item_name, quantity FROM cabo_grill WHERE type='side';";
+                connection.query(query, (err, results) => {
+                    if (err) {
+                        reject(new Error(err.message));
+                    }
+                    else {
+                        resolve(results);
+                    }
+                });
+            });
+            return response;
+        } 
+        catch (error) {
+            console.log(error);
+        }
+    }
+
     async insertNewOrder(sale_id, date, entree_type, protein, chips_and_salsa, chips_and_queso, chips_and_guac, drink, cost) {
         try {
             const response = await new Promise((resolve, reject) => {
@@ -414,6 +474,33 @@ class DbService {
                 chips_and_guac : chips_and_guac,
                 drink : drink,
                 cost : cost
+            };
+        } 
+        catch (error) {
+            console.log(error);
+        }
+    }
+
+    async updateQuantities(protein, proteinQuantity, chips_and_salsaQuantity, chips_and_quesoQuantity, chips_and_guacQuantity, drinkQuantity) {
+        try {
+            const response = await new Promise((resolve, reject) => {
+                const query = `UPDATE cabo_grill SET quantity = ${proteinQuantity} WHERE item_name = '${protein}';` +  
+                `UPDATE cabo_grill SET quantity = ${chips_and_salsaQuantity} WHERE item_name = 'chips_and_salsa';` +
+                `UPDATE cabo_grill SET quantity = ${chips_and_quesoQuantity} WHERE item_name = 'chips_and_queso';` +
+                `UPDATE cabo_grill SET quantity = ${chips_and_guacQuantity} WHERE item_name = 'chips_and_guac';` +
+                `UPDATE cabo_grill SET quantity = ${drinkQuantity} WHERE item_name = 'drink';`;
+                connection.query(query, (err, result) => {
+                    if (err) {
+                        reject(new Error(err.message));
+                    }
+                    else {
+                        resolve(result);
+                    }
+                });
+            });
+            return {
+                protein : protein,
+                proteinQuantity : proteinQuantity
             };
         } 
         catch (error) {
