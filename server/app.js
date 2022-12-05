@@ -189,6 +189,14 @@ app.get('/getSideQuantity', (request, response) => {
     .catch(err => console.log(err));
 });
 
+app.get('/getToppingQuantity', (request, response) => {   
+    const db = dbService.getDbServiceInstance();
+    const result = db.getToppingQuantity();
+    result
+    .then(data => response.json({data : data}))
+    .catch(err => console.log(err));
+});
+
 app.post('/insert', (request, response) => {
     const { sale_id } = request.body;
     const { date } = request.body;
@@ -218,6 +226,17 @@ app.post('/updateQuantities', (request, response) => {
 
     const db = dbService.getDbServiceInstance();
     const result = db.updateQuantities(protein, proteinQuantity, chips_and_salsaQuantity, chips_and_quesoQuantity, chips_and_guacQuantity, drinkQuantity);
+
+    result
+    .then(data => response.json({ data : data }));
+}) 
+
+app.post('/updateQuantity', (request, response) => {
+    const { item } = request.body;
+    const { quantity } = request.body;
+
+    const db = dbService.getDbServiceInstance();
+    const result = db.updateQuantity(item, quantity);
 
     result
     .then(data => response.json({ data : data }));

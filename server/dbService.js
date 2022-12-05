@@ -446,6 +446,26 @@ class DbService {
         }
     }
 
+    async getToppingQuantity() {
+        try {
+            const response = await new Promise((resolve, reject) => {
+                const query = "SELECT item_name, quantity FROM cabo_grill WHERE type='topping';";
+                connection.query(query, (err, results) => {
+                    if (err) {
+                        reject(new Error(err.message));
+                    }
+                    else {
+                        resolve(results);
+                    }
+                });
+            });
+            return response;
+        } 
+        catch (error) {
+            console.log(error);
+        }
+    }
+
     async insertNewOrder(sale_id, date, entree_type, protein, chips_and_salsa, chips_and_queso, chips_and_guac, drink, cost) {
         try {
             const response = await new Promise((resolve, reject) => {
@@ -501,6 +521,29 @@ class DbService {
             return {
                 protein : protein,
                 proteinQuantity : proteinQuantity
+            };
+        } 
+        catch (error) {
+            console.log(error);
+        }
+    }
+
+    async updateQuantity(item, quantity) {
+        try {
+            const response = await new Promise((resolve, reject) => {
+                const query = `UPDATE cabo_grill SET quantity = ${quantity} WHERE item_name = '${item}';`;
+                connection.query(query, (err, result) => {
+                    if (err) {
+                        reject(new Error(err.message));
+                    }
+                    else {
+                        resolve(result);
+                    }
+                });
+            });
+            return {
+                item : item,
+                quantity : quantity
             };
         } 
         catch (error) {
