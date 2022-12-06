@@ -226,37 +226,6 @@ app.post('/insert', (request, response) => {
     .then(data => response.json({ data : data }));
 }) 
 
-app.post('/insertNewItem', (request, response) => {
-    const { item_id } = request.body;
-    const { item_name } = request.body;
-    const { item_type } = request.body;
-    const { quantity } = request.body;
-    const { cost } = request.body;
-    const { supply } = request.body;
-    console.log(request.body);
-    const db = dbService.getDbServiceInstance();
-    const result = db.insertNewItem(item_id, item_name, item_type, quantity, cost, supply);
-
-    result
-    .then(data => response.json({ data : data }))
-    .catch(err => console.log(err));
-}) 
-
-app.post('/updateQuantities', (request, response) => {
-    const { protein } = request.body;
-    const { proteinQuantity } = request.body;
-    const { chips_and_salsaQuantity } = request.body;
-    const { chips_and_quesoQuantity } = request.body;
-    const { chips_and_guacQuantity } = request.body;
-    const { drinkQuantity } = request.body;
-
-    const db = dbService.getDbServiceInstance();
-    const result = db.updateQuantities(protein, proteinQuantity, chips_and_salsaQuantity, chips_and_quesoQuantity, chips_and_guacQuantity, drinkQuantity);
-
-    result
-    .then(data => response.json({ data : data }));
-}) 
-
 app.post('/updateQuantity', (request, response) => {
     const { item } = request.body;
     const { quantity } = request.body;

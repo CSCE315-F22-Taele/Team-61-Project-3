@@ -350,10 +350,6 @@ function getHtmlMealString(meal, i) {
     return htmlString;
 }
 
-function addMoreItems() {
-    //localStorage.setItem("sides", 'null');
-}
-
 function clearOrder() {
     localStorage.clear();
     const orderTextBox = document.getElementById("items");
