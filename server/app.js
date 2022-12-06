@@ -1,9 +1,3 @@
-/**
- * This file is used mainly for accessing different elements from our backend that we need. 
- * It consists of lots of get functions as well as some update functions
- * @author Justin Singletary, Brandon Moon 
- */
-
 const express = require('express');
 const app = express();
 const cors = require('cors');
@@ -17,11 +11,6 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended : false}));
 
-/**
- * This function accesses the entree options for our table 
- * @author Justin Singletary
- * @access Entree options
- */
 app.get('/getEntreeOptions', (request, response) => {    
     const db = dbService.getDbServiceInstance();
     const result = db.getEntreeOptions();
@@ -221,6 +210,36 @@ app.post('/insert', (request, response) => {
 
     const db = dbService.getDbServiceInstance();
     const result = db.insertNewOrder(sale_id, date, entree_type, protein, chips_and_salsa, chips_and_queso, chips_and_guac, drink, cost);
+
+    result
+    .then(data => response.json({ data : data }));
+}) 
+
+app.post('/insertNewItem', (request, response) => {
+    const { item_id } = request.body;
+    const { item_name } = request.body;
+    const { item_type } = request.body;
+    const { quantity } = request.body;
+    const { cost } = request.body;
+    const { supply } = request.body;
+    console.log(request.body);
+    const db = dbService.getDbServiceInstance();
+    const result = db.insertNewItem(item_id, item_name, item_type, quantity, cost, supply);
+
+    result
+    .then(data => response.json({ data : data }))
+}) 
+
+app.post('/updateQuantities', (request, response) => {
+    const { protein } = request.body;
+    const { proteinQuantity } = request.body;
+    const { chips_and_salsaQuantity } = request.body;
+    const { chips_and_quesoQuantity } = request.body;
+    const { chips_and_guacQuantity } = request.body;
+    const { drinkQuantity } = request.body;
+
+    const db = dbService.getDbServiceInstance();
+    const result = db.updateQuantities(protein, proteinQuantity, chips_and_salsaQuantity, chips_and_quesoQuantity, chips_and_guacQuantity, drinkQuantity);
 
     result
     .then(data => response.json({ data : data }));
