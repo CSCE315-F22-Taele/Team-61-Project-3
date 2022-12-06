@@ -402,73 +402,77 @@ function insertMeal(sale_id, date, entree_type, protein, chips_and_salsa, chips_
 
 function updateSideQuantities() {
     const sides = JSON.parse(localStorage.getItem('sides'));
-    let sideCount = {};
-    for (let i = 0; i < sides.length; i++) {
-        if(!sideCount[sides[i]]) {
-            sideCount[sides[i]] = 0;
+    if (sides != null) {
+        let sideCount = {};
+        for (let i = 0; i < sides.length; i++) {
+            if(!sideCount[sides[i]]) {
+                sideCount[sides[i]] = 0;
+            }
+            sideCount[sides[i]]++;
         }
-        sideCount[sides[i]]++;
-    }
-
-    let updatedCount = {};
-    for (let i = 0; i < Object.keys(sideCount).length; i++) {
-        updatedCount[Object.keys(sideCount)[i]] = localStorage.getItem(Object.keys(sideCount)[i]+"Quantity") - sideCount[Object.keys(sideCount)[i]];
-    }
-
-    for (let i = 0; i < Object.keys(updatedCount).length; i++) {
-        let sideName = Object.keys(updatedCount)[i];
-        let newQuantity = updatedCount[Object.keys(updatedCount)[i]];
-
-        fetch(link + '/updateQuantity', {
-            headers: {
-                'Content-type' : 'application/json'
-            },
-            method: 'POST',
-            body: JSON.stringify({ 
-                item : sideName,
-                quantity : newQuantity,
+    
+        let updatedCount = {};
+        for (let i = 0; i < Object.keys(sideCount).length; i++) {
+            updatedCount[Object.keys(sideCount)[i]] = localStorage.getItem(Object.keys(sideCount)[i]+"Quantity") - sideCount[Object.keys(sideCount)[i]];
+        }
+    
+        for (let i = 0; i < Object.keys(updatedCount).length; i++) {
+            let sideName = Object.keys(updatedCount)[i];
+            let newQuantity = updatedCount[Object.keys(updatedCount)[i]];
+    
+            fetch(link + '/updateQuantity', {
+                headers: {
+                    'Content-type' : 'application/json'
+                },
+                method: 'POST',
+                body: JSON.stringify({ 
+                    item : sideName,
+                    quantity : newQuantity,
+                })
             })
-        })
-        .then(response => response.json());
+            .then(response => response.json());
+        }
     }
 }
 
 function updateToppingQuantities() {
     const toppings = JSON.parse(localStorage.getItem('toppings'));
-    let toppingCount = {};
-    for (let i = 0; i < toppings.length; i++) {
-        if(!toppingCount[toppings[i]]) {
-            toppingCount[toppings[i]] = 0;
+    if (toppings != null) {
+        let toppingCount = {};
+        for (let i = 0; i < toppings.length; i++) {
+            if(!toppingCount[toppings[i]]) {
+                toppingCount[toppings[i]] = 0;
+            }
+            toppingCount[toppings[i]]++;
         }
-        toppingCount[toppings[i]]++;
-    }
-
-    let updatedCount = {};
-    for (let i = 0; i < Object.keys(toppingCount).length; i++) {
-        updatedCount[Object.keys(toppingCount)[i]] = localStorage.getItem(Object.keys(toppingCount)[i]+"Quantity") - toppingCount[Object.keys(toppingCount)[i]];
-    }
-
-    for (let i = 0; i < Object.keys(updatedCount).length; i++) {
-        let toppingName = Object.keys(updatedCount)[i];
-        let newQuantity = updatedCount[Object.keys(updatedCount)[i]];
-
-        fetch(link + '/updateQuantity', {
-            headers: {
-                'Content-type' : 'application/json'
-            },
-            method: 'POST',
-            body: JSON.stringify({ 
-                item : toppingName,
-                quantity : newQuantity,
+    
+        let updatedCount = {};
+        for (let i = 0; i < Object.keys(toppingCount).length; i++) {
+            updatedCount[Object.keys(toppingCount)[i]] = localStorage.getItem(Object.keys(toppingCount)[i]+"Quantity") - toppingCount[Object.keys(toppingCount)[i]];
+        }
+    
+        for (let i = 0; i < Object.keys(updatedCount).length; i++) {
+            let toppingName = Object.keys(updatedCount)[i];
+            let newQuantity = updatedCount[Object.keys(updatedCount)[i]];
+    
+            fetch(link + '/updateQuantity', {
+                headers: {
+                    'Content-type' : 'application/json'
+                },
+                method: 'POST',
+                body: JSON.stringify({ 
+                    item : toppingName,
+                    quantity : newQuantity,
+                })
             })
-        })
-        .then(response => response.json());
+            .then(response => response.json());
+        }
     }
 }
 
 function updateProteinQuantity(protein) {
     let quantityProtein = localStorage.getItem(protein + "Quantity");
-    quantityProtein--;
+    --quantityProtein;
     
     fetch(link + '/updateQuantity', {
         headers: {
