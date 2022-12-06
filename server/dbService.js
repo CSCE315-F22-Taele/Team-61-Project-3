@@ -421,11 +421,53 @@ class DbService {
         }
     }
 
-    async getOrders(entree_type, protein_type, chips_and_salsa, chips_and_queso, chips_and_guac, drink) {
+    async getOrders(entree_type, protein_type, chips_and_salsa, chips_and_queso, chips_and_guac, drink, sideBtn) {
         try {
             const response = await new Promise((resolve, reject) => {
-                const query = `SELECT * FROM cabo_grill_sales WHERE (entree_type = '${entree_type}' AND protein = '${protein_type}' AND chips_and_salsa = '${chips_and_salsa}' AND chips_and_queso = '${chips_and_queso}'
-                 AND chips_and_guac = '${chips_and_guac}' AND drink = '${drink}' AND sale_id > 1) ORDER BY sale_id DESC;`;
+                // console.log(entree_type);
+                // console.log(protein_type);
+                // console.log(sideBtn);
+                console.log((entree_type == 'none' || protein_type == 'none') && sideBtn == 'all');
+                let query = "";
+                // none query for all side btn
+                if((entree_type == 'none' || protein_type == 'none') && (sideBtn == 'all' || sideBtn == 'none')) {
+                    query = `SELECT * FROM cabo_grill_sales WHERE (entree_type IS NULL AND chips_and_salsa = '${chips_and_salsa}' AND chips_and_queso = '${chips_and_queso}'
+                    AND chips_and_guac = '${chips_and_guac}' AND drink = '${drink}' AND sale_id > 1) ORDER BY sale_id DESC;`
+                }
+                // none query for specific side btn
+                else if((entree_type == 'none' || protein_type == 'none') && (sideBtn != 'none' && sideBtn != 'all')) {
+                    query = `SELECT * FROM cabo_grill_sales WHERE (entree_type IS NULL AND ${sideBtn} = '1');`
+                }
+                // specific entree, specific protien, all sides/none sides
+                else if(entree_type != 'all' && entree_type != 'none' && protein_type != 'all' && protein_type != 'none' && (sideBtn == 'all' || sideBtn == 'none')) {
+                    query = `SELECT * FROM cabo_grill_sales WHERE (entree_type = '${entree_type}' AND protein = '${protein_type}' AND chips_and_salsa = '${chips_and_salsa}' AND chips_and_queso = '${chips_and_queso}'
+                    AND chips_and_guac = '${chips_and_guac}' AND drink = '${drink}' AND sale_id > 1) ORDER BY sale_id DESC;`;
+                } 
+                // specific entree, specific protien, specific sides
+                else if(entree_type != 'all' && entree_type != 'none' && protein_type != 'all' && protein_type != 'none' && (sideBtn != 'all' || sideBtn != 'none')) {
+                    query = `SELECT * FROM cabo_grill_sales WHERE (entree_type = '${entree_type}' AND protein = '${protein_type}' 
+                    AND ${sideBtn} = '1' AND sale_id > 1) ORDER BY sale_id DESC;`;
+                } 
+                // all entrees, specific protein, either all or none sides
+                else if(entree_type == 'all' && protein_type != 'all' && protein_type != 'none' && (sideBtn == 'all' || sideBtn == 'none')) {
+                    query = `SELECT * FROM cabo_grill_sales WHERE (protein = '${protein_type}' AND chips_and_salsa = '${chips_and_salsa}' AND chips_and_queso = '${chips_and_queso}'
+                    AND chips_and_guac = '${chips_and_guac}' AND drink = '${drink}' AND sale_id > 1) ORDER BY sale_id DESC;`;
+                }
+                // all entrees, specific protein, specific sides
+                else if(entree_type == 'all' && protein_type != 'all' && protein_type != 'none' && (sideBtn != 'all' || sideBtn != 'none')) {
+                    query = `SELECT * FROM cabo_grill_sales WHERE (protein = '${protein_type}' 
+                    AND ${sideBtn} = '1' AND sale_id > 1) ORDER BY sale_id DESC;`;
+                }
+                // all entrees, all protein, all/none sides
+                else if(entree_type == 'all' && protein_type == 'all' && protein_type != 'none' && (sideBtn == 'all' || sideBtn == 'none')) {
+                    query = `SELECT * FROM cabo_grill_sales WHERE (chips_and_salsa = '${chips_and_salsa}' AND chips_and_queso = '${chips_and_queso}'
+                    AND chips_and_guac = '${chips_and_guac}' AND drink = '${drink}' AND sale_id > 1) ORDER BY sale_id DESC;`;
+                }
+                // all entree, all protein, specific sides
+                else if(entree_type == 'all' && protein_type == 'all' && protein_type != 'none' && (sideBtn != 'all' || sideBtn != 'none')) {
+                    query = `SELECT * FROM cabo_grill_sales WHERE (${sideBtn} = '1' AND sale_id > 1) ORDER BY sale_id DESC;`;
+                }
+                console.log(query);
                 connection.query(query, (err, results) => {
                     if (err)
                         reject(new Error(err.message));
@@ -441,14 +483,16 @@ class DbService {
     }
 
     /*
-    // No entree or protein but all or no sides
-    if ((entree_type == "none" || protein_type == "none") && (sideBtnPressed == "All" || sideBtnPressed == "none"))
-        const query = SELECT * FROM cabo_grill_sales WHERE (entree_type IS NULL AND chips_and_salsa = '${chips_and_salsa}' AND chips_and_queso = '${chips_and_queso}' AND chips_and_guac = '${chips_and_guac}' AND drink = '${drink} AND sale_id > 1) ORDER BY sale_id DESC;
-    // No entree or protein but specific side
-    else if ((entree_type == "none" || protein_type == "none") && (sideBtnPressed == "chips_and_salsa"))
-        const query = SELECT * FROM cabo_grill_sales WHERE (entree_type IS NULL AND ${side_choice} AND sale_id > 1) ORDER BY sale_id DESC;
+    entree == 'all' && protein == 'all' && sideBtn == 'all'
+        SELECT * FROM cabo_grill_sales WHERE (entree_type IS NULL AND chips_and_salsa = '${chips_and_salsa}' AND chips_and_queso = '${chips_and_queso}'
+                    AND chips_and_guac = '${chips_and_guac}' AND drink = '${drink}' AND sale_id > 1) ORDER BY sale_id DESC)
 
+    entree == 'all' && protein == 'all' && sideBtn == 'none'
+        SELECT * FROM cabo_grill WHERE (chips_and_salsa = '${chips_and_salsa}' AND chips_and_queso = '${chips_and_queso}'
+                    AND chips_and_guac = '${chips_and_guac}' AND drink = '${drink}' AND sale_id > 1) ORDER BY sale_id DESC)
 
+    entree == 'all' && protein == 'all' && sideBtn != 'all' && sideBtn != 'none'
+        SELECT * FROM cabo_grill WHERE (${sideBtn} = '1')
     */
 
 

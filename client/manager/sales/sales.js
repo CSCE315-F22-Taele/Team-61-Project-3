@@ -146,7 +146,7 @@ function enableButtons() {
     // ENTREE OPTIONS
     const allEntreeBtn = document.querySelector('#allBtnentree');
     allEntreeBtn.addEventListener('click', function() {
-        entree = ['tacos', 'burrito', 'bowl'];
+        entree = 'all';
     });
 
     const noneEntreeBtn = document.querySelector('#noneBtnentree');
@@ -172,7 +172,7 @@ function enableButtons() {
     // PROTEIN OPTIONS
     const allProteinBtn = document.querySelector('#allBtnprotein');
     allProteinBtn.addEventListener('click', function() {
-        protein = ['steak', 'vegetable medley', 'beef', 'chicken'];
+        protein = 'all';
     });
 
     const noneProteinBtn = document.querySelector('#noneBtnprotein');
@@ -203,7 +203,7 @@ function enableButtons() {
     // SIDE OPTIONS
     const allSidesBtn = document.querySelector('#allBtnsides');
     allSidesBtn.addEventListener('click', function() {
-        sideBtnPressed = 'All';
+        sideBtnPressed = 'all';
         chipsAndSalsa = '1';
         chipsAndQueso = '1';
         chipsAndGuac = '1';
@@ -259,7 +259,7 @@ function enableButtons() {
 function submitOrder() {
     console.log(`entree:${entree} protein:${protein} cas: ${chipsAndSalsa} caq: ${chipsAndQueso} cag: ${chipsAndGuac} drink: ${drinkOption}`);
     // fetch(link + '/getBowlOrders')
-    fetch(link + '/getOrders/'+entree+'/'+protein+'/'+chipsAndSalsa+'/'+chipsAndQueso+'/'+chipsAndGuac+'/'+drinkOption)
+    fetch(link + '/getOrders/'+entree+'/'+protein+'/'+chipsAndSalsa+'/'+chipsAndQueso+'/'+chipsAndGuac+'/'+drinkOption+'/'+sideBtnPressed)
     .then(response => response.json())
     .then(data => loadHTMLTable(data['data']));
 }
