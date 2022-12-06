@@ -14,7 +14,7 @@ function change_color(id){
         }
     }
 }
-
+const link = 'https://project3-7bzcyqo3va-uc.a.run.app'
 var item_type = "";
 const entreeBtn = document.querySelector('#entreeBtn');
 entreeBtn.addEventListener('click', function() {
@@ -45,4 +45,17 @@ function addItem() {
     console.log(cost);
     console.log(supply);
 
+    fetch(link + '/insertNewItem', {
+        headers: {
+            'Content-type' : 'applications/json'
+        },
+        method : 'POST',
+        body: JSON.stringify({
+            item_id : item_id,
+            quantity : quantity,
+            cost : cost,
+            supply : supply
+        })
+    })
+    .then(response => response.json());
 }
