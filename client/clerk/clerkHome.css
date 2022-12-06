@@ -88,7 +88,7 @@ body {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 85%;
+    width: 97.5%;
     height: auto;
     padding: 50px;
 }
@@ -127,4 +127,9 @@ button {
 
 .completeOrderBtn {
     float: right;
+}
+
+.optionTag {
+    color: white;
+    font-weight: bold;
 }

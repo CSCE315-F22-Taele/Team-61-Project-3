@@ -1,5 +1,5 @@
-const link = 'https://project3-7bzcyqo3va-uc.a.run.app'
-//const link = 'http://localhost:5555';
+//const link = 'https://project3-7bzcyqo3va-uc.a.run.app'
+const link = 'http://localhost:5555';
 
 document.addEventListener('DOMContentLoaded', function() {
     localStorage.clear();
@@ -70,22 +70,22 @@ function createHtmlString(data) {
 
 function loadEntreeOptions(entrees) {    
     const entreeList = document.querySelector('.entree'); 
-    entreeList.innerHTML = createHtmlString(entrees);
+    entreeList.innerHTML += createHtmlString(entrees);
 }
 
 function loadProteinOptions(protein) {    
     const proteinList = document.querySelector('.protein'); 
-    proteinList.innerHTML = createHtmlString(protein);
+    proteinList.innerHTML += createHtmlString(protein);
 }
 
 function loadSideOptions(sides) {    
     const sidesList = document.querySelector('.sides'); 
-    sidesList.innerHTML = createHtmlString(sides);
+    sidesList.innerHTML += createHtmlString(sides);
 }
 
 function loadToppingOptions(toppings) {    
     const toppingsList = document.querySelector('.toppings'); 
-    toppingsList.innerHTML = createHtmlString(toppings);
+    toppingsList.innerHTML += createHtmlString(toppings);
 }
 
 const proteinPrices = new Map();
