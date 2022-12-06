@@ -146,7 +146,15 @@ function updateOrder() {
     var orderTextBox = document.getElementById("items");
     var htmlString = "<p>";
     var totalPrice = 0.00;
-    const meal = new Meal(0, new Date().toLocaleDateString(), "", "", 0, 0, 0, 0, 0);
+    const meal = new Meal(0, new Date().toLocaleDateString(), "null", "null", 0, 0, 0, 0, 0);
+    let entreeSelected = false;
+    let proteinSelected = false;
+    let toppingSelected = false;
+    let sideSelected = false;
+
+    if (order.length === 0) {
+        orderTextBox.innerHTML = "Order: ";
+    }
 
     const entreeButtons = document.querySelectorAll('.entree .itemBtns');
     for (var i = 0; i < entreeButtons.length; i++) {
@@ -154,59 +162,91 @@ function updateOrder() {
         if (btn.value == 1) {
             meal.entree_type = btn.id;
             htmlString += btn.id + ", ";
+            entreeSelected = true;
         }
     }
     const proteinButtons = document.querySelectorAll('.protein .itemBtns');
     for (var i = 0; i < proteinButtons.length; i++) {
         var btn = proteinButtons[i];
         if (btn.value == 1) {
-            meal.protein = btn.id;
-            htmlString += btn.id + ", ";
-            totalPrice += proteinPrices.get(btn.id);
-
-            let quantity = proteinQuantites.get(proteinButtons[i].id);
-            if (quantity == undefined) {
-                quantity = 0;
+            if (entreeSelected === true) {
+                meal.protein = btn.id;
+                htmlString += btn.id + ", ";
+                totalPrice += proteinPrices.get(btn.id);
+    
+                let quantity = proteinQuantites.get(proteinButtons[i].id);
+                if (quantity == undefined) {
+                    quantity = 0;
+                }
+                proteinQuantites.set(proteinButtons[i].id, ++quantity);
             }
-            proteinQuantites.set(proteinButtons[i].id, ++quantity);
+            proteinSelected = true;
         }
     }
     const sideButtons = document.querySelectorAll('.sides .itemBtns');
     for (var i = 0; i < sideButtons.length; i++) {
         var btn = sideButtons[i];
         if (btn.value == 1) {
-            if (btn.id == "chips_and_salsa") {
-                meal.chips_and_salsa = 1;
-            }
-            if (btn.id == "chips_and_guac") {
-                meal.chips_and_guac = 1;
-            }
-            if (btn.id == "chips_and_queso") {
-                meal.chips_and_queso = 1;
-            }
-            if (btn.id == "drink") {
-                meal.drink = 1;
+            if ((entreeSelected === false && proteinSelected === false) || (entreeSelected === true && proteinSelected === true)) {
+                if (btn.id == "chips_and_salsa") {
+                    meal.chips_and_salsa = 1;
+                }
+                if (btn.id == "chips_and_guac") {
+                    meal.chips_and_guac = 1;
+                }
+                if (btn.id == "chips_and_queso") {
+                    meal.chips_and_queso = 1;
+                }
+                if (btn.id == "drink") {
+                    meal.drink = 1;
+                }
+
+                let quantity = sideQuantites.get(sideButtons[i].id);
+                if (quantity == undefined) {
+                    quantity = 0;
+                }
+                sideQuantites.set(sideButtons[i].id, ++quantity);
             }
             htmlString += btn.id + ", ";
             totalPrice += sidePrices.get(btn.id);
-
-            let quantity = sideQuantites.get(sideButtons[i].id);
-            if (quantity == undefined) {
-                quantity = 0;
-            }
-            sideQuantites.set(sideButtons[i].id, ++quantity);
+            sideSelected = true;
         }
     }
     const toppingButtons = document.querySelectorAll('.toppings .itemBtns');
     for (var i = 0; i < toppingButtons.length; i++) {
         if (toppingButtons[i].value == 1) {
-            let quantity = toppingQuantites.get(toppingButtons[i].id);
-            if (quantity == undefined) {
-                quantity = 0;
+            if (entreeSelected === true && proteinSelected === true) {
+                let quantity = toppingQuantites.get(toppingButtons[i].id);
+                if (quantity == undefined) {
+                    quantity = 0;
+                }
+                toppingQuantites.set(toppingButtons[i].id, ++quantity);
             }
-            toppingQuantites.set(toppingButtons[i].id, ++quantity);
+            toppingSelected = true;
         }
     }
+
+    if (toppingSelected === false && entreeSelected === false && proteinSelected === false && sideSelected === false) {
+        clearButtons();
+        return;
+    }
+    if (toppingSelected === true && entreeSelected === false && proteinSelected === false) {
+        clearButtons();
+        return;
+    }
+    if (entreeSelected === true && proteinSelected === false) {
+        clearButtons();
+        return;
+    }
+    if (entreeSelected === false && proteinSelected === true) {
+        clearButtons();
+        return;
+    }
+    if (entreeSelected === true && sideSelected === true && proteinSelected === false) {
+        clearButtons();
+        return;
+    }
+
     orderTextBox.innerHTML += htmlString + "$" + totalPrice.toFixed(2).toString() + "</p>";
     updateTotal(totalPrice);
     meal.cost = totalPrice.toFixed(2);
@@ -227,6 +267,9 @@ function changeBtnColor(id) {
 }
 
 function completeOrder() {
+    if (order.length === 0) {
+        return;
+    }
     var i = 1;
     for (const meal of order) {
         meal.sale_id = saleID + i;
