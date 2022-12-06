@@ -97,4 +97,11 @@ function change_color(){
     else{
         this.style.backgroundColor = '#F9B618'; 
     }
+    var all_btns = document.getElementsByClassName("dropdown_btn");
+    for (var i = 0; i < all_btns.length; i++){
+        if (all_btns[i].id != this.id){
+            // console.log("button with id: ", all_btns[i].id, " should be changing color");
+            all_btns[i].style.backgroundColor = '#1995AA'; 
+        }
+    }
 }
