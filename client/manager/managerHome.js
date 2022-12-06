@@ -1,3 +1,9 @@
+/**
+ * This is a somewhat unnesccary file used for handling connection to our database for the manager
+ * It has been left here as reference code, it is no longer used
+ * @author Brandon Moon
+ */
+
 const link = 'https://project3-7bzcyqo3va-uc.a.run.app';
 
 document.addEventListener('DOMContentLoaded', function() {

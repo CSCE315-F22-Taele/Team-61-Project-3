@@ -1,3 +1,9 @@
+/**
+ * This file is used mainly for accessing different elements from our backend that we need. 
+ * It consists of lots of get functions as well as some update functions
+ * @author Justin Singletary, Brandon Moon 
+ */
+
 const express = require('express');
 const app = express();
 const cors = require('cors');
@@ -11,7 +17,11 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended : false}));
 
-
+/**
+ * This function accesses the entree options for our table 
+ * @author Justin Singletary
+ * @access Entree options
+ */
 app.get('/getEntreeOptions', (request, response) => {    
     const db = dbService.getDbServiceInstance();
     const result = db.getEntreeOptions();
