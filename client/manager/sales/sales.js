@@ -257,8 +257,10 @@ function enableButtons() {
 }
 
 function submitOrder() {
-    console.log(`entree:${entree} protein:${protein} cas: ${chipsAndSalsa} caq: ${chipsAndQueso} cag: ${chipsAndGuac} drink: ${drinkOption}`);
-    // fetch(link + '/getBowlOrders')
+    // console.log(`entree:${entree} protein:${protein} cas: ${chipsAndSalsa} caq: ${chipsAndQueso} cag: ${chipsAndGuac} drink: ${drinkOption}`);
+    start_date = document.getElementById('start').value;
+    end_date = document.getElementById('end').value;
+    console.log(start_date);
     fetch(link + '/getOrders/'+entree+'/'+protein+'/'+chipsAndSalsa+'/'+chipsAndQueso+'/'+chipsAndGuac+'/'+drinkOption+'/'+sideBtnPressed)
     .then(response => response.json())
     .then(data => loadHTMLTable(data['data']));
