@@ -181,6 +181,20 @@ th, td {
     
 }
 
+.enable_button {
+    text-align: center;
+    color: #fff; 
+    background-color: #1995AA;
+    color: #fff;
+    padding: 16px; 
+    font-size: 16px; 
+    border-radius: 15px; 
+    min-width: 80px; 
+    position: absolute; 
+    top: 10%; 
+    left: 15%; 
+}
+
 
 .date_inputs {
     font-size: 16px; 
