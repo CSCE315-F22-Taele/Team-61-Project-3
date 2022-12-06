@@ -223,12 +223,13 @@ app.post('/insertNewItem', (request, response) => {
     const { quantity } = request.body;
     const { cost } = request.body;
     const { supply } = request.body;
-    console.log(item_id + " from post");
+    console.log(request.body);
     const db = dbService.getDbServiceInstance();
     const result = db.insertNewItem(item_id, item_name, item_type, quantity, cost, supply);
 
     result
-    .then(data => response.json({ data : data }));
+    .then(data => response.json({ data : data }))
+    .catch(err => console.log(err));
 }) 
 
 app.post('/updateQuantities', (request, response) => {

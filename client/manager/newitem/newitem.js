@@ -34,27 +34,21 @@ toppingBtn.addEventListener('click', function() {
     item_type = 'topping';
 })
 
-
-function addItem() {
+const submitBtn = document.querySelector('#submit-btn');
+submitBtn.addEventListener('click', function() {
     const item_id = document.getElementById('id').value;
     const item_name = document.getElementById('name').value;
     const quantity = document.getElementById('quantity').value;
     const cost = document.getElementById('cost').value;
     const supply = document.getElementById('supply').value;
-    console.log(item_id);
-    console.log(item_name);
-    console.log(item_type);
-    console.log(quantity);
-    console.log(cost);
-    console.log(supply);
-
+    console.log(item_id, item_name, quantity, cost, supply);
     fetch(link + '/insertNewItem', {
         headers: {
-            'Content-type' : 'applications/json'
+            'Content-type' : 'application/json'
         },
-        method : 'POST',
-        body: JSON.stringify({
-            item_id : item_id,
+        method: 'POST',
+        body: JSON.stringify({ 
+            item_id : item_id, 
             item_name : item_name,
             item_type : item_type,
             quantity : quantity,
@@ -63,4 +57,6 @@ function addItem() {
         })
     })
     .then(response => response.json());
-}
+    alert("Item added to database successfully!");
+})
+    
