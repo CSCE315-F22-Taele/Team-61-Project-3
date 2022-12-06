@@ -241,5 +241,23 @@ app.post('/updateQuantity', (request, response) => {
     result
     .then(data => response.json({ data : data }));
 }) 
+app.get('/getOrders/:entreeType/:proteinType/:chipsAndSalsa/:chipsAndQueso/:chipsAndGuac/:drinkOption/:sideButtonPressed/:startDate/:endDate', (request, response) => {
+    const entree_type  = request.params.entreeType;
+    const protein_type = request.params.proteinType; 
+    const chips_and_salsa = request.params.chipsAndSalsa;
+    const  chips_and_queso = request.params.chipsAndQueso;
+    const  chips_and_guac = request.params.chipsAndGuac;
+    const  drink = request.params.drinkOption;
+    const sideBtn = request.params.sideButtonPressed;
+    const startDate = request.params.startDate;
+    const endDate = request.params.endDate;
+
+    const db = dbService.getDbServiceInstance()
+    const result = db.getOrders(entree_type, protein_type, chips_and_salsa, chips_and_queso, chips_and_guac, drink, sideBtn, startDate, endDate);
+
+    result 
+    .then(data => response.json({ data : data }))
+    .catch(err => console.log(err));
+})
 
 app.listen(process.env.PORT || 5555, () => console.log('app is running'));
