@@ -185,9 +185,9 @@ app.post('/insert', (request, response) => {
     .then(data => response.json({ data : data }));
 }) 
 
-app.get('/getOrders/:entreeType/:proteinType/:chipsAndSalsa/:chipsAndQueso/:chipsAndGuac/:drink', (request, response) => {
+app.get('/getOrders/:entreeType&:proteinType&:chipsAndSalsa&:chipsAndQueso&:chipsAndGuac&:drink', (request, response) => {
     const { entree_type } = request.params.entreeType;
-    const { protein_type } = request.params.proteinType;
+    const { protein_type } = request.params.proteinType; 
     const { chips_and_salsa } = request.params.chipsAndSalsa;
     const { chips_and_queso } = request.params.chipsAndQueso;
     const { chips_and_guac } = request.params.chipsAndGuac;
