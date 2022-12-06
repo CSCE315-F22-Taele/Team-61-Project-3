@@ -261,7 +261,7 @@ function submitOrder() {
     start_date = document.getElementById('start').value;
     end_date = document.getElementById('end').value;
     console.log(start_date);
-    fetch(link + '/getOrders/'+entree+'/'+protein+'/'+chipsAndSalsa+'/'+chipsAndQueso+'/'+chipsAndGuac+'/'+drinkOption+'/'+sideBtnPressed)
+    fetch(link + '/getOrders/'+entree+'/'+protein+'/'+chipsAndSalsa+'/'+chipsAndQueso+'/'+chipsAndGuac+'/'+drinkOption+'/'+sideBtnPressed+'/'+start_date+'/'+end_date)
     .then(response => response.json())
     .then(data => loadHTMLTable(data['data']));
 }
