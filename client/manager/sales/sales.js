@@ -1,4 +1,5 @@
-const link = 'https://project3-7bzcyqo3va-uc.a.run.app';
+// const link = 'https://project3-7bzcyqo3va-uc.a.run.app';
+const link = 'http://localhost:5555';
 
 document.addEventListener('DOMContentLoaded', function() {
     fetch(link + '/getEntreeOptions')
@@ -257,9 +258,10 @@ function enableButtons() {
 
 function submitOrder() {
     console.log(`entree:${entree} protein:${protein} cas: ${chipsAndSalsa} caq: ${chipsAndQueso} cag: ${chipsAndGuac} drink: ${drinkOption}`);
+    // fetch(link + '/getBowlOrders')
     fetch(link + '/getOrders/'+entree+'/'+protein+'/'+chipsAndSalsa+'/'+chipsAndQueso+'/'+chipsAndGuac+'/'+drinkOption)
-        .then(response => response.json())
-        .then(data => loadHTMLTable(data['data']));
+    .then(response => response.json())
+    .then(data => loadHTMLTable(data['data']));
 }
 
 // function fetchtacosOrders() {
