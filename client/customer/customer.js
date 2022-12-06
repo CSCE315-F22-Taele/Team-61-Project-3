@@ -168,17 +168,6 @@ function setProtein(proteinType) {
     localStorage.setItem("protein", proteinType);
 }
 
-/*
-function setSide(side) {
-    const sides = localStorage.getItem("sides");
-    if (sides === 'null') {
-        localStorage.setItem("sides", side);
-    } else {
-        localStorage.setItem("sides", sides + " " + side);
-    }
-}
-*/
-
 function addSide(side) {
     const sides = JSON.parse(localStorage.getItem('sides'));  
     if (sides == undefined) {
@@ -191,11 +180,9 @@ function addSide(side) {
 
 function removeSide(side) {
     const sides = JSON.parse(localStorage.getItem('sides'));
-
     const index = sides.indexOf(side);
-    const updatedSides = sides.splice(index, 1);
-
-    localStorage.setItem('sides', JSON.stringify(updatedSides));
+    sides.splice(index, 1);
+    localStorage.setItem('sides', JSON.stringify(sides));
 }
 
 function updateSideCheckBoxValue(item) {
@@ -226,9 +213,8 @@ function removeTopping(topping) {
     const toppings = JSON.parse(localStorage.getItem('toppings'));
 
     const index = toppings.indexOf(topping);
-    const updatedToppings = toppings.splice(index, 1);
-
-    localStorage.setItem('toppings', JSON.stringify(updatedToppings));
+    toppings.splice(index, 1);
+    localStorage.setItem('toppings', JSON.stringify(toppings));
 }
 
 function updateToppingCheckBoxValue(item) {
@@ -285,23 +271,25 @@ function loadOrder() {
 
     totalPrice += parseFloat(localStorage.getItem(protein + "Price"));
     
-    for (var i = 0; i < sides.length; i++) {
-        if (sides[i] === 'chips_and_salsa') {
-            meal.chips_and_salsa = 1;
+    if (sides != null) {
+        for (var i = 0; i < sides.length; i++) {
+            if (sides[i] === 'chips_and_salsa') {
+                meal.chips_and_salsa = 1;
+            }
+            if (sides[i] === 'chips_and_queso') {
+                meal.chips_and_queso = 1;
+            }
+            if (sides[i] === 'chips_and_guac') {
+                meal.chips_and_guac = 1;
+            }
+            if (sides[i] === 'drink') {
+                meal.drink = 1;
+            }
+            if (sides[i] === 'null') {
+                break;
+            }
+            totalPrice += parseFloat(localStorage.getItem(sides[i] + "Price"));
         }
-        if (sides[i] === 'chips_and_queso') {
-            meal.chips_and_queso = 1;
-        }
-        if (sides[i] === 'chips_and_guac') {
-            meal.chips_and_guac = 1;
-        }
-        if (sides[i] === 'drink') {
-            meal.drink = 1;
-        }
-        if (sides[i] === 'null') {
-            break;
-        }
-        totalPrice += parseFloat(localStorage.getItem(sides[i] + "Price"));
     }
     meal.cost = totalPrice.toFixed(2);
 
@@ -409,73 +397,77 @@ function insertMeal(sale_id, date, entree_type, protein, chips_and_salsa, chips_
 
 function updateSideQuantities() {
     const sides = JSON.parse(localStorage.getItem('sides'));
-    let sideCount = {};
-    for (let i = 0; i < sides.length; i++) {
-        if(!sideCount[sides[i]]) {
-            sideCount[sides[i]] = 0;
+    if (sides != null) {
+        let sideCount = {};
+        for (let i = 0; i < sides.length; i++) {
+            if(!sideCount[sides[i]]) {
+                sideCount[sides[i]] = 0;
+            }
+            sideCount[sides[i]]++;
         }
-        sideCount[sides[i]]++;
-    }
-
-    let updatedCount = {};
-    for (let i = 0; i < Object.keys(sideCount).length; i++) {
-        updatedCount[Object.keys(sideCount)[i]] = localStorage.getItem(Object.keys(sideCount)[i]+"Quantity") - sideCount[Object.keys(sideCount)[i]];
-    }
-
-    for (let i = 0; i < Object.keys(updatedCount).length; i++) {
-        let sideName = Object.keys(updatedCount)[i];
-        let newQuantity = updatedCount[Object.keys(updatedCount)[i]];
-
-        fetch(link + '/updateQuantity', {
-            headers: {
-                'Content-type' : 'application/json'
-            },
-            method: 'POST',
-            body: JSON.stringify({ 
-                item : sideName,
-                quantity : newQuantity,
+    
+        let updatedCount = {};
+        for (let i = 0; i < Object.keys(sideCount).length; i++) {
+            updatedCount[Object.keys(sideCount)[i]] = localStorage.getItem(Object.keys(sideCount)[i]+"Quantity") - sideCount[Object.keys(sideCount)[i]];
+        }
+    
+        for (let i = 0; i < Object.keys(updatedCount).length; i++) {
+            let sideName = Object.keys(updatedCount)[i];
+            let newQuantity = updatedCount[Object.keys(updatedCount)[i]];
+    
+            fetch(link + '/updateQuantity', {
+                headers: {
+                    'Content-type' : 'application/json'
+                },
+                method: 'POST',
+                body: JSON.stringify({ 
+                    item : sideName,
+                    quantity : newQuantity,
+                })
             })
-        })
-        .then(response => response.json());
+            .then(response => response.json());
+        }
     }
 }
 
 function updateToppingQuantities() {
     const toppings = JSON.parse(localStorage.getItem('toppings'));
-    let toppingCount = {};
-    for (let i = 0; i < toppings.length; i++) {
-        if(!toppingCount[toppings[i]]) {
-            toppingCount[toppings[i]] = 0;
+    if (toppings != null) {
+        let toppingCount = {};
+        for (let i = 0; i < toppings.length; i++) {
+            if(!toppingCount[toppings[i]]) {
+                toppingCount[toppings[i]] = 0;
+            }
+            toppingCount[toppings[i]]++;
         }
-        toppingCount[toppings[i]]++;
-    }
-
-    let updatedCount = {};
-    for (let i = 0; i < Object.keys(toppingCount).length; i++) {
-        updatedCount[Object.keys(toppingCount)[i]] = localStorage.getItem(Object.keys(toppingCount)[i]+"Quantity") - toppingCount[Object.keys(toppingCount)[i]];
-    }
-
-    for (let i = 0; i < Object.keys(updatedCount).length; i++) {
-        let toppingName = Object.keys(updatedCount)[i];
-        let newQuantity = updatedCount[Object.keys(updatedCount)[i]];
-
-        fetch(link + '/updateQuantity', {
-            headers: {
-                'Content-type' : 'application/json'
-            },
-            method: 'POST',
-            body: JSON.stringify({ 
-                item : toppingName,
-                quantity : newQuantity,
+    
+        let updatedCount = {};
+        for (let i = 0; i < Object.keys(toppingCount).length; i++) {
+            updatedCount[Object.keys(toppingCount)[i]] = localStorage.getItem(Object.keys(toppingCount)[i]+"Quantity") - toppingCount[Object.keys(toppingCount)[i]];
+        }
+    
+        for (let i = 0; i < Object.keys(updatedCount).length; i++) {
+            let toppingName = Object.keys(updatedCount)[i];
+            let newQuantity = updatedCount[Object.keys(updatedCount)[i]];
+    
+            fetch(link + '/updateQuantity', {
+                headers: {
+                    'Content-type' : 'application/json'
+                },
+                method: 'POST',
+                body: JSON.stringify({ 
+                    item : toppingName,
+                    quantity : newQuantity,
+                })
             })
-        })
-        .then(response => response.json());
+            .then(response => response.json());
+        }
     }
 }
 
 function updateProteinQuantity(protein) {
     let quantityProtein = localStorage.getItem(protein + "Quantity");
-    quantityProtein--;
+    --quantityProtein;
     
     fetch(link + '/updateQuantity', {
         headers: {

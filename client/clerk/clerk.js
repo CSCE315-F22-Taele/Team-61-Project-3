@@ -2,6 +2,8 @@ const link = 'https://project3-7bzcyqo3va-uc.a.run.app'
 //const link = 'http://localhost:5555';
 
 document.addEventListener('DOMContentLoaded', function() {
+    localStorage.clear();
+
     fetch(link + '/getEntreeOptions')
     .then(response => response.json())
     .then(data => loadEntreeOptions(data['data']));
@@ -29,7 +31,31 @@ document.addEventListener('DOMContentLoaded', function() {
     fetch(link + '/getNextSaleID') 
     .then(response => response.json())
     .then(data => loadSaleID(data['data']));
+
+    fetch(link + '/getEntreeQuantity')
+    .then(response => response.json())
+    .then(data => loadQuantities(data['data']));
+
+    fetch(link + '/getProteinQuantity')
+    .then(response => response.json())
+    .then(data => loadQuantities(data['data']));
+
+    fetch(link + '/getSideQuantity')  
+    .then(response => response.json())
+    .then(data => loadQuantities(data['data']));
+
+    fetch(link + '/getToppingQuantity')  
+    .then(response => response.json())
+    .then(data => loadQuantities(data['data']));
 }); 
+
+function loadQuantities(data) {
+    for (var key in data.rows) {
+        var item = (data.rows[key])['item_name'];
+        var quantity = (data.rows[key])['quantity'];
+        localStorage.setItem(item + "Quantity", quantity);
+    }
+}
 
 function createHtmlString(data) {
     var htmlString = "";
@@ -110,6 +136,10 @@ function loadSaleID(data) {
     }
 }
 
+let proteinQuantites = new Map();
+let sideQuantites = new Map();
+let toppingQuantites = new Map();
+
 let order = [];
 
 function updateOrder() {
@@ -133,6 +163,12 @@ function updateOrder() {
             meal.protein = btn.id;
             htmlString += btn.id + ", ";
             totalPrice += proteinPrices.get(btn.id);
+
+            let quantity = proteinQuantites.get(proteinButtons[i].id);
+            if (quantity == undefined) {
+                quantity = 0;
+            }
+            proteinQuantites.set(proteinButtons[i].id, ++quantity);
         }
     }
     const sideButtons = document.querySelectorAll('.sides .itemBtns');
@@ -153,6 +189,22 @@ function updateOrder() {
             }
             htmlString += btn.id + ", ";
             totalPrice += sidePrices.get(btn.id);
+
+            let quantity = sideQuantites.get(sideButtons[i].id);
+            if (quantity == undefined) {
+                quantity = 0;
+            }
+            sideQuantites.set(sideButtons[i].id, ++quantity);
+        }
+    }
+    const toppingButtons = document.querySelectorAll('.toppings .itemBtns');
+    for (var i = 0; i < toppingButtons.length; i++) {
+        if (toppingButtons[i].value == 1) {
+            let quantity = toppingQuantites.get(toppingButtons[i].id);
+            if (quantity == undefined) {
+                quantity = 0;
+            }
+            toppingQuantites.set(toppingButtons[i].id, ++quantity);
         }
     }
     orderTextBox.innerHTML += htmlString + "$" + totalPrice.toFixed(2).toString() + "</p>";
@@ -196,17 +248,50 @@ function completeOrder() {
                 cost : meal.cost
             })
         })
-        .then(response => response.json())
+        .then(response => response.json());
     }
     clearTextBoxes();
     grandTotal = 0.00;
 
+    const proteinButtons = document.querySelectorAll('.protein .itemBtns');
+    for (let i = 0; i < proteinButtons.length; i++) {
+        let protein = proteinButtons[i].id;
+        let proteinQuantity = proteinQuantites.get(protein);
+        if (proteinQuantity == undefined) {
+            proteinQuantity = 0;
+        }
+        let newProteinQuantity = localStorage.getItem(protein + "Quantity") - proteinQuantity;
+        updateQuantity(protein, newProteinQuantity);
+    }
+
+    const sideButtons = document.querySelectorAll('.sides .itemBtns');
+    for (let i = 0; i < sideButtons.length; i++) {
+        let side = sideButtons[i].id;
+        let sideQuantity = sideQuantites.get(side);
+        if (sideQuantity == undefined) {
+            sideQuantity = 0;
+        }
+        let newSideQuantity = localStorage.getItem(side + "Quantity") - sideQuantity;
+        updateQuantity(side, newSideQuantity);
+    }
+
+    const toppingButtons = document.querySelectorAll('.toppings .itemBtns');
+    for (let i = 0; i < toppingButtons.length; i++) {
+        let topping = toppingButtons[i].id;
+        let toppingQuantity = toppingQuantites.get(topping);
+        if (toppingQuantity == undefined) {
+            toppingQuantity = 0;
+        }
+        let newToppingQuantity = localStorage.getItem(topping + "Quantity") - toppingQuantity;
+        updateQuantity(topping, newToppingQuantity);
+    }
+
     fetch(link + '/getNextSaleID') 
     .then(response => response.json())
     .then(data => loadSaleID(data['data']));
+
+    localStorage.clear();
 }
-
-
 
 function clearTextBoxes() {
     var orderTextBox = document.getElementById("items");
@@ -249,4 +334,18 @@ function clearButtons() {
             btn.value = 0;
         }
     }
+}
+
+function updateQuantity(item, quantity) {
+    fetch(link + '/updateQuantity', {
+        headers: {
+            'Content-type' : 'application/json'
+        },
+        method: 'POST',
+        body: JSON.stringify({ 
+            item : item,
+            quantity : quantity,
+        })
+    })
+    .then(response => response.json());
 }
