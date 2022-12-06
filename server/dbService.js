@@ -1,3 +1,9 @@
+/**
+ * This file is used mainly for connecting with our database
+ * @author Justin Singletary
+ */
+
+
 const { Client } = require('pg');
 const dotenv = require('dotenv');
 let instance = null;
