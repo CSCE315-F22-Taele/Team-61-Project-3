@@ -14,8 +14,8 @@ function change_color(id){
         }
     }
 }
-// const link = 'https://project3-7bzcyqo3va-uc.a.run.app'
-const link = 'http://localhost:5555';
+const link = 'https://project3-7bzcyqo3va-uc.a.run.app'
+// const link = 'http://localhost:5555';
 var item_type = "";
 const entreeBtn = document.querySelector('#entreeBtn');
 entreeBtn.addEventListener('click', function() {
