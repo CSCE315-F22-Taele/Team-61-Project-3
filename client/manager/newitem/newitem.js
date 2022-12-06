@@ -1,3 +1,10 @@
+/**
+ * This file is used for the backend functionality needed for adding new items to our database
+ * @author Brandon Moon, Roee Belkin
+ * @param {*} id holds the id of elements that need their color changed
+ */
+
+
 function change_color(id){
     var btn = document.getElementById(id);
     var all_btns = document.getElementsByClassName(btn.className);

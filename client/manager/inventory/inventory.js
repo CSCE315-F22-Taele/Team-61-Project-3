@@ -1,3 +1,8 @@
+/**
+ * This file is used for the neccessary calls to our database for accessing and updating the inventory
+ * @author Brandon Moon 
+ */
+
 function fetchAllInventory() {
     fetch('https://project3-7bzcyqo3va-uc.a.run.app/getAllInventory') 
     .then(response => response.json())
