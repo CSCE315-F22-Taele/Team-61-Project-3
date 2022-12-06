@@ -143,6 +143,7 @@ var chipsAndGuac = "";
 var drinkOption = "";
 var sideBtnPressed = "";
 function enableButtons() {
+    alert("BUTTONS ENABLED");
     // ENTREE OPTIONS
     const allEntreeBtn = document.querySelector('#allBtnentree');
     allEntreeBtn.addEventListener('click', function() {
