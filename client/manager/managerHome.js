@@ -5,6 +5,7 @@
  */
 
 const link = 'https://project3-7bzcyqo3va-uc.a.run.app';
+//const link = 'http://localhost:5555';
 
 document.addEventListener('DOMContentLoaded', function() {
     fetch(link + '/getEntreeOptions')
@@ -104,7 +105,7 @@ function loadHTMLTable(data) {
             var dataEntry = (data.rows[key])[keyName];
             if (keyName == 'date') {
                 dataEntry = new Date(dataEntry).toLocaleDateString();
-            } 
+            }
             tableHTML += `<td>${dataEntry}</td>`;
         }
         tableHTML += "</tr>";
