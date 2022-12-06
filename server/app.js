@@ -216,6 +216,21 @@ app.post('/insert', (request, response) => {
     .then(data => response.json({ data : data }));
 }) 
 
+app.post('/insertNewItem', (request, response) => {
+    const { item_id } = request.body;
+    const { item_name } = request.body;
+    const { item_type } = request.body;
+    const { quantity } = request.body;
+    const { cost } = request.body;
+    const { supply } = request.body;
+    console.log(item_id + " from post");
+    const db = dbService.getDbServiceInstance();
+    const result = db.insertNewItem(item_id, item_name, item_type, quantity, cost, supply);
+
+    result
+    .then(data => response.json({ data : data }));
+}) 
+
 app.post('/updateQuantities', (request, response) => {
     const { protein } = request.body;
     const { proteinQuantity } = request.body;

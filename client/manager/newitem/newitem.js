@@ -14,7 +14,8 @@ function change_color(id){
         }
     }
 }
-const link = 'https://project3-7bzcyqo3va-uc.a.run.app'
+// const link = 'https://project3-7bzcyqo3va-uc.a.run.app'
+const link = 'http://localhost:5555';
 var item_type = "";
 const entreeBtn = document.querySelector('#entreeBtn');
 entreeBtn.addEventListener('click', function() {
@@ -36,10 +37,12 @@ toppingBtn.addEventListener('click', function() {
 
 function addItem() {
     const item_id = document.getElementById('id').value;
+    const item_name = document.getElementById('name').value;
     const quantity = document.getElementById('quantity').value;
     const cost = document.getElementById('cost').value;
     const supply = document.getElementById('supply').value;
     console.log(item_id);
+    console.log(item_name);
     console.log(item_type);
     console.log(quantity);
     console.log(cost);
@@ -52,6 +55,8 @@ function addItem() {
         method : 'POST',
         body: JSON.stringify({
             item_id : item_id,
+            item_name : item_name,
+            item_type : item_type,
             quantity : quantity,
             cost : cost,
             supply : supply

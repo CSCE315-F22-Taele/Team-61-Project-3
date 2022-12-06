@@ -501,6 +501,34 @@ class DbService {
         }
     }
 
+    async insertNewItem(item_id, item_name, item_type, quantity, cost, supply) {
+        try {
+            const response = await new Promise((resolve, reject) => {
+                console.log(item_id, item_name, item_type, quantity, cost, supply)
+                const query = `INSERT INTO cabo_grill VALUES (${item_id}, '${item_name}', '${item_type}', ${quantity}, ${cost}, ${supply});`;
+                connection.query(query, (err, result) => {
+                    if (err) {
+                        reject(new Error(err.message));
+                    }
+                    else {
+                        resolve(result);
+                    }
+                });
+            });
+            return {
+                item_id : item_id,
+                item_name : item_name,
+                item_type : item_type,
+                quantity : quantity,
+                cost : cost,
+                supply : supply
+            };
+        } 
+        catch (error) {
+            console.log(error);
+        }
+    }
+
     async updateQuantities(protein, proteinQuantity, chips_and_salsaQuantity, chips_and_quesoQuantity, chips_and_guacQuantity, drinkQuantity) {
         try {
             const response = await new Promise((resolve, reject) => {
