@@ -97,8 +97,8 @@ body {
 }
 
 .dropdown {
-    top: 25%; 
-    left: 45%; 
+    top: 60%; 
+    left: 65%; 
     position: absolute; 
     display: inline-block;
 }
@@ -120,14 +120,14 @@ body {
 
 .cost_class {
     top: 60%;
-    left: 10%;
+    left: 7%;
     position: absolute; 
     display: block; 
 }
 
 .supply_class {
     top: 60%;
-    left: 35%;
+    left: 25%;
     position: absolute; 
     display: block; 
 }
@@ -137,6 +137,13 @@ body {
     left: 80%;
     position: absolute; 
     display: block; 
+}
+
+.name_class {
+    top:25%;
+    position:absolute; 
+    display:block; 
+    left: 45%;
 }
 
 
