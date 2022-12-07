@@ -104,3 +104,12 @@ body {
     line-height: 25px; 
     font-size: 20px;
 }
+
+
+.goog-logo-link {
+    display:none !important;
+} 
+    
+.goog-te-gadget{
+    color: transparent !important;
+}

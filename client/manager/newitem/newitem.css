@@ -202,3 +202,11 @@ input {
 .dropdown:hover .dropbtn {
     background-color: #17869C;
 }
+
+.goog-logo-link {
+    display:none !important;
+} 
+    
+.goog-te-gadget{
+    color: transparent !important;
+}
