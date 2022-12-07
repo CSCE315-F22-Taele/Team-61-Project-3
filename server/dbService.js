@@ -535,6 +535,34 @@ class DbService {
         }
     }
 
+    async updateItemById(item_id, item_name, item_type, quantity, cost, supply) {
+        try {
+            const response = await new Promise((resolve, reject) => {
+                console.log(item_id, item_name, item_type, quantity, cost, supply)
+                const query = `UPDATE cabo_grill SET item_name = '${item_name}', type = '${item_type}', quantity = ${quantity}, sale_cost = ${cost}, minimum_supply = ${supply} WHERE id=${item_id}; `;
+                connection.query(query, (err, result) => {
+                    if (err) {
+                        reject(new Error(err.message));
+                    }
+                    else {
+                        resolve(result);
+                    }
+                });
+            });
+            return {
+                item_id : item_id,
+                item_name : item_name,
+                item_type : item_type,
+                quantity : quantity,
+                cost : cost,
+                supply : supply
+            };
+        } 
+        catch (error) {
+            console.log(error);
+        }
+    }
+
     async updateQuantity(item, quantity) {
         try {
             const response = await new Promise((resolve, reject) => {
