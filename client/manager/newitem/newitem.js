@@ -21,7 +21,7 @@ function change_color(id){
         }
     }
 }
-const link = 'https://project3-7bzcyqo3va-uc.a.run.app'
+const link = 'https://project3-7bzcyqo3va-uc.a.run.app';
 // const link = 'http://localhost:5555';
 var item_type = "";
 const entreeBtn = document.querySelector('#entreeBtn');
@@ -41,8 +41,8 @@ toppingBtn.addEventListener('click', function() {
     item_type = 'topping';
 })
 
-const submitBtn = document.querySelector('#submit-btn');
-submitBtn.addEventListener('click', function() {
+const addBtn = document.querySelector('#add-btn');
+addBtn.addEventListener('click', function() {
     const item_id = document.getElementById('id').value;
     const item_name = document.getElementById('name').value;
     const quantity = document.getElementById('quantity').value;
@@ -65,5 +65,31 @@ submitBtn.addEventListener('click', function() {
     })
     .then(response => response.json());
     alert("Item added to database successfully!");
+})
+
+const editBtn = document.querySelector('#edit-btn');
+editBtn.addEventListener('click', function() {
+    const item_id = document.getElementById('id').value;
+    const item_name = document.getElementById('name').value;
+    const quantity = document.getElementById('quantity').value;
+    const cost = document.getElementById('cost').value;
+    const supply = document.getElementById('supply').value;
+    console.log(item_id, item_name, quantity, cost, supply);
+    fetch(link + '/updateItem', {
+        headers: {
+            'Content-type' : 'application/json'
+        },
+        method: 'POST',
+        body: JSON.stringify({ 
+            item_id : item_id, 
+            item_name : item_name,
+            item_type : item_type,
+            quantity : quantity,
+            cost : cost,
+            supply : supply
+        })
+    })
+    .then(response => response.json());
+    alert("Item has been updated successfully!");
 })
     
