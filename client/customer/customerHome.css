@@ -277,3 +277,11 @@ html {
  .toppingitems {
     margin-top: 40px;
  }
+
+ .goog-logo-link {
+    display:none !important;
+} 
+    
+.goog-te-gadget{
+    color: transparent !important;
+}
