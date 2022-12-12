@@ -475,11 +475,9 @@ class DbService {
     async insertNewOrder(sale_id, date, entree_type, protein, chips_and_salsa, chips_and_queso, chips_and_guac, drink, cost) {
         try {
             const response = await new Promise((resolve, reject) => {
-                var todaysDate = new Date();
-                var dd = String(todaysDate.getDate()).padStart(2, '0');
-                var mm = String(todaysDate.getMonth() + 1).padStart(2, '0');
-                var yyyy = todaysDate.getFullYear();
-                todaysDate = yyyy + '-' + mm + '-' + dd;
+                var date = new Date().toLocaleDateString('en-US', {timeZone: 'America/Chicago'});
+                let dateArray = date.split('/');
+                let todaysDate = dateArray[2] + '-' + dateArray[0] + '-' + dateArray[1];
                 const query = `INSERT INTO cabo_grill_sales VALUES (${sale_id}, '${todaysDate}', '${entree_type}', '${protein}', ${chips_and_salsa}, ${chips_and_queso}, ${chips_and_guac}, ${drink}, ${cost});`;
                 connection.query(query, (err, result) => {
                     if (err) {
