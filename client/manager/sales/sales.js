@@ -95,7 +95,7 @@ function loadHTMLTable(data) {
         for (var keyName in data.rows[key]) {
             var dataEntry = (data.rows[key])[keyName];
             if (keyName == 'date') {
-                dataEntry = new Date(dataEntry).toLocaleDateString('en-US', {timeZone: 'UTC'});
+                dataEntry = new Date(dataEntry).toLocaleDateString('en-US', {timeZone: 'America/Chicago'});
             } 
             tableHTML += `<td>${dataEntry}</td>`;
         }
